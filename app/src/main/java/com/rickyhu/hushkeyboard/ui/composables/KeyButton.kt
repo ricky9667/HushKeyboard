@@ -32,7 +32,8 @@ fun KeyButton(key: String) {
         ) {
             Text(
                 text = key,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                fontSize = 24.sp
             )
         }
     }
