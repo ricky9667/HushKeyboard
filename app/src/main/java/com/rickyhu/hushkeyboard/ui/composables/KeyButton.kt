@@ -13,20 +13,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.PointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rickyhu.hushkeyboard.model.CubeKey
+import com.rickyhu.hushkeyboard.model.Notation
+import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @Composable
-fun KeyButton(key: String) {
+fun KeyButton(key: CubeKey) {
     val context = LocalContext.current
-    var inputText by remember { mutableStateOf(key) }
+    var inputKey by remember { mutableStateOf(key) }
 
     Card(
         modifier = Modifier
@@ -35,24 +37,26 @@ fun KeyButton(key: String) {
             .pointerInput(Unit) {
                 awaitPointerEventScope {
                     while (true) {
-                        val event: PointerEvent = awaitPointerEvent()
+                        val event = awaitPointerEvent()
                         val position = event.changes.first().position
 
                         when (event.type.toString()) {
                             "Press" -> {
-                                inputText = "$key "
+                                inputKey = key
                             }
 
                             "Move" -> {
-                                inputText = if (position.x < 0) "$key' " else "${key}2 "
+                                inputKey = if (position.x < 0) {
+                                    key.copy(isCounterClockwise = true)
+                                } else {
+                                    key.copy(turns = Turns.Double)
+                                }
                             }
 
                             "Release" -> {
                                 val service = context as HushIMEService
-                                service.currentInputConnection.commitText(
-                                    inputText,
-                                    inputText.length
-                                )
+                                val text = "$inputKey "
+                                service.currentInputConnection.commitText(text, text.length)
                             }
                         }
                     }
@@ -64,7 +68,7 @@ fun KeyButton(key: String) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = key,
+                text = key.toString(),
                 textAlign = TextAlign.Center,
                 fontSize = 24.sp
             )
@@ -76,6 +80,6 @@ fun KeyButton(key: String) {
 @Composable
 fun KeyButtonPreview() {
     HushKeyboardTheme {
-        KeyButton("R")
+        KeyButton(CubeKey(Notation.R))
     }
 }
