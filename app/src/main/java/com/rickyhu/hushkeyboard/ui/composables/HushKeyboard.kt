@@ -13,8 +13,7 @@ fun HushKeyboard() {
         modifier = Modifier.fillMaxWidth()
     ) {
         val keyboardKeys = listOf(
-            listOf("R", "U", "F", "L", "D", "B"),
-            listOf("M", "E", "S", "x", "y", "z")
+            listOf("R", "U", "F", "L", "D", "B")
         )
 
         for (keysRow in keyboardKeys) {
