@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.AbstractComposeView
 import com.rickyhu.hushkeyboard.ui.composables.HushKeyboard
+import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 
 class HushKeyboardView(context: Context) : AbstractComposeView(context) {
+    private var viewModel = KeyboardViewModel()
+
     @Composable
-    override fun Content() = HushKeyboard()
+    override fun Content() = HushKeyboard(viewModel)
 }
