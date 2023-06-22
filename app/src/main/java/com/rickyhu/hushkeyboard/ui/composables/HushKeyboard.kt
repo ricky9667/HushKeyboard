@@ -1,6 +1,5 @@
 package com.rickyhu.hushkeyboard.ui.composables
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,46 +42,38 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
         )
 
         for (keysRow in keyboardKeys) {
-            KeyButtonsRow(keysRow)
+            NotationKeyButtonsRow(keysRow)
         }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            KeyButton(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .size(48.dp)
-                    .clickable(
-                        onClick = { viewModel.switchCounterClockwise() }
-                    ),
-                text = "'"
+            val controlKeyModifier = Modifier
+                .padding(4.dp)
+                .size(48.dp)
+
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                text = "'",
+                onClick = viewModel::switchCounterClockwise
             )
-            KeyButton(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .size(48.dp)
-                    .clickable(
-                        onClick = { viewModel.switchTurns() }
-                    ),
-                text = state.turns.value.toString()
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                text = state.turns.value.toString(),
+                onClick = viewModel::switchTurns
             )
-            KeyButton(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .size(48.dp)
-                    .clickable(
-                        onClick = { viewModel.switchWideTurn() }
-                    ),
-                text = "w"
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                text = "w",
+                onClick = viewModel::switchWideTurn
             )
         }
     }
 }
 
 @Composable
-fun KeyButtonsRow(keys: List<CubeKey>) {
+private fun NotationKeyButtonsRow(keys: List<CubeKey>) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
