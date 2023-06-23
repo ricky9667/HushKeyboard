@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
@@ -21,14 +22,15 @@ import kotlin.math.abs
 @Composable
 fun NotationKeyButton(
     modifier: Modifier = Modifier,
-    key: CubeKey
+    cubeKey: CubeKey
 ) {
     val context = LocalContext.current
+    val key by rememberUpdatedState(cubeKey)
     var inputKey by remember { mutableStateOf(key) }
 
     KeyButton(
         modifier = modifier
-            .pointerInput(Unit) {
+            .pointerInput(key) {
                 awaitPointerEventScope {
                     while (true) {
                         val event = awaitPointerEvent()
@@ -80,7 +82,7 @@ fun NotationKeyButtonPreview() {
     HushKeyboardTheme {
         NotationKeyButton(
             modifier = Modifier.size(48.dp),
-            key = CubeKey(
+            cubeKey = CubeKey(
                 notation = Notation.R
             )
         )

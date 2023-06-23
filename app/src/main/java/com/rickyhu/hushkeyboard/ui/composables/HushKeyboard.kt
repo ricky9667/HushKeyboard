@@ -83,7 +83,7 @@ private fun NotationKeyButtonsRow(keys: List<CubeKey>) {
                 modifier = Modifier
                     .padding(4.dp)
                     .size(48.dp),
-                key = key
+                cubeKey = key
             )
         }
     }
