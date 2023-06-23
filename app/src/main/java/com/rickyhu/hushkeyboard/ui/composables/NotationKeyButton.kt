@@ -16,6 +16,7 @@ import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import kotlin.math.abs
 
 @Composable
 fun NotationKeyButton(
@@ -39,10 +40,23 @@ fun NotationKeyButton(
                             }
 
                             "Move" -> {
-                                inputKey = if (position.x < 0) {
-                                    key.copy(isCounterClockwise = true)
+                                if (abs(position.x) < abs(position.y)) {
+                                    // Notate as double turn when swiping up or down, but only
+                                    // if the key state is originally a single turn.
+                                    val turns = if (key.turns == Turns.Single) {
+                                        Turns.Double
+                                    } else {
+                                        key.turns
+                                    }
+
+                                    // Clockwise down, counter-clockwise up.
+                                    inputKey = key.copy(
+                                        isCounterClockwise = position.y < 0,
+                                        turns = turns
+                                    )
                                 } else {
-                                    key.copy(turns = Turns.Double)
+                                    // Clockwise right, counter-clockwise left.
+                                    inputKey = key.copy(isCounterClockwise = position.x < 0)
                                 }
                             }
 
@@ -50,6 +64,7 @@ fun NotationKeyButton(
                                 val service = context as HushIMEService
                                 val text = "$inputKey "
                                 service.currentInputConnection.commitText(text, text.length)
+                                val c = service.currentInputConnection
                             }
                         }
                     }
