@@ -66,7 +66,6 @@ fun NotationKeyButton(
                                 val service = context as HushIMEService
                                 val text = "$inputKey "
                                 service.currentInputConnection.commitText(text, text.length)
-                                val c = service.currentInputConnection
                             }
                         }
                     }

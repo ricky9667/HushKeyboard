@@ -29,8 +29,8 @@ fun KeyButton(
         ) {
             Text(
                 text = text,
-                textAlign = TextAlign.Center,
-                fontSize = 24.sp
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center
             )
         }
     }
