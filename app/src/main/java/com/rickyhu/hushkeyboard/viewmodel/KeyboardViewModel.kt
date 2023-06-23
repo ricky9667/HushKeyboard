@@ -42,6 +42,10 @@ class KeyboardViewModel : ViewModel() {
             inputConnection.commitText("", 1)
         }
     }
+
+    fun inputText(inputConnection: InputConnection, text: String) {
+        inputConnection.commitText(text, text.length)
+    }
 }
 
 data class KeyboardState(

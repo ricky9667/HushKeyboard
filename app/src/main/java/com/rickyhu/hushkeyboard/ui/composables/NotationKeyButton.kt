@@ -9,22 +9,20 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import kotlin.math.abs
 
 @Composable
 fun NotationKeyButton(
     modifier: Modifier = Modifier,
-    cubeKey: CubeKey
+    cubeKey: CubeKey,
+    onTextInput: (String) -> Unit = {}
 ) {
-    val context = LocalContext.current
     val key by rememberUpdatedState(cubeKey)
     var inputKey by remember { mutableStateOf(key) }
 
@@ -63,9 +61,7 @@ fun NotationKeyButton(
                             }
 
                             "Release" -> {
-                                val service = context as HushIMEService
-                                val text = "$inputKey "
-                                service.currentInputConnection.commitText(text, text.length)
+                                onTextInput("$inputKey ")
                             }
                         }
                     }
@@ -81,9 +77,7 @@ fun NotationKeyButtonPreview() {
     HushKeyboardTheme {
         NotationKeyButton(
             modifier = Modifier.size(48.dp),
-            cubeKey = CubeKey(
-                notation = Notation.R
-            )
+            cubeKey = CubeKey(notation = Notation.R)
         )
     }
 }

@@ -45,7 +45,13 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
         )
 
         for (keysRow in keyboardKeys) {
-            NotationKeyButtonsRow(keysRow)
+            NotationKeyButtonsRow(
+                keys = keysRow,
+                onTextInput = { text ->
+                    val service = context as HushIMEService
+                    viewModel.inputText(service.currentInputConnection, text)
+                }
+            )
         }
 
         Row(
@@ -84,7 +90,10 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
 }
 
 @Composable
-private fun NotationKeyButtonsRow(keys: List<CubeKey>) {
+private fun NotationKeyButtonsRow(
+    keys: List<CubeKey>,
+    onTextInput: (String) -> Unit
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
@@ -94,7 +103,8 @@ private fun NotationKeyButtonsRow(keys: List<CubeKey>) {
                 modifier = Modifier
                     .padding(4.dp)
                     .size(48.dp),
-                cubeKey = key
+                cubeKey = key,
+                onTextInput = onTextInput
             )
         }
     }
