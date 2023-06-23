@@ -1,5 +1,7 @@
 package com.rickyhu.hushkeyboard.viewmodel
 
+import android.text.TextUtils
+import android.view.inputmethod.InputConnection
 import androidx.lifecycle.ViewModel
 import com.rickyhu.hushkeyboard.model.Turns
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +31,15 @@ class KeyboardViewModel : ViewModel() {
     fun switchWideTurn() {
         _keyboardState.update { state ->
             state.copy(isWideTurn = !state.isWideTurn)
+        }
+    }
+
+    fun deleteText(inputConnection: InputConnection) {
+        val selectedText = inputConnection.getSelectedText(0)
+        if (TextUtils.isEmpty(selectedText)) {
+            inputConnection.deleteSurroundingText(1, 0)
+        } else {
+            inputConnection.commitText("", 1)
         }
     }
 }

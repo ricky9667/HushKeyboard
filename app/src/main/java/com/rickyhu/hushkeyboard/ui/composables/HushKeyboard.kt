@@ -10,14 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
+import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 
 @Composable
 fun HushKeyboard(viewModel: KeyboardViewModel) {
     val state by viewModel.keyboardState.collectAsState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier.fillMaxWidth()
@@ -67,6 +70,14 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 modifier = controlKeyModifier,
                 text = "w",
                 onClick = viewModel::switchWideTurn
+            )
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                text = "⌫",
+                onClick = {
+                    val service = context as HushIMEService
+                    viewModel.deleteText(service.currentInputConnection)
+                }
             )
         }
     }
