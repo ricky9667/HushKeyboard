@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,13 +40,18 @@ fun NotationKeyButton(
     val key by rememberUpdatedState(cubeKey)
     var inputKey by remember { mutableStateOf(key) }
 
+    LaunchedEffect(key) {
+        inputKey = key
+    }
+
     Box {
         KeyButton(
             modifier = modifier
-                .clickable(interactionSource = interactionSource, indication = null) {
-                    inputKey = key
-                    onTextInput("$inputKey ")
-                }
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    onClick = { onTextInput("$inputKey ") }
+                )
                 .draggable(
                     interactionSource = interactionSource,
                     orientation = Orientation.Horizontal,
@@ -80,7 +86,7 @@ fun NotationKeyButton(
         )
 
         if (isPressed || isDragged) {
-            Text(text = inputKey.toString())
+            Text(text = key.toString())
         }
     }
 }
