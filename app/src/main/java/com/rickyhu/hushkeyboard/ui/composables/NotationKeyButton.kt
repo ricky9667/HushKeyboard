@@ -5,7 +5,11 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsDraggedAsState
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,46 +31,58 @@ fun NotationKeyButton(
     onTextInput: (String) -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    val isDragged by interactionSource.collectIsDraggedAsState()
+    var offsetX by remember { mutableStateOf(0f) }
+    var offsetY by remember { mutableStateOf(0f) }
+
     val key by rememberUpdatedState(cubeKey)
     var inputKey by remember { mutableStateOf(key) }
 
-    KeyButton(
-        modifier = modifier
-            .clickable(interactionSource = interactionSource, indication = null) {
-                inputKey = key
-                onTextInput("$inputKey ")
-            }
-            .draggable(
-                interactionSource = interactionSource,
-                orientation = Orientation.Horizontal,
-                state = rememberDraggableState { x ->
-                    inputKey = key.copy(isCounterClockwise = x < 0)
-                },
-                onDragStopped = { x ->
+    Box {
+        KeyButton(
+            modifier = modifier
+                .clickable(interactionSource = interactionSource, indication = null) {
+                    inputKey = key
                     onTextInput("$inputKey ")
                 }
-            )
-            .draggable(
-                interactionSource = interactionSource,
-                orientation = Orientation.Vertical,
-                state = rememberDraggableState { y ->
-                    // Notate as double turn when swiping up or down, but only
-                    // if the key state is originally a single turn.
-                    val turns = if (key.turns == Turns.Single) {
-                        Turns.Double
-                    } else {
-                        key.turns
-                    }
+                .draggable(
+                    interactionSource = interactionSource,
+                    orientation = Orientation.Horizontal,
+                    state = rememberDraggableState { x ->
+                        offsetX += x
+                        inputKey = key.copy(isCounterClockwise = offsetX < 0)
+                    },
+                    onDragStarted = { offsetX = 0f },
+                    onDragStopped = { onTextInput("$inputKey ") }
+                )
+                .draggable(
+                    interactionSource = interactionSource,
+                    orientation = Orientation.Vertical,
+                    state = rememberDraggableState { y ->
+                        offsetY += y
 
-                    // Clockwise down, counter-clockwise up.
-                    inputKey = key.copy(isCounterClockwise = y < 0, turns = turns)
-                },
-                onDragStopped = { y ->
-                    onTextInput("$inputKey ")
-                }
-            ),
-        text = key.toString()
-    )
+                        // Notate as double turn when swiping up or down, but only
+                        // if the key state is originally a single turn.
+                        val turns = if (key.turns == Turns.Single) {
+                            Turns.Double
+                        } else {
+                            key.turns
+                        }
+
+                        // Clockwise down, counter-clockwise up.
+                        inputKey = key.copy(isCounterClockwise = offsetY < 0, turns = turns)
+                    },
+                    onDragStarted = { offsetY = 0f },
+                    onDragStopped = { onTextInput("$inputKey ") }
+                ),
+            text = key.toString()
+        )
+
+        if (isPressed || isDragged) {
+            Text(text = inputKey.toString())
+        }
+    }
 }
 
 @Preview(showBackground = true)
