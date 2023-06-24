@@ -1,5 +1,7 @@
 package com.rickyhu.hushkeyboard.ui.composables
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,9 +16,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
-import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun HushKeyboard(viewModel: KeyboardViewModel) {
     val state by viewModel.keyboardState.collectAsState()
@@ -47,10 +49,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
         for (keysRow in keyboardKeys) {
             NotationKeyButtonsRow(
                 keys = keysRow,
-                onTextInput = { text ->
-                    val service = context as HushIMEService
-                    viewModel.inputText(service.currentInputConnection, text)
-                }
+                onTextInput = { text -> viewModel.inputText(context, text) }
             )
         }
 
@@ -65,25 +64,22 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             ControlKeyButton(
                 modifier = controlKeyModifier,
                 text = "'",
-                onClick = viewModel::switchCounterClockwise
+                onClick = { viewModel.switchCounterClockwise(context) }
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
                 text = state.turns.value.toString(),
-                onClick = viewModel::switchTurns
+                onClick = { viewModel.switchTurns(context) }
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
                 text = "w",
-                onClick = viewModel::switchWideTurn
+                onClick = { viewModel.switchWideTurn(context) }
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
                 text = "⌫",
-                onClick = {
-                    val service = context as HushIMEService
-                    viewModel.deleteText(service.currentInputConnection)
-                }
+                onClick = { viewModel.deleteText(context) }
             )
         }
     }
