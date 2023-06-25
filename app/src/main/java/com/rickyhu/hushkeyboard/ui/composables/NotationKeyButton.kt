@@ -96,10 +96,9 @@ fun NotationKeyButton(
             text = key.toString()
         )
 
-        if (isPressed) {
-            KeyTooltip(text = key.toString(), modifier = modifier)
-        } else if (isDragged) {
-            KeyTooltip(text = inputKey.toString(), modifier = modifier)
+        when {
+            isPressed -> KeyTooltip(text = key.toString(), modifier = modifier)
+            isDragged -> KeyTooltip(text = inputKey.toString(), modifier = modifier)
         }
     }
 }
