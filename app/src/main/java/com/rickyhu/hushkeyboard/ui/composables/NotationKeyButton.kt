@@ -50,7 +50,7 @@ fun NotationKeyButton(
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null,
-                    onClick = { onTextInput("$inputKey ") }
+                    onClick = { onTextInput("$key ") }
                 )
                 .draggable(
                     interactionSource = interactionSource,
@@ -85,8 +85,10 @@ fun NotationKeyButton(
             text = key.toString()
         )
 
-        if (isPressed || isDragged) {
+        if (isPressed) {
             Text(text = key.toString())
+        } else if (isDragged) {
+            Text(text = inputKey.toString())
         }
     }
 }
