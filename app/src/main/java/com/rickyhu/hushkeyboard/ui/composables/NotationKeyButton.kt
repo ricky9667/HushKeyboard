@@ -8,6 +8,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,9 +19,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
@@ -44,7 +49,9 @@ fun NotationKeyButton(
         inputKey = key
     }
 
-    Box {
+    Box(
+        contentAlignment = Alignment.Center
+    ) {
         KeyButton(
             modifier = modifier
                 .clickable(
@@ -86,11 +93,24 @@ fun NotationKeyButton(
         )
 
         if (isPressed) {
-            Text(text = key.toString())
+            KeyTooltip(text = key.toString(), modifier = modifier)
         } else if (isDragged) {
-            Text(text = inputKey.toString())
+            KeyTooltip(text = inputKey.toString(), modifier = modifier)
         }
     }
+}
+
+@Composable
+private fun KeyTooltip(
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = text,
+        fontSize = 18.sp,
+        textAlign = TextAlign.Center,
+        modifier = modifier.offset(y = (-32).dp)
+    )
 }
 
 @Preview(showBackground = true)
@@ -98,7 +118,9 @@ fun NotationKeyButton(
 fun NotationKeyButtonPreview() {
     HushKeyboardTheme {
         NotationKeyButton(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier
+                .padding(4.dp)
+                .size(48.dp),
             cubeKey = CubeKey(notation = Notation.R)
         )
     }
