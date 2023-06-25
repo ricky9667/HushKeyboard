@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.composables
+package com.rickyhu.hushkeyboard.ui.keyboard
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
