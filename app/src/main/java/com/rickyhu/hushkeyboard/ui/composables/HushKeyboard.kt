@@ -2,21 +2,16 @@ package com.rickyhu.hushkeyboard.ui.composables
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
@@ -32,7 +27,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .border(BorderStroke(1.dp, Color.Gray))
+            .padding(vertical = 32.dp)
     ) {
         val keyboardKeys = listOf(
             listOf(
@@ -78,8 +73,6 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             )
         )
 
-        Spacer(Modifier.height(24.dp))
-
         for (keysRow in keyboardKeys) {
             NotationKeyButtonsRow(
                 keys = keysRow,
@@ -116,8 +109,6 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 onClick = { viewModel.deleteText(context) }
             )
         }
-
-        Spacer(Modifier.height(24.dp))
     }
 }
 
