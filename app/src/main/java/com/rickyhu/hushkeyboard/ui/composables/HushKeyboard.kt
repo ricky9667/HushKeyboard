@@ -31,36 +31,11 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     ) {
         val keyboardKeys = listOf(
             listOf(
-                CubeKey(
-                    Notation.R,
-                    state.isCounterClockwise,
-                    state.turns,
-                    state.isWideTurn
-                ),
-                CubeKey(
-                    Notation.U,
-                    state.isCounterClockwise,
-                    state.turns,
-                    state.isWideTurn
-                ),
-                CubeKey(
-                    Notation.F,
-                    state.isCounterClockwise,
-                    state.turns,
-                    state.isWideTurn
-                ),
-                CubeKey(
-                    Notation.L,
-                    state.isCounterClockwise,
-                    state.turns,
-                    state.isWideTurn
-                ),
-                CubeKey(
-                    Notation.D,
-                    state.isCounterClockwise,
-                    state.turns,
-                    state.isWideTurn
-                ),
+                CubeKey(Notation.R, state.isCounterClockwise, state.turns, state.isWideTurn),
+                CubeKey(Notation.U, state.isCounterClockwise, state.turns, state.isWideTurn),
+                CubeKey(Notation.F, state.isCounterClockwise, state.turns, state.isWideTurn),
+                CubeKey(Notation.L, state.isCounterClockwise, state.turns, state.isWideTurn),
+                CubeKey(Notation.D, state.isCounterClockwise, state.turns, state.isWideTurn),
                 CubeKey(Notation.B, state.isCounterClockwise, state.turns, state.isWideTurn)
             ),
             listOf(
