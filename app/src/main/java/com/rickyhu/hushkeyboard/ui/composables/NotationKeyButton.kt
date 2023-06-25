@@ -8,9 +8,13 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -105,12 +109,24 @@ private fun KeyTooltip(
     text: String,
     modifier: Modifier = Modifier
 ) {
-    Text(
-        text = text,
-        fontSize = 18.sp,
-        textAlign = TextAlign.Center,
+    Card(
+        shape = CircleShape,
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = modifier.offset(y = (-32).dp)
-    )
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(4.dp)
+        ) {
+            Text(
+                text = text,
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
