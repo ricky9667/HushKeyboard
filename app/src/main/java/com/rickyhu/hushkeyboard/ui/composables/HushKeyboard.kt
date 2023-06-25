@@ -25,7 +25,9 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     val context = LocalContext.current
 
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 32.dp)
     ) {
         val keyboardKeys = listOf(
             listOf(
