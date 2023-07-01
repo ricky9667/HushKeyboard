@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.composables
+package com.rickyhu.hushkeyboard.ui.keyboard
 
 import android.os.Build
 import androidx.annotation.RequiresApi
