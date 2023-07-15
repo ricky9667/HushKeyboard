@@ -18,7 +18,7 @@ import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 @Composable
 fun KeyButton(
     modifier: Modifier = Modifier,
-    text: String
+    content: @Composable () -> Unit
 ) {
     Card(modifier = modifier) {
         Box(
@@ -27,11 +27,7 @@ fun KeyButton(
                 .padding(4.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = text,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center
-            )
+            content()
         }
     }
 }
@@ -42,7 +38,13 @@ fun KeyButtonPreview() {
     HushKeyboardTheme {
         KeyButton(
             modifier = Modifier.size(48.dp),
-            text = "R"
+            content = {
+                Text(
+                    text = "R",
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
         )
     }
 }

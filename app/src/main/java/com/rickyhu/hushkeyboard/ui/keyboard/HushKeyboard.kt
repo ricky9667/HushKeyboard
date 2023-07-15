@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
@@ -37,6 +40,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             ),
             onTextInput = { text -> viewModel.inputText(context, text) }
         )
+
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getSecondRowKeys(
                 state.isCounterClockwise,
@@ -55,23 +59,47 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
 
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                text = "'",
-                onClick = { viewModel.switchCounterClockwise(context) }
+                onClick = { viewModel.switchCounterClockwise(context) },
+                content = {
+                    Text(
+                        "'",
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                text = state.turns.value.toString(),
-                onClick = { viewModel.switchTurns(context) }
+                onClick = { viewModel.switchTurns(context) },
+                content = {
+                    Text(
+                        state.turns.value.toString(),
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                text = "w",
-                onClick = { viewModel.switchWideTurn(context) }
+                onClick = { viewModel.switchWideTurn(context) },
+                content = {
+                    Text(
+                        "w",
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                text = "⌫",
-                onClick = { viewModel.deleteText(context) }
+                onClick = { viewModel.deleteText(context) },
+                content = {
+                    Text(
+                        "⌫",
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             )
         }
     }
