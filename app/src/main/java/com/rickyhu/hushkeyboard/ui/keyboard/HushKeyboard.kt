@@ -16,6 +16,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
+import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
+import com.rickyhu.hushkeyboard.ui.keyboard.buttons.NotationKeyButton
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 
 @RequiresApi(Build.VERSION_CODES.S)
