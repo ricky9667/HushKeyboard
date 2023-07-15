@@ -14,8 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.rickyhu.hushkeyboard.model.CubeKey
-import com.rickyhu.hushkeyboard.model.Notation
+import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 
@@ -30,31 +29,21 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             .fillMaxWidth()
             .padding(vertical = 32.dp)
     ) {
-        val keyboardKeys = listOf(
-            listOf(
-                CubeKey(Notation.R, state.isCounterClockwise, state.turns, state.isWideTurn),
-                CubeKey(Notation.U, state.isCounterClockwise, state.turns, state.isWideTurn),
-                CubeKey(Notation.F, state.isCounterClockwise, state.turns, state.isWideTurn),
-                CubeKey(Notation.L, state.isCounterClockwise, state.turns, state.isWideTurn),
-                CubeKey(Notation.D, state.isCounterClockwise, state.turns, state.isWideTurn),
-                CubeKey(Notation.B, state.isCounterClockwise, state.turns, state.isWideTurn)
+        NotationKeyButtonsRow(
+            keys = NotationKeyProvider.getFirstRowKeys(
+                state.isCounterClockwise,
+                state.turns,
+                state.isWideTurn
             ),
-            listOf(
-                CubeKey(Notation.M, state.isCounterClockwise, state.turns),
-                CubeKey(Notation.E, state.isCounterClockwise, state.turns),
-                CubeKey(Notation.S, state.isCounterClockwise, state.turns),
-                CubeKey(Notation.X, state.isCounterClockwise, state.turns),
-                CubeKey(Notation.Y, state.isCounterClockwise, state.turns),
-                CubeKey(Notation.Z, state.isCounterClockwise, state.turns)
-            )
+            onTextInput = { text -> viewModel.inputText(context, text) }
         )
-
-        for (keysRow in keyboardKeys) {
-            NotationKeyButtonsRow(
-                keys = keysRow,
-                onTextInput = { text -> viewModel.inputText(context, text) }
-            )
-        }
+        NotationKeyButtonsRow(
+            keys = NotationKeyProvider.getSecondRowKeys(
+                state.isCounterClockwise,
+                state.turns
+            ),
+            onTextInput = { text -> viewModel.inputText(context, text) }
+        )
 
         Row(
             modifier = Modifier.fillMaxWidth(),
