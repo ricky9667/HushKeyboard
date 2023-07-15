@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
-import com.rickyhu.hushkeyboard.ui.keyboard.buttons.NotationKeyButton
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 
 @RequiresApi(Build.VERSION_CODES.S)
@@ -84,27 +83,6 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 modifier = controlKeyModifier,
                 text = "⌫",
                 onClick = { viewModel.deleteText(context) }
-            )
-        }
-    }
-}
-
-@Composable
-private fun NotationKeyButtonsRow(
-    keys: List<CubeKey>,
-    onTextInput: (String) -> Unit
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
-    ) {
-        keys.forEach { key ->
-            NotationKeyButton(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .size(48.dp),
-                cubeKey = key,
-                onTextInput = onTextInput
             )
         }
     }
