@@ -2,6 +2,7 @@ package com.rickyhu.hushkeyboard.ui.keyboard
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -60,6 +61,17 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 .padding(4.dp)
                 .size(48.dp)
 
+            // TODO: unify button colors
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                onClick = { viewModel.openMainApp(context) },
+                content = {
+                    Image(
+                        painter = painterResource(id = R.drawable.app_icon),
+                        contentDescription = "App Icon"
+                    )
+                }
+            )
             ControlKeyButton(
                 modifier = controlKeyModifier,
                 onClick = viewModel::selectInputMethod,
