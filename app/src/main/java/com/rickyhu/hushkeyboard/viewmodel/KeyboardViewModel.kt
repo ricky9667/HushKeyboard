@@ -13,6 +13,7 @@ import com.rickyhu.hushkeyboard.service.HushIMEService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import splitties.systemservices.inputMethodManager
 
 class KeyboardViewModel : ViewModel() {
     private val _keyboardState = MutableStateFlow(KeyboardState())
@@ -61,6 +62,10 @@ class KeyboardViewModel : ViewModel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
         }
+    }
+
+    fun selectInputMethod() {
+        inputMethodManager.showInputMethodPicker()
     }
 
     @RequiresApi(Build.VERSION_CODES.S)

@@ -8,15 +8,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
@@ -57,6 +60,16 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 .padding(4.dp)
                 .size(48.dp)
 
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                onClick = viewModel::selectInputMethod,
+                content = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_language),
+                        contentDescription = "Language"
+                    )
+                }
+            )
             ControlKeyButton(
                 modifier = controlKeyModifier,
                 onClick = viewModel::switchCounterClockwise,
