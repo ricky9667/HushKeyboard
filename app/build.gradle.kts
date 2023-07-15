@@ -69,6 +69,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("com.louiscad.splitties:splitties-systemservices:3.0.0")
+    implementation("com.github.alorma:compose-settings-ui-m3:0.27.0")
     implementation("io.github.raamcosta.compose-destinations:core:1.8.42-beta")
     ksp("io.github.raamcosta.compose-destinations:ksp:1.8.42-beta")
     testImplementation("junit:junit:4.13.2")
