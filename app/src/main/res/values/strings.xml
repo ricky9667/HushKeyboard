@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hush Keyboard</string>
+    <string name="package_name">com.rickyhu.hushkeyboard</string>
 </resources>

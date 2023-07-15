@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.keyboard
+package com.rickyhu.hushkeyboard.ui.keyboard.buttons
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
@@ -93,7 +93,13 @@ fun NotationKeyButton(
                     onDragStarted = { offsetY = 0f },
                     onDragStopped = { onTextInput("$inputKey ") }
                 ),
-            text = key.toString()
+            content = {
+                Text(
+                    text = key.toString(),
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
         )
 
         when {

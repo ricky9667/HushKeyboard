@@ -8,23 +8,25 @@ import android.os.VibratorManager
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import splitties.systemservices.inputMethodManager
 
 class KeyboardViewModel : ViewModel() {
     private val _keyboardState = MutableStateFlow(KeyboardState())
     val keyboardState = _keyboardState.asStateFlow()
 
-    fun switchCounterClockwise(context: Context) {
+    fun switchCounterClockwise() {
         _keyboardState.update { state ->
             state.copy(isCounterClockwise = !state.isCounterClockwise)
         }
     }
 
-    fun switchTurns(context: Context) {
+    fun switchTurns() {
         _keyboardState.update { state ->
             when (state.turns) {
                 Turns.Single -> state.copy(turns = Turns.Double)
@@ -34,7 +36,7 @@ class KeyboardViewModel : ViewModel() {
         }
     }
 
-    fun switchWideTurn(context: Context) {
+    fun switchWideTurn() {
         _keyboardState.update { state ->
             state.copy(isWideTurn = !state.isWideTurn)
         }
@@ -61,6 +63,17 @@ class KeyboardViewModel : ViewModel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
         }
+    }
+
+    fun selectInputMethod() {
+        inputMethodManager.showInputMethodPicker()
+    }
+
+    fun openMainApp(context: Context) {
+        val intent = context.packageManager.getLaunchIntentForPackage(
+            context.getString(R.string.package_name)
+        )
+        context.startActivity(intent)
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
