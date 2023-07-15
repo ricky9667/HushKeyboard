@@ -59,7 +59,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
 
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                onClick = { viewModel.switchCounterClockwise(context) },
+                onClick = viewModel::switchCounterClockwise,
                 content = {
                     Text(
                         "'",
@@ -70,7 +70,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                onClick = { viewModel.switchTurns(context) },
+                onClick = viewModel::switchTurns,
                 content = {
                     Text(
                         state.turns.value.toString(),
@@ -81,7 +81,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             )
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                onClick = { viewModel.switchWideTurn(context) },
+                onClick = viewModel::switchWideTurn,
                 content = {
                     Text(
                         "w",

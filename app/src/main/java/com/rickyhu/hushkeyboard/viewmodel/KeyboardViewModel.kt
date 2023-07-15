@@ -18,13 +18,13 @@ class KeyboardViewModel : ViewModel() {
     private val _keyboardState = MutableStateFlow(KeyboardState())
     val keyboardState = _keyboardState.asStateFlow()
 
-    fun switchCounterClockwise(context: Context) {
+    fun switchCounterClockwise() {
         _keyboardState.update { state ->
             state.copy(isCounterClockwise = !state.isCounterClockwise)
         }
     }
 
-    fun switchTurns(context: Context) {
+    fun switchTurns() {
         _keyboardState.update { state ->
             when (state.turns) {
                 Turns.Single -> state.copy(turns = Turns.Double)
@@ -34,7 +34,7 @@ class KeyboardViewModel : ViewModel() {
         }
     }
 
-    fun switchWideTurn(context: Context) {
+    fun switchWideTurn() {
         _keyboardState.update { state ->
             state.copy(isWideTurn = !state.isWideTurn)
         }
