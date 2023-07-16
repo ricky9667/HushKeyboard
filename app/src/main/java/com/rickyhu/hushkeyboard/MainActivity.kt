@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.rickyhu.hushkeyboard.ui.home.HomeScreen
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.rickyhu.hushkeyboard.ui.NavGraphs
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen()
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }

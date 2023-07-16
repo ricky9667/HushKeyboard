@@ -43,21 +43,30 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.rickyhu.hushkeyboard.R
+import com.rickyhu.hushkeyboard.ui.destinations.SettingsScreenDestination
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import splitties.systemservices.inputMethodManager
 
+@Destination(start = true)
+@Composable
+fun HomeScreen(navigator: DestinationsNavigator) {
+    HomeContent(onSettingsClick = { navigator.navigate(SettingsScreenDestination()) })
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+private fun HomeContent(
+    onSettingsClick: () -> Unit = {}
+) {
     val context = LocalContext.current
     var text by remember { mutableStateOf("") }
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {}
-            ) {
+            FloatingActionButton(onClick = onSettingsClick) {
                 Icon(Icons.Default.Settings, contentDescription = "Settings")
             }
         },
@@ -129,6 +138,6 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenPreview() {
     HushKeyboardTheme {
-        HomeScreen()
+        HomeContent()
     }
 }
