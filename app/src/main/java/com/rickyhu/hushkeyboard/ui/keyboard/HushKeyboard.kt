@@ -92,6 +92,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 content = {
                     Icon(
                         painter = painterResource(R.drawable.ic_language),
+                        tint = if (isDarkTheme) Color.White else Color.Black,
                         contentDescription = "Language"
                     )
                 }
