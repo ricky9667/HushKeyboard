@@ -1,5 +1,6 @@
 package com.rickyhu.hushkeyboard.ui.keyboard.buttons
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -32,12 +33,15 @@ import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
+import com.rickyhu.hushkeyboard.ui.theme.DarkPrimary
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.ui.theme.LightPrimary
 
 @Composable
 fun NotationKeyButton(
     modifier: Modifier = Modifier,
     cubeKey: CubeKey,
+    isDarkTheme: Boolean,
     onTextInput: (String) -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -93,6 +97,7 @@ fun NotationKeyButton(
                     onDragStarted = { offsetY = 0f },
                     onDragStopped = { onTextInput("$inputKey ") }
                 ),
+            buttonColor = if (isDarkTheme) DarkPrimary else LightPrimary,
             content = {
                 Text(
                     text = key.toString(),
@@ -103,8 +108,17 @@ fun NotationKeyButton(
         )
 
         when {
-            isPressed -> KeyTooltip(text = key.toString(), modifier = modifier)
-            isDragged -> KeyTooltip(text = inputKey.toString(), modifier = modifier)
+            isPressed -> KeyTooltip(
+                text = key.toString(),
+                isDarkTheme = isDarkTheme,
+                modifier = modifier
+            )
+
+            isDragged -> KeyTooltip(
+                text = inputKey.toString(),
+                isDarkTheme = isDarkTheme,
+                modifier = modifier
+            )
         }
     }
 }
@@ -112,17 +126,20 @@ fun NotationKeyButton(
 @Composable
 private fun KeyTooltip(
     text: String,
+    isDarkTheme: Boolean,
     modifier: Modifier = Modifier
 ) {
     Card(
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        modifier = modifier.offset(y = (-32).dp)
+        modifier = modifier
+            .offset(y = (-32).dp)
     ) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxSize()
+                .background(color = if (isDarkTheme) DarkPrimary else LightPrimary)
                 .padding(4.dp)
         ) {
             Text(
@@ -142,7 +159,8 @@ fun NotationKeyButtonPreview() {
             modifier = Modifier
                 .padding(4.dp)
                 .size(48.dp),
-            cubeKey = CubeKey(notation = Notation.R)
+            cubeKey = CubeKey(notation = Notation.R),
+            isDarkTheme = false
         )
     }
 }

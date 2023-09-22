@@ -9,16 +9,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rickyhu.hushkeyboard.ui.theme.DarkSecondary
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.ui.theme.LightSecondary
 
 @Composable
 fun ControlKeyButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    isDarkTheme: Boolean,
     content: @Composable () -> Unit
 ) {
     KeyButton(
         modifier = modifier.clickable(onClick = onClick),
+        buttonColor = if (isDarkTheme) DarkSecondary else LightSecondary,
         content = content
     )
 }
@@ -29,6 +33,7 @@ fun ControlKeyButtonPreview() {
     HushKeyboardTheme {
         ControlKeyButton(
             modifier = Modifier.size(48.dp),
+            isDarkTheme = false,
             onClick = {},
             content = {
                 Text(
