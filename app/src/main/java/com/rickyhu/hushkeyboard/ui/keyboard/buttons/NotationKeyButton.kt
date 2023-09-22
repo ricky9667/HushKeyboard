@@ -26,6 +26,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -101,6 +102,7 @@ fun NotationKeyButton(
             content = {
                 Text(
                     text = key.toString(),
+                    color = if (isDarkTheme) Color.White else Color.Black,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
                 )
@@ -132,8 +134,7 @@ private fun KeyTooltip(
     Card(
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        modifier = modifier
-            .offset(y = (-32).dp)
+        modifier = modifier.offset(y = (-32).dp)
     ) {
         Box(
             contentAlignment = Alignment.Center,
@@ -144,6 +145,7 @@ private fun KeyTooltip(
         ) {
             Text(
                 text = text,
+                color = if (isDarkTheme) Color.White else Color.Black,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center
             )

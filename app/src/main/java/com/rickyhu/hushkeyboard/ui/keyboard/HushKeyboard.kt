@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -102,6 +103,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 content = {
                     Text(
                         "'",
+                        color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
@@ -114,6 +116,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 content = {
                     Text(
                         state.turns.value.toString(),
+                        color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
@@ -126,6 +129,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 content = {
                     Text(
                         "w",
+                        color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
@@ -138,6 +142,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 content = {
                     Text(
                         "⌫",
+                        color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
