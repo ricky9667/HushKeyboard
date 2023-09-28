@@ -1,5 +1,6 @@
 package com.rickyhu.hushkeyboard.ui.keyboard.buttons
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -25,6 +26,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,12 +34,15 @@ import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
+import com.rickyhu.hushkeyboard.ui.theme.DarkPrimary
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.ui.theme.LightPrimary
 
 @Composable
 fun NotationKeyButton(
     modifier: Modifier = Modifier,
     cubeKey: CubeKey,
+    isDarkTheme: Boolean,
     onTextInput: (String) -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -93,9 +98,11 @@ fun NotationKeyButton(
                     onDragStarted = { offsetY = 0f },
                     onDragStopped = { onTextInput("$inputKey ") }
                 ),
+            buttonColor = if (isDarkTheme) DarkPrimary else LightPrimary,
             content = {
                 Text(
                     text = key.toString(),
+                    color = if (isDarkTheme) Color.White else Color.Black,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
                 )
@@ -103,8 +110,17 @@ fun NotationKeyButton(
         )
 
         when {
-            isPressed -> KeyTooltip(text = key.toString(), modifier = modifier)
-            isDragged -> KeyTooltip(text = inputKey.toString(), modifier = modifier)
+            isPressed -> KeyTooltip(
+                text = key.toString(),
+                isDarkTheme = isDarkTheme,
+                modifier = modifier
+            )
+
+            isDragged -> KeyTooltip(
+                text = inputKey.toString(),
+                isDarkTheme = isDarkTheme,
+                modifier = modifier
+            )
         }
     }
 }
@@ -112,6 +128,7 @@ fun NotationKeyButton(
 @Composable
 private fun KeyTooltip(
     text: String,
+    isDarkTheme: Boolean,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -123,10 +140,12 @@ private fun KeyTooltip(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxSize()
+                .background(color = if (isDarkTheme) DarkPrimary else LightPrimary)
                 .padding(4.dp)
         ) {
             Text(
                 text = text,
+                color = if (isDarkTheme) Color.White else Color.Black,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center
             )
@@ -142,7 +161,8 @@ fun NotationKeyButtonPreview() {
             modifier = Modifier
                 .padding(4.dp)
                 .size(48.dp),
-            cubeKey = CubeKey(notation = Notation.R)
+            cubeKey = CubeKey(notation = Notation.R),
+            isDarkTheme = false
         )
     }
 }
