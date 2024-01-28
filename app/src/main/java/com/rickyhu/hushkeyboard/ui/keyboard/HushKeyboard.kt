@@ -1,6 +1,7 @@
 package com.rickyhu.hushkeyboard.ui.keyboard
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
@@ -25,20 +26,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.datastore.dataStore
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
+import com.rickyhu.hushkeyboard.settings.AppSettings
+import com.rickyhu.hushkeyboard.settings.AppSettingsSerializer
+import com.rickyhu.hushkeyboard.settings.SystemTheme
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
+
+val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun HushKeyboard(viewModel: KeyboardViewModel) {
     val state by viewModel.keyboardState.collectAsState()
     val context = LocalContext.current
+    val settings = context.dataStore.data.collectAsState(initial = AppSettings())
 
-    val isDarkTheme = isSystemInDarkTheme()
+    val isDarkTheme = when (settings.value.systemTheme) {
+        SystemTheme.LIGHT -> false
+        SystemTheme.DARK -> true
+        SystemTheme.SYSTEM -> isSystemInDarkTheme()
+    }
 
     Column(
         modifier = Modifier
