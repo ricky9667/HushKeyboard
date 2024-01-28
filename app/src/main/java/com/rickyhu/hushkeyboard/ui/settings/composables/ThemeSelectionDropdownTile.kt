@@ -15,13 +15,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.rickyhu.hushkeyboard.settings.SystemTheme
+import com.rickyhu.hushkeyboard.settings.ThemeOption
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThemeSelectionDropdownTile(
-    onThemeSelected: (SystemTheme) -> Unit
+    onThemeSelected: (ThemeOption) -> Unit
 ) {
     ListItem(
         headlineText = { Text("System Theme") },
@@ -36,10 +36,10 @@ fun ThemeSelectionDropdownTile(
 
 @Composable
 private fun DropdownButton(
-    onThemeSelected: (SystemTheme) -> Unit
+    onThemeSelected: (ThemeOption) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedTheme by remember { mutableStateOf(SystemTheme.SYSTEM) }
+    var selectedTheme by remember { mutableStateOf(ThemeOption.SYSTEM) }
 
     DropdownMenu(
         expanded = expanded,
@@ -48,24 +48,24 @@ private fun DropdownButton(
         DropdownMenuItem(
             text = { Text("System") },
             onClick = {
-                selectedTheme = SystemTheme.SYSTEM
-                onThemeSelected(SystemTheme.SYSTEM)
+                selectedTheme = ThemeOption.SYSTEM
+                onThemeSelected(ThemeOption.SYSTEM)
                 expanded = false
             }
         )
         DropdownMenuItem(
             text = { Text("Light") },
             onClick = {
-                selectedTheme = SystemTheme.LIGHT
-                onThemeSelected(SystemTheme.LIGHT)
+                selectedTheme = ThemeOption.LIGHT
+                onThemeSelected(ThemeOption.LIGHT)
                 expanded = false
             }
         )
         DropdownMenuItem(
             text = { Text("Dark") },
             onClick = {
-                selectedTheme = SystemTheme.DARK
-                onThemeSelected(SystemTheme.DARK)
+                selectedTheme = ThemeOption.DARK
+                onThemeSelected(ThemeOption.DARK)
                 expanded = false
             }
         )

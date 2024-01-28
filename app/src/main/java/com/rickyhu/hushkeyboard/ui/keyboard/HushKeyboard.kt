@@ -31,7 +31,7 @@ import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.settings.AppSettingsSerializer
-import com.rickyhu.hushkeyboard.settings.SystemTheme
+import com.rickyhu.hushkeyboard.settings.ThemeOption
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
@@ -42,14 +42,14 @@ val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun HushKeyboard(viewModel: KeyboardViewModel) {
-    val state by viewModel.keyboardState.collectAsState()
     val context = LocalContext.current
-    val settings = context.dataStore.data.collectAsState(initial = AppSettings())
+    val keyboardState by viewModel.keyboardState.collectAsState()
+    val themeState by context.dataStore.data.collectAsState(initial = AppSettings())
 
-    val isDarkTheme = when (settings.value.systemTheme) {
-        SystemTheme.LIGHT -> false
-        SystemTheme.DARK -> true
-        SystemTheme.SYSTEM -> isSystemInDarkTheme()
+    val isDarkTheme = when (themeState.themeOption) {
+        ThemeOption.LIGHT -> false
+        ThemeOption.DARK -> true
+        ThemeOption.SYSTEM -> isSystemInDarkTheme()
     }
 
     Column(
@@ -60,9 +60,9 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     ) {
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getFirstRowKeys(
-                state.isCounterClockwise,
-                state.turns,
-                state.isWideTurn
+                keyboardState.isCounterClockwise,
+                keyboardState.turns,
+                keyboardState.isWideTurn
             ),
             isDarkTheme = isDarkTheme,
             onTextInput = { text -> viewModel.inputText(context, text) }
@@ -70,8 +70,8 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
 
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getSecondRowKeys(
-                state.isCounterClockwise,
-                state.turns
+                keyboardState.isCounterClockwise,
+                keyboardState.turns
             ),
             isDarkTheme = isDarkTheme,
             onTextInput = { text -> viewModel.inputText(context, text) }
@@ -128,7 +128,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                 isDarkTheme = isDarkTheme,
                 content = {
                     Text(
-                        state.turns.value.toString(),
+                        keyboardState.turns.value.toString(),
                         color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center

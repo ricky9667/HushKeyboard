@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppSettings(
-    val systemTheme: SystemTheme = SystemTheme.SYSTEM
+    val themeOption: ThemeOption = ThemeOption.SYSTEM
 )
 
-enum class SystemTheme {
+enum class ThemeOption {
     LIGHT, DARK, SYSTEM
 }
