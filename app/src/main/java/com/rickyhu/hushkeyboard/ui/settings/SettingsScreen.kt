@@ -19,7 +19,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.ui.keyboard.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
-import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeSelectionDropdownItem
+import com.rickyhu.hushkeyboard.ui.settings.composables.SystemThemeDropdownItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -42,7 +42,7 @@ private fun SettingsContent(
         },
         content = { padding ->
             Column(modifier = Modifier.padding(padding)) {
-                ThemeSelectionDropdownItem(
+                SystemThemeDropdownItem(
                     currentTheme = settings.themeOption,
                     onThemeSelected = { themeOption ->
                         coroutineScope.launch {

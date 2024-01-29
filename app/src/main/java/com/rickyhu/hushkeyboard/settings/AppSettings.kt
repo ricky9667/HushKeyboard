@@ -4,15 +4,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppSettings(
-    val themeOption: ThemeOption = ThemeOption.SYSTEM
+    val themeOption: ThemeOption = ThemeOption.System
 )
 
 enum class ThemeOption {
-    SYSTEM, LIGHT, DARK;
+    System, Light, Dark;
 
     fun isDarkTheme(isSystemInDarkMode: Boolean) = when (this) {
-        SYSTEM -> isSystemInDarkMode
-        LIGHT -> false
-        DARK -> true
+        System -> isSystemInDarkMode
+        Light -> false
+        Dark -> true
     }
 }
