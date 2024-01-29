@@ -72,7 +72,6 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("com.louiscad.splitties:splitties-systemservices:3.0.0")
 
-    implementation("com.github.alorma:compose-settings-ui-m3:0.27.0")
     implementation("io.github.raamcosta.compose-destinations:core:1.8.42-beta")
 
     implementation("androidx.datastore:datastore:1.0.0")

@@ -20,7 +20,7 @@ import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ThemeSelectionDropdownTile(
+fun ThemeSelectionDropdownItem(
     currentTheme: ThemeOption,
     onThemeSelected: (ThemeOption) -> Unit
 ) {
@@ -69,9 +69,9 @@ private fun DropdownButton(
 
 @Preview(showBackground = true)
 @Composable
-private fun ThemeSelectionDropdownTilePreview() {
+private fun ThemeSelectionDropdownItemPreview() {
     HushKeyboardTheme {
-        ThemeSelectionDropdownTile(
+        ThemeSelectionDropdownItem(
             currentTheme = ThemeOption.SYSTEM,
             onThemeSelected = {}
         )
