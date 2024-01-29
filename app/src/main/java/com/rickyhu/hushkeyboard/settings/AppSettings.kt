@@ -8,5 +8,5 @@ data class AppSettings(
 )
 
 enum class ThemeOption {
-    LIGHT, DARK, SYSTEM
+    SYSTEM, LIGHT, DARK
 }

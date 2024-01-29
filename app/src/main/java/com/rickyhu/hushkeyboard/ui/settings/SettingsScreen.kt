@@ -12,12 +12,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.alorma.compose.settings.ui.SettingsMenuLink
 import com.ramcosta.composedestinations.annotation.Destination
+import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.ui.keyboard.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeSelectionDropdownTile
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
@@ -34,6 +37,7 @@ private fun SettingsContent(
     coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) {
     val context = LocalContext.current
+    val settings by context.dataStore.data.collectAsState(initial = AppSettings())
 
     Scaffold(
         topBar = {
@@ -52,6 +56,7 @@ private fun SettingsContent(
                     }
                 )
                 ThemeSelectionDropdownTile(
+                    currentTheme = settings.themeOption,
                     onThemeSelected = { themeOption ->
                         coroutineScope.launch {
                             context.dataStore.updateData { settings ->

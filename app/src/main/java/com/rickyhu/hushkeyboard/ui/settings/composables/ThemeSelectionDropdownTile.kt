@@ -21,6 +21,7 @@ import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThemeSelectionDropdownTile(
+    currentTheme: ThemeOption,
     onThemeSelected: (ThemeOption) -> Unit
 ) {
     ListItem(
@@ -29,52 +30,40 @@ fun ThemeSelectionDropdownTile(
             Icon(imageVector = Icons.Default.Star, contentDescription = null)
         },
         trailingContent = {
-            DropdownButton(onThemeSelected = onThemeSelected)
+            DropdownButton(
+                currentTheme = currentTheme,
+                onThemeSelected = onThemeSelected
+            )
         }
     )
 }
 
 @Composable
 private fun DropdownButton(
+    currentTheme: ThemeOption,
     onThemeSelected: (ThemeOption) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedTheme by remember { mutableStateOf(ThemeOption.SYSTEM) }
 
     DropdownMenu(
         expanded = expanded,
         onDismissRequest = { expanded = false }
     ) {
-        DropdownMenuItem(
-            text = { Text("System") },
-            onClick = {
-                selectedTheme = ThemeOption.SYSTEM
-                onThemeSelected(ThemeOption.SYSTEM)
-                expanded = false
-            }
-        )
-        DropdownMenuItem(
-            text = { Text("Light") },
-            onClick = {
-                selectedTheme = ThemeOption.LIGHT
-                onThemeSelected(ThemeOption.LIGHT)
-                expanded = false
-            }
-        )
-        DropdownMenuItem(
-            text = { Text("Dark") },
-            onClick = {
-                selectedTheme = ThemeOption.DARK
-                onThemeSelected(ThemeOption.DARK)
-                expanded = false
-            }
-        )
+        for (option in ThemeOption.values()) {
+            DropdownMenuItem(
+                text = { Text(option.name) },
+                onClick = {
+                    onThemeSelected(option)
+                    expanded = false
+                }
+            )
+        }
     }
 
     OutlinedButton(
         onClick = { expanded = true }
     ) {
-        Text(text = selectedTheme.name)
+        Text(text = currentTheme.name)
     }
 }
 
@@ -83,6 +72,7 @@ private fun DropdownButton(
 private fun ThemeSelectionDropdownTilePreview() {
     HushKeyboardTheme {
         ThemeSelectionDropdownTile(
+            currentTheme = ThemeOption.SYSTEM,
             onThemeSelected = {}
         )
     }
