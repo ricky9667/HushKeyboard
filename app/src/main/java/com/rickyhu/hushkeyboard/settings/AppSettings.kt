@@ -8,5 +8,11 @@ data class AppSettings(
 )
 
 enum class ThemeOption {
-    SYSTEM, LIGHT, DARK
+    SYSTEM, LIGHT, DARK;
+
+    fun isDarkTheme(isSystemInDarkMode: Boolean) = when (this) {
+        SYSTEM -> isSystemInDarkMode
+        LIGHT -> false
+        DARK -> true
+    }
 }

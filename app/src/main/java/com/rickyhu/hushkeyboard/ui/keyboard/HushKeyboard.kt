@@ -31,7 +31,6 @@ import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.settings.AppSettingsSerializer
-import com.rickyhu.hushkeyboard.settings.ThemeOption
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
@@ -44,13 +43,11 @@ val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 fun HushKeyboard(viewModel: KeyboardViewModel) {
     val context = LocalContext.current
     val keyboardState by viewModel.keyboardState.collectAsState()
-    val themeState by context.dataStore.data.collectAsState(initial = AppSettings())
+    val settingsState by context.dataStore.data.collectAsState(initial = AppSettings())
 
-    val isDarkTheme = when (themeState.themeOption) {
-        ThemeOption.LIGHT -> false
-        ThemeOption.DARK -> true
-        ThemeOption.SYSTEM -> isSystemInDarkTheme()
-    }
+    val isDarkTheme = settingsState.themeOption.isDarkTheme(
+        isSystemInDarkMode = isSystemInDarkTheme()
+    )
 
     Column(
         modifier = Modifier
