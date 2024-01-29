@@ -75,7 +75,6 @@ dependencies {
     implementation("io.github.raamcosta.compose-destinations:core:1.8.42-beta")
 
     implementation("androidx.datastore:datastore:1.0.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
     ksp("io.github.raamcosta.compose-destinations:ksp:1.8.42-beta")

@@ -16,7 +16,7 @@ import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 @Composable
 fun AppVersionItem(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = { }
+    onClick: () -> Unit = {}
 ) {
     ListItem(
         headlineText = { Text("Version") },

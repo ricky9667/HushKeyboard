@@ -28,16 +28,14 @@ fun SystemThemeDropdownItem(
     var expanded by remember { mutableStateOf(false) }
 
     ListItem(
-        modifier = Modifier.clickable {
-            expanded = true
-        },
+        modifier = Modifier.clickable { expanded = true },
         headlineText = { Text("System Theme") },
         leadingContent = {
             Icon(imageVector = Icons.Default.Star, contentDescription = null)
         },
         trailingContent = {
-            Text(text = currentTheme.toString())
-            
+            Text(text = currentTheme.name)
+
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
