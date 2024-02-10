@@ -30,6 +30,7 @@ val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 @Composable
 fun HushKeyboard(viewModel: KeyboardViewModel) {
     val context = LocalContext.current
+
     val keyboardState by viewModel.keyboardState.collectAsState()
     val settingsState by context.dataStore.data.collectAsState(initial = AppSettings())
 
@@ -66,7 +67,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             turns = keyboardState.turns,
             isDarkTheme = isDarkTheme,
             inputMethodButtonAction = viewModel::selectInputMethod,
-            rotateDirectionButtonAction = viewModel::switchCounterClockwise,
+            rotateDirectionButtonAction = viewModel::switchRotateDirection,
             turnDegreeButtonAction = viewModel::switchTurns,
             wideTurnButtonAction = viewModel::switchWideTurn,
             deleteButtonAction = { viewModel.deleteText(context) },
