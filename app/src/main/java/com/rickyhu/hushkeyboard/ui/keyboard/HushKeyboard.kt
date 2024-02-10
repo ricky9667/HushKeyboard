@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -85,17 +84,6 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             // TODO: unify button colors
             ControlKeyButton(
                 modifier = controlKeyModifier,
-                onClick = { viewModel.openMainApp(context) },
-                isDarkTheme = isDarkTheme,
-                content = {
-                    Image(
-                        painter = painterResource(id = R.drawable.app_icon),
-                        contentDescription = "App Icon"
-                    )
-                }
-            )
-            ControlKeyButton(
-                modifier = controlKeyModifier,
                 onClick = viewModel::selectInputMethod,
                 isDarkTheme = isDarkTheme,
                 content = {
@@ -155,6 +143,18 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
                         color = if (isDarkTheme) Color.White else Color.Black,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
+                    )
+                }
+            )
+            ControlKeyButton(
+                modifier = controlKeyModifier,
+                onClick = { viewModel.inputText(context, "\n") },
+                isDarkTheme = isDarkTheme,
+                content = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_return),
+                        tint = if (isDarkTheme) Color.White else Color.Black,
+                        contentDescription = "Language"
                     )
                 }
             )
