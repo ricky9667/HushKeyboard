@@ -8,7 +8,6 @@ import android.os.VibratorManager
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -67,13 +66,6 @@ class KeyboardViewModel : ViewModel() {
 
     fun selectInputMethod() {
         inputMethodManager.showInputMethodPicker()
-    }
-
-    fun openMainApp(context: Context) {
-        val intent = context.packageManager.getLaunchIntentForPackage(
-            context.getString(R.string.package_name)
-        )
-        context.startActivity(intent)
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
