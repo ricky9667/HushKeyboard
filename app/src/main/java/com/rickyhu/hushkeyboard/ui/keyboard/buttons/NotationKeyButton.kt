@@ -43,6 +43,7 @@ fun NotationKeyButton(
     modifier: Modifier = Modifier,
     cubeKey: CubeKey,
     isDarkTheme: Boolean,
+    addSpaceAfterNotation: Boolean,
     onTextInput: (String) -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -66,7 +67,7 @@ fun NotationKeyButton(
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null,
-                    onClick = { onTextInput("$key ") }
+                    onClick = { onTextInput(key.asText(addSpaceAfterNotation)) }
                 )
                 .draggable(
                     interactionSource = interactionSource,
@@ -76,7 +77,7 @@ fun NotationKeyButton(
                         inputKey = key.copy(isCounterClockwise = offsetX < 0)
                     },
                     onDragStarted = { offsetX = 0f },
-                    onDragStopped = { onTextInput("$inputKey ") }
+                    onDragStopped = { onTextInput(inputKey.asText(addSpaceAfterNotation)) }
                 )
                 .draggable(
                     interactionSource = interactionSource,
@@ -84,8 +85,8 @@ fun NotationKeyButton(
                     state = rememberDraggableState { y ->
                         offsetY += y
 
-                        // Notate as double turn when swiping up or down, but only
-                        // if the key state is originally a single turn.
+                        // Notate as double turn when swiping up or down, but only if the key state
+                        // is originally a single turn.
                         val turns = if (key.turns == Turns.Single) {
                             Turns.Double
                         } else {
@@ -96,7 +97,7 @@ fun NotationKeyButton(
                         inputKey = key.copy(isCounterClockwise = offsetY < 0, turns = turns)
                     },
                     onDragStarted = { offsetY = 0f },
-                    onDragStopped = { onTextInput("$inputKey ") }
+                    onDragStopped = { onTextInput(inputKey.asText(addSpaceAfterNotation)) }
                 ),
             buttonColor = if (isDarkTheme) DarkPrimary else LightPrimary,
             content = {
@@ -162,7 +163,8 @@ fun NotationKeyButtonPreview() {
                 .padding(4.dp)
                 .size(48.dp),
             cubeKey = CubeKey(notation = Notation.R),
-            isDarkTheme = false
+            isDarkTheme = false,
+            addSpaceAfterNotation = true
         )
     }
 }

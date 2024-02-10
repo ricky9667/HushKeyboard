@@ -15,6 +15,7 @@ import com.rickyhu.hushkeyboard.ui.keyboard.buttons.NotationKeyButton
 fun NotationKeyButtonsRow(
     keys: List<CubeKey>,
     isDarkTheme: Boolean = false,
+    addSpaceAfterNotation: Boolean,
     onTextInput: (String) -> Unit
 ) {
     Row(
@@ -28,6 +29,7 @@ fun NotationKeyButtonsRow(
                     .size(48.dp),
                 cubeKey = key,
                 isDarkTheme = isDarkTheme,
+                addSpaceAfterNotation = addSpaceAfterNotation,
                 onTextInput = onTextInput
             )
         }

@@ -4,7 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppSettings(
-    val themeOption: ThemeOption = ThemeOption.System
+    val themeOption: ThemeOption = ThemeOption.System,
+    val addSpaceAfterNotation: Boolean = true
 )
 
 enum class ThemeOption {
