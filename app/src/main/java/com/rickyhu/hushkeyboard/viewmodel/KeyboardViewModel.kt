@@ -57,7 +57,7 @@ class KeyboardViewModel : ViewModel() {
 
     fun inputText(context: Context, text: String) {
         val inputConnection = (context as HushIMEService).currentInputConnection
-        inputConnection.commitText(text, text.length)
+        inputConnection.commitText(text, CURSOR_POSITION)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
@@ -83,6 +83,10 @@ class KeyboardViewModel : ViewModel() {
                     .compose()
             )
         )
+    }
+
+    companion object {
+        private const val CURSOR_POSITION = 1
     }
 }
 
