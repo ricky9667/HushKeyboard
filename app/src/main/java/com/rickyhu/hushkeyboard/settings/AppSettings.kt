@@ -1,6 +1,10 @@
 package com.rickyhu.hushkeyboard.settings
 
+import android.content.Context
+import androidx.datastore.dataStore
 import kotlinx.serialization.Serializable
+
+val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 
 @Serializable
 data class AppSettings(

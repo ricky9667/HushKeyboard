@@ -1,6 +1,5 @@
 package com.rickyhu.hushkeyboard.ui.keyboard
 
-import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
@@ -15,15 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.datastore.dataStore
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.settings.AppSettings
-import com.rickyhu.hushkeyboard.settings.AppSettingsSerializer
+import com.rickyhu.hushkeyboard.settings.dataStore
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
-
-val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable

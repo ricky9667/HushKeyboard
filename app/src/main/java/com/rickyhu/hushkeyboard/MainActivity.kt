@@ -12,8 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.rickyhu.hushkeyboard.settings.AppSettings
+import com.rickyhu.hushkeyboard.settings.dataStore
 import com.rickyhu.hushkeyboard.ui.NavGraphs
-import com.rickyhu.hushkeyboard.ui.keyboard.dataStore
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 class MainActivity : ComponentActivity() {

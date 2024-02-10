@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.ramcosta.composedestinations.annotation.Destination
 import com.rickyhu.hushkeyboard.settings.AppSettings
-import com.rickyhu.hushkeyboard.ui.keyboard.dataStore
+import com.rickyhu.hushkeyboard.settings.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.SystemThemeDropdownItem
