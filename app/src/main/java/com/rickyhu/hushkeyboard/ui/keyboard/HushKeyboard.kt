@@ -1,6 +1,5 @@
 package com.rickyhu.hushkeyboard.ui.keyboard
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -76,7 +75,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     }
 }
 
-@SuppressLint("NewApi")
+@RequiresApi(Build.VERSION_CODES.S)
 @Preview(showBackground = true)
 @Composable
 fun HushKeyboardPreview() {
