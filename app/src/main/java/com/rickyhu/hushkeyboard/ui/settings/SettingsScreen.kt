@@ -17,7 +17,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.ramcosta.composedestinations.annotation.Destination
 import com.rickyhu.hushkeyboard.settings.AppSettings
-import com.rickyhu.hushkeyboard.ui.keyboard.dataStore
+import com.rickyhu.hushkeyboard.settings.dataStore
+import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.SystemThemeDropdownItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
@@ -48,6 +49,16 @@ private fun SettingsContent(
                         coroutineScope.launch {
                             context.dataStore.updateData { settings ->
                                 settings.copy(themeOption = themeOption)
+                            }
+                        }
+                    }
+                )
+                AddSpaceBetweenNotationSwitchItem(
+                    value = settings.addSpaceAfterNotation,
+                    onValueChanged = { addSpaceAfterNotation ->
+                        coroutineScope.launch {
+                            context.dataStore.updateData { settings ->
+                                settings.copy(addSpaceAfterNotation = addSpaceAfterNotation)
                             }
                         }
                     }

@@ -61,7 +61,7 @@ fun ControlKeyButtonRow(
             content = {
                 Text(
                     "'",
-                    color = if (isDarkTheme) Color.White else Color.Black,
+                    color = keyColor,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
                 )
@@ -114,7 +114,7 @@ fun ControlKeyButtonRow(
                 Icon(
                     painter = painterResource(R.drawable.ic_return),
                     tint = keyColor,
-                    contentDescription = "Language"
+                    contentDescription = "Return"
                 )
             }
         )

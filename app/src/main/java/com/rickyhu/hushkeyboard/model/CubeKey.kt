@@ -15,4 +15,9 @@ data class CubeKey(
 
         return result
     }
+
+    fun asText(addSpaceAfterNotation: Boolean): String {
+        val result = toString()
+        return if (addSpaceAfterNotation) "$result " else result
+    }
 }
