@@ -1,14 +1,14 @@
 package com.rickyhu.hushkeyboard.ui.settings.composables
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,7 +19,12 @@ fun AddSpaceBetweenNotationSwitchItem(
 ) {
     ListItem(
         headlineText = { Text("Add space after notation") },
-        leadingContent = { Icon(imageVector = Icons.Default.Info, contentDescription = "Info") },
+        leadingContent = {
+            Icon(
+                painter = painterResource(R.drawable.ic_space),
+                contentDescription = "Space"
+            )
+        },
         trailingContent = {
             Switch(checked = value, onCheckedChange = onValueChanged)
         }
