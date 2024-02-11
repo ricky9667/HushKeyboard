@@ -19,11 +19,15 @@ class KeyboardViewModel : ViewModel() {
     private val _keyboardState = MutableStateFlow(KeyboardState())
     val keyboardState = _keyboardState.asStateFlow()
 
+    var shouldVibrate: Boolean = true
+
     // TODO: should remove context from ViewModel
     fun switchRotateDirection(context: Context) {
         _keyboardState.update { state ->
             state.copy(isCounterClockwise = !state.isCounterClockwise)
         }
+
+        if (!shouldVibrate) return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
@@ -40,6 +44,8 @@ class KeyboardViewModel : ViewModel() {
             }
         }
 
+        if (!shouldVibrate) return
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
         }
@@ -50,6 +56,8 @@ class KeyboardViewModel : ViewModel() {
         _keyboardState.update { state ->
             state.copy(isWideTurn = !state.isWideTurn)
         }
+
+        if (!shouldVibrate) return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
@@ -66,6 +74,8 @@ class KeyboardViewModel : ViewModel() {
             inputConnection.commitText("", 1)
         }
 
+        if (!shouldVibrate) return
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
         }
@@ -76,6 +86,8 @@ class KeyboardViewModel : ViewModel() {
         val inputConnection = (context as HushIMEService).currentInputConnection
         inputConnection.commitText(text, CURSOR_POSITION)
 
+        if (!shouldVibrate) return
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)
         }
@@ -84,6 +96,8 @@ class KeyboardViewModel : ViewModel() {
     // TODO: should remove context from ViewModel
     fun selectInputMethod(context: Context) {
         inputMethodManager.showInputMethodPicker()
+
+        if (!shouldVibrate) return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             vibrate(context)

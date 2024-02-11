@@ -29,6 +29,8 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     val keyboardState by viewModel.keyboardState.collectAsState()
     val settingsState by context.dataStore.data.collectAsState(initial = AppSettings())
 
+    viewModel.shouldVibrate = settingsState.vibrateOnTap
+
     val isDarkTheme = settingsState.themeOption.isDarkTheme(
         isSystemInDarkMode = isSystemInDarkTheme()
     )

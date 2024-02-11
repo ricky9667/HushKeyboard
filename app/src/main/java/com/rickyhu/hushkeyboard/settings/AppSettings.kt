@@ -9,7 +9,8 @@ val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 @Serializable
 data class AppSettings(
     val themeOption: ThemeOption = ThemeOption.System,
-    val addSpaceAfterNotation: Boolean = true
+    val addSpaceAfterNotation: Boolean = true,
+    val vibrateOnTap: Boolean = true
 )
 
 enum class ThemeOption {

@@ -21,6 +21,7 @@ import com.rickyhu.hushkeyboard.settings.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.SystemThemeDropdownItem
+import com.rickyhu.hushkeyboard.ui.settings.composables.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -59,6 +60,16 @@ private fun SettingsContent(
                         coroutineScope.launch {
                             context.dataStore.updateData { settings ->
                                 settings.copy(addSpaceAfterNotation = addSpaceAfterNotation)
+                            }
+                        }
+                    }
+                )
+                VibrateOnTapSwitchItem(
+                    value = settings.vibrateOnTap,
+                    onValueChanged = { vibrateOnTap ->
+                        coroutineScope.launch {
+                            context.dataStore.updateData { settings ->
+                                settings.copy(vibrateOnTap = vibrateOnTap)
                             }
                         }
                     }
