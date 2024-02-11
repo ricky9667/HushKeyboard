@@ -20,7 +20,7 @@ import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.settings.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
-import com.rickyhu.hushkeyboard.ui.settings.composables.SystemThemeDropdownItem
+import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import kotlinx.coroutines.CoroutineScope
@@ -44,7 +44,7 @@ private fun SettingsContent(
         },
         content = { padding ->
             Column(modifier = Modifier.padding(padding)) {
-                SystemThemeDropdownItem(
+                ThemeOptionDropdownItem(
                     currentTheme = settings.themeOption,
                     onThemeSelected = { themeOption ->
                         coroutineScope.launch {
