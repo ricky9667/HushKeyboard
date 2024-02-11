@@ -24,6 +24,11 @@ enum class ThemeOption {
     }
 }
 
-enum class WideNotationOption(val text: String) {
-    WideWithW("w"), WideWithLowercase("Lowercase");
+enum class WideNotationOption {
+    WideWithW, WideWithLowercase;
+
+    override fun toString() = when (this) {
+        WideWithW -> "Use w (Rw)"
+        WideWithLowercase -> "Use lowercase (r)"
+    }
 }

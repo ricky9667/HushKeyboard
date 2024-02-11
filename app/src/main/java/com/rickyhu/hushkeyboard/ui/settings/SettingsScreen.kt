@@ -22,6 +22,7 @@ import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationS
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.VibrateOnTapSwitchItem
+import com.rickyhu.hushkeyboard.ui.settings.composables.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -50,6 +51,16 @@ private fun SettingsContent(
                         coroutineScope.launch {
                             context.dataStore.updateData { settings ->
                                 settings.copy(themeOption = themeOption)
+                            }
+                        }
+                    }
+                )
+                WideNotationOptionDropdownItem(
+                    currentOption = settings.wideNotationOption,
+                    onOptionSelected = { wideNotationOption ->
+                        coroutineScope.launch {
+                            context.dataStore.updateData { settings ->
+                                settings.copy(wideNotationOption = wideNotationOption)
                             }
                         }
                     }
