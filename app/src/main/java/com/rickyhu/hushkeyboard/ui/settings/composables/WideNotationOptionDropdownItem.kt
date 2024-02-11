@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
-import com.rickyhu.hushkeyboard.settings.WideNotationOption
+import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

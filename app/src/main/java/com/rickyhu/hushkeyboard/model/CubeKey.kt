@@ -1,6 +1,6 @@
 package com.rickyhu.hushkeyboard.model
 
-import com.rickyhu.hushkeyboard.settings.WideNotationOption
+import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 
 data class CubeKey(
     val notation: Notation,

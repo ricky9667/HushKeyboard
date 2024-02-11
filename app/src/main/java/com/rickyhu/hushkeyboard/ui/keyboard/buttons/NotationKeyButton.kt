@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.settings.WideNotationOption
+import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.DarkPrimary
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import com.rickyhu.hushkeyboard.ui.theme.LightPrimary
