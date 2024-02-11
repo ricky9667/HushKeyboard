@@ -71,7 +71,7 @@ class KeyboardViewModel : ViewModel() {
         if (TextUtils.isEmpty(selectedText)) {
             inputConnection.deleteSurroundingText(1, 0)
         } else {
-            inputConnection.commitText("", 1)
+            inputConnection.commitText("", CURSOR_POSITION)
         }
 
         if (!shouldVibrate) return
