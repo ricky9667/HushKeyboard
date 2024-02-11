@@ -128,7 +128,7 @@ fun NotationKeyButton(
             )
 
             isDragged -> KeyTooltip(
-                text = key.asText(addSpaceAfterNotation, wideNotationOption),
+                text = inputKey.asText(addSpaceAfterNotation, wideNotationOption),
                 isDarkTheme = isDarkTheme,
                 modifier = modifier
             )
