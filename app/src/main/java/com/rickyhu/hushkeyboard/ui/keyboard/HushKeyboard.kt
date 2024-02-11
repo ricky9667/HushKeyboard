@@ -49,6 +49,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             ),
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = settingsState.addSpaceAfterNotation,
+            wideNotationOption = settingsState.wideNotationOption,
             onTextInput = { text -> viewModel.inputText(context, text) }
         )
 
@@ -59,6 +60,7 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
             ),
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = settingsState.addSpaceAfterNotation,
+            wideNotationOption = settingsState.wideNotationOption,
             onTextInput = { text -> viewModel.inputText(context, text) }
         )
 

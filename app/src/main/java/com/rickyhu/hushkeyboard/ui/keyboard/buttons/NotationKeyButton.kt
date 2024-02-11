@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
+import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.DarkPrimary
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import com.rickyhu.hushkeyboard.ui.theme.LightPrimary
@@ -44,6 +45,7 @@ fun NotationKeyButton(
     cubeKey: CubeKey,
     isDarkTheme: Boolean,
     addSpaceAfterNotation: Boolean,
+    wideNotationOption: WideNotationOption,
     onTextInput: (String) -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -67,7 +69,9 @@ fun NotationKeyButton(
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null,
-                    onClick = { onTextInput(key.asText(addSpaceAfterNotation)) }
+                    onClick = {
+                        onTextInput(key.asText(addSpaceAfterNotation, wideNotationOption))
+                    }
                 )
                 .draggable(
                     interactionSource = interactionSource,
@@ -77,7 +81,11 @@ fun NotationKeyButton(
                         inputKey = key.copy(isCounterClockwise = offsetX < 0)
                     },
                     onDragStarted = { offsetX = 0f },
-                    onDragStopped = { onTextInput(inputKey.asText(addSpaceAfterNotation)) }
+                    onDragStopped = {
+                        onTextInput(
+                            inputKey.asText(addSpaceAfterNotation, wideNotationOption)
+                        )
+                    }
                 )
                 .draggable(
                     interactionSource = interactionSource,
@@ -97,12 +105,14 @@ fun NotationKeyButton(
                         inputKey = key.copy(isCounterClockwise = offsetY < 0, turns = turns)
                     },
                     onDragStarted = { offsetY = 0f },
-                    onDragStopped = { onTextInput(inputKey.asText(addSpaceAfterNotation)) }
+                    onDragStopped = {
+                        onTextInput(inputKey.asText(addSpaceAfterNotation, wideNotationOption))
+                    }
                 ),
             buttonColor = if (isDarkTheme) DarkPrimary else LightPrimary,
             content = {
                 Text(
-                    text = key.toString(),
+                    text = key.asText(addSpaceAfterNotation, wideNotationOption),
                     color = if (isDarkTheme) Color.White else Color.Black,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
@@ -112,13 +122,13 @@ fun NotationKeyButton(
 
         when {
             isPressed -> KeyTooltip(
-                text = key.toString(),
+                text = key.asText(addSpaceAfterNotation, wideNotationOption),
                 isDarkTheme = isDarkTheme,
                 modifier = modifier
             )
 
             isDragged -> KeyTooltip(
-                text = inputKey.toString(),
+                text = inputKey.asText(addSpaceAfterNotation, wideNotationOption),
                 isDarkTheme = isDarkTheme,
                 modifier = modifier
             )
@@ -164,7 +174,8 @@ fun NotationKeyButtonPreview() {
                 .size(48.dp),
             cubeKey = CubeKey(notation = Notation.R),
             isDarkTheme = false,
-            addSpaceAfterNotation = true
+            addSpaceAfterNotation = true,
+            wideNotationOption = WideNotationOption.WideWithW
         )
     }
 }
