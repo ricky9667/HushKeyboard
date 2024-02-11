@@ -29,6 +29,8 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
     val keyboardState by viewModel.keyboardState.collectAsState()
     val settingsState by context.dataStore.data.collectAsState(initial = AppSettings())
 
+    viewModel.shouldVibrate = settingsState.vibrateOnTap
+
     val isDarkTheme = settingsState.themeOption.isDarkTheme(
         isSystemInDarkMode = isSystemInDarkTheme()
     )
@@ -63,10 +65,10 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
         ControlKeyButtonRow(
             turns = keyboardState.turns,
             isDarkTheme = isDarkTheme,
-            inputMethodButtonAction = viewModel::selectInputMethod,
-            rotateDirectionButtonAction = viewModel::switchRotateDirection,
-            turnDegreeButtonAction = viewModel::switchTurns,
-            wideTurnButtonAction = viewModel::switchWideTurn,
+            inputMethodButtonAction = { viewModel.selectInputMethod(context) },
+            rotateDirectionButtonAction = { viewModel.switchRotateDirection(context) },
+            turnDegreeButtonAction = { viewModel.switchTurns(context) },
+            wideTurnButtonAction = { viewModel.switchWideTurn(context) },
             deleteButtonAction = { viewModel.deleteText(context) },
             newLineButtonAction = { viewModel.inputText(context, "\n") }
         )
