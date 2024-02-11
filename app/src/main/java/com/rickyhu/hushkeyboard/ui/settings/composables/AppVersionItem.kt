@@ -21,7 +21,7 @@ fun AppVersionItem(
     ListItem(
         headlineText = { Text("Version") },
         leadingContent = { Icon(imageVector = Icons.Default.Info, contentDescription = "Info") },
-        trailingContent = { Text("v0.1.0") },
+        trailingContent = { Text("v0.2.0") },
         modifier = modifier.clickable(onClick = onClick)
     )
 }
