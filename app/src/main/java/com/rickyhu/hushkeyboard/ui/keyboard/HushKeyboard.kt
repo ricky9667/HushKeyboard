@@ -63,10 +63,10 @@ fun HushKeyboard(viewModel: KeyboardViewModel) {
         ControlKeyButtonRow(
             turns = keyboardState.turns,
             isDarkTheme = isDarkTheme,
-            inputMethodButtonAction = viewModel::selectInputMethod,
-            rotateDirectionButtonAction = viewModel::switchRotateDirection,
-            turnDegreeButtonAction = viewModel::switchTurns,
-            wideTurnButtonAction = viewModel::switchWideTurn,
+            inputMethodButtonAction = { viewModel.selectInputMethod(context) },
+            rotateDirectionButtonAction = { viewModel.switchRotateDirection(context) },
+            turnDegreeButtonAction = { viewModel.switchTurns(context) },
+            wideTurnButtonAction = { viewModel.switchWideTurn(context) },
             deleteButtonAction = { viewModel.deleteText(context) },
             newLineButtonAction = { viewModel.inputText(context, "\n") }
         )

@@ -19,13 +19,19 @@ class KeyboardViewModel : ViewModel() {
     private val _keyboardState = MutableStateFlow(KeyboardState())
     val keyboardState = _keyboardState.asStateFlow()
 
-    fun switchRotateDirection() {
+    // TODO: should remove context from ViewModel
+    fun switchRotateDirection(context: Context) {
         _keyboardState.update { state ->
             state.copy(isCounterClockwise = !state.isCounterClockwise)
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            vibrate(context)
+        }
     }
 
-    fun switchTurns() {
+    // TODO: should remove context from ViewModel
+    fun switchTurns(context: Context) {
         _keyboardState.update { state ->
             when (state.turns) {
                 Turns.Single -> state.copy(turns = Turns.Double)
@@ -33,14 +39,24 @@ class KeyboardViewModel : ViewModel() {
                 Turns.Triple -> state.copy(turns = Turns.Single)
             }
         }
-    }
 
-    fun switchWideTurn() {
-        _keyboardState.update { state ->
-            state.copy(isWideTurn = !state.isWideTurn)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            vibrate(context)
         }
     }
 
+    // TODO: should remove context from ViewModel
+    fun switchWideTurn(context: Context) {
+        _keyboardState.update { state ->
+            state.copy(isWideTurn = !state.isWideTurn)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            vibrate(context)
+        }
+    }
+
+    // TODO: should remove context from ViewModel
     fun deleteText(context: Context) {
         val inputConnection = (context as HushIMEService).currentInputConnection
         val selectedText = inputConnection.getSelectedText(0)
@@ -55,6 +71,7 @@ class KeyboardViewModel : ViewModel() {
         }
     }
 
+    // TODO: should remove context from ViewModel
     fun inputText(context: Context, text: String) {
         val inputConnection = (context as HushIMEService).currentInputConnection
         inputConnection.commitText(text, CURSOR_POSITION)
@@ -64,10 +81,16 @@ class KeyboardViewModel : ViewModel() {
         }
     }
 
-    fun selectInputMethod() {
+    // TODO: should remove context from ViewModel
+    fun selectInputMethod(context: Context) {
         inputMethodManager.showInputMethodPicker()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            vibrate(context)
+        }
     }
 
+    // TODO: should remove context from ViewModel
     @RequiresApi(Build.VERSION_CODES.S)
     private fun vibrate(context: Context) {
         val vibratorManager = context.getSystemService(
