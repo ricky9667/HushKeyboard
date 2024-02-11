@@ -10,7 +10,8 @@ val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 data class AppSettings(
     val themeOption: ThemeOption = ThemeOption.System,
     val addSpaceAfterNotation: Boolean = true,
-    val vibrateOnTap: Boolean = true
+    val vibrateOnTap: Boolean = true,
+    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW
 )
 
 enum class ThemeOption {
@@ -21,4 +22,8 @@ enum class ThemeOption {
         Light -> false
         Dark -> true
     }
+}
+
+enum class WideNotationOption(val text: String) {
+    WideWithW("w"), WideWithLowercase("Lowercase");
 }

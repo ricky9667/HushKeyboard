@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.model.CubeKey
+import com.rickyhu.hushkeyboard.settings.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.keyboard.buttons.NotationKeyButton
 
 @Composable
@@ -16,6 +17,7 @@ fun NotationKeyButtonsRow(
     keys: List<CubeKey>,
     isDarkTheme: Boolean = false,
     addSpaceAfterNotation: Boolean,
+    wideNotationOption: WideNotationOption,
     onTextInput: (String) -> Unit
 ) {
     Row(
@@ -30,6 +32,7 @@ fun NotationKeyButtonsRow(
                 cubeKey = key,
                 isDarkTheme = isDarkTheme,
                 addSpaceAfterNotation = addSpaceAfterNotation,
+                wideNotationOption = wideNotationOption,
                 onTextInput = onTextInput
             )
         }
