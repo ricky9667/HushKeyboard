@@ -7,6 +7,7 @@ compose-bom = "2024.02.00"
 splitties-systemservices = "3.0.0"
 compose-destinations = "1.8.42-beta"
 datastore = "1.0.0"
+kotlin-serialization = "1.8.10"
 kotlinx-serialization-json = "1.3.2"
 junit = "4.13.2"
 junit-ext = "1.1.5"
@@ -31,5 +32,6 @@ androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref =
 compose-destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "compose-destinations" }
 compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "compose-destinations" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-serialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties-systemservices", version.ref = "splitties-systemservices" }
