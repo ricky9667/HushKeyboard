@@ -1,10 +1,11 @@
 [versions]
 activity-compose = "1.8.2"
+android-gradle-plugin = "8.1.1"
 compose-bom = "2024.02.00"
 compose-destinations = "1.8.42-beta"
 core-ktx = "1.12.0"
 datastore = "1.0.0"
-espresso-core = "3.5.1"
+espresso-core = "3.5.0"
 kotlin-serialization = "1.8.10"
 kotlinx-serialization-json = "1.3.2"
 junit = "4.13.2"
@@ -37,3 +38,4 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties-systemservices", version.ref = "splitties-systemservices" }
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
