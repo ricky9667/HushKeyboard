@@ -21,7 +21,7 @@ fun AddSpaceBetweenNotationSwitchItem(
 ) {
     ListItem(
         modifier = Modifier.clickable { onValueChanged(!value) },
-        headlineText = { Text("Add space after notation") },
+        headlineContent = { Text("Add space after notation") },
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_space),
