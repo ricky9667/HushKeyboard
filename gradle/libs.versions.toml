@@ -6,6 +6,7 @@ compose-destinations = "1.8.42-beta"
 core-ktx = "1.12.0"
 datastore = "1.0.0"
 espresso-core = "3.5.0"
+kotlin = "1.8.10"
 kotlin-serialization = "1.8.10"
 kotlinx-serialization-json = "1.3.2"
 junit = "4.13.2"
@@ -39,3 +40,4 @@ splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
