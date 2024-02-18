@@ -3,7 +3,6 @@ package com.rickyhu.hushkeyboard.ui.settings.composables
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
@@ -19,7 +18,6 @@ import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WideNotationOptionDropdownItem(
     currentOption: WideNotationOption,
