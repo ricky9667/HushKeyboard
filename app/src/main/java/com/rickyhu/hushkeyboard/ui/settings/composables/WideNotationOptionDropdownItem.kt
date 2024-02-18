@@ -29,7 +29,7 @@ fun WideNotationOptionDropdownItem(
 
     ListItem(
         modifier = Modifier.clickable { expanded = true },
-        headlineText = { Text("Wide notation") },
+        headlineContent = { Text("Wide notation") },
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_keyboard),

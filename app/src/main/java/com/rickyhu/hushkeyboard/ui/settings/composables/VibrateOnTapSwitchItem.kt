@@ -21,7 +21,7 @@ fun VibrateOnTapSwitchItem(
 ) {
     ListItem(
         modifier = Modifier.clickable { onValueChanged(!value) },
-        headlineText = { Text("Vibrate on tap") },
+        headlineContent = { Text("Vibrate on tap") },
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_vibration),

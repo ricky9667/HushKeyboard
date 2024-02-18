@@ -29,7 +29,7 @@ fun ThemeOptionDropdownItem(
 
     ListItem(
         modifier = Modifier.clickable { expanded = true },
-        headlineText = { Text("App Theme") },
+        headlineContent = { Text("App Theme") },
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_brightness),
