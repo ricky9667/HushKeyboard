@@ -60,30 +60,37 @@ ktlint {
 }
 
 dependencies {
+    // AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.activity.compose)
+    androidTestImplementation(libs.androidx.test.ext)
+    androidTestImplementation(libs.androidx.test.espresso.core)
 
+    // Compose
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-
-    implementation(libs.splitties.systemservices)
-    implementation(libs.androidx.datastore)
-    implementation(libs.kotlinx.serialization.json)
-
-    ksp(libs.compose.destinations.ksp)
-    implementation(libs.compose.destinations.core)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext)
-    androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(composeBom)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.junit4)
+
+    // System Services
+    implementation(libs.splitties.systemservices)
+
+    // Data Store
+    implementation(libs.androidx.datastore)
+    implementation(libs.kotlinx.serialization.json)
+
+    // Compose Destinations
+    ksp(libs.compose.destinations.ksp)
+    implementation(libs.compose.destinations.core)
+
+    // Testing
+    testImplementation(libs.junit)
 }
