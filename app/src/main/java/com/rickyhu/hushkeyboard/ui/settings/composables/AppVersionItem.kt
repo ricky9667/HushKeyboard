@@ -9,6 +9,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
@@ -18,10 +19,13 @@ fun AppVersionItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
+    val context = LocalContext.current
+    val versionName = context.packageManager.getPackageInfo(context.packageName, 0).versionName
+
     ListItem(
         headlineContent = { Text("Version") },
         leadingContent = { Icon(imageVector = Icons.Default.Info, contentDescription = "Info") },
-        trailingContent = { Text("v0.2.0") },
+        trailingContent = { Text(versionName) },
         modifier = modifier.clickable(onClick = onClick)
     )
 }
