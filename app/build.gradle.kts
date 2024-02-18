@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
-    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
-    id("org.jlleitschuh.gradle.ktlint") version "11.4.1"
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.ktlint)
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
