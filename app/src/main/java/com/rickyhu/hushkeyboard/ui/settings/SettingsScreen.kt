@@ -15,7 +15,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.ramcosta.composedestinations.annotation.Destination
 import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.settings.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
@@ -27,13 +26,9 @@ import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Destination
-@Composable
-fun SettingsScreen() = SettingsContent()
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun SettingsContent(
+fun SettingsScreen(
     coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) {
     val context = LocalContext.current
@@ -101,6 +96,6 @@ private fun SettingsContent(
 @Composable
 fun SettingsScreenPreview() {
     HushKeyboardTheme {
-        SettingsContent()
+        SettingsScreen()
     }
 }
