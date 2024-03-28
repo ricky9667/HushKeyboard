@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
     id("org.jetbrains.kotlin.plugin.serialization")
 }
@@ -65,6 +64,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
 
@@ -86,10 +86,6 @@ dependencies {
     // Data Store
     implementation(libs.androidx.datastore)
     implementation(libs.kotlinx.serialization.json)
-
-    // Compose Destinations
-    ksp(libs.compose.destinations.ksp)
-    implementation(libs.compose.destinations.core)
 
     // Testing
     testImplementation(libs.junit)
