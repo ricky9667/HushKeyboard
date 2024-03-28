@@ -10,10 +10,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.ramcosta.composedestinations.DestinationsNavHost
+import com.rickyhu.hushkeyboard.navigation.AppNavHost
 import com.rickyhu.hushkeyboard.settings.AppSettings
 import com.rickyhu.hushkeyboard.settings.dataStore
-import com.rickyhu.hushkeyboard.ui.NavGraphs
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DestinationsNavHost(navGraph = NavGraphs.root)
+                    AppNavHost()
                 }
             }
         }

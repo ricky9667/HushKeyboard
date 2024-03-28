@@ -42,21 +42,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.rickyhu.hushkeyboard.R
-import com.rickyhu.hushkeyboard.ui.destinations.SettingsScreenDestination
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import splitties.systemservices.inputMethodManager
 
-@Destination(start = true)
 @Composable
-fun HomeScreen(navigator: DestinationsNavigator) {
-    HomeContent(onSettingsClick = { navigator.navigate(SettingsScreenDestination()) })
-}
-
-@Composable
-private fun HomeContent(
+fun HomeScreen(
     onSettingsClick: () -> Unit = {}
 ) {
     val context = LocalContext.current
@@ -136,6 +127,6 @@ private fun HomeContent(
 @Composable
 fun HomeScreenPreview() {
     HushKeyboardTheme {
-        HomeContent()
+        HomeScreen()
     }
 }
