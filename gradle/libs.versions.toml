@@ -5,6 +5,9 @@ compose-bom = "2024.02.00"
 core-ktx = "1.12.0"
 datastore = "1.0.0"
 espresso-core = "3.5.0"
+hilt = "2.44"
+hilt-android-compiler = "2.44"
+hilt-navigation-compose = "1.2.0"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 kotlin = "1.8.10"
@@ -33,6 +36,9 @@ androidx-datastore = { group = "androidx.datastore", name = "datastore", version
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-android-compiler" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-serialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
@@ -42,3 +48,4 @@ splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

@@ -1,7 +1,9 @@
 plugins {
+    kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.hilt) apply false
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -32,8 +34,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -80,6 +82,11 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    // Hilt
+    implementation(libs.hilt)
+    implementation(libs.hilt.navigation.compose)
+    kapt(libs.hilt.android.compiler)
+
     // System Services
     implementation(libs.splitties.systemservices)
 
@@ -89,4 +96,8 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
+}
+
+kapt {
+    correctErrorTypes = true
 }
