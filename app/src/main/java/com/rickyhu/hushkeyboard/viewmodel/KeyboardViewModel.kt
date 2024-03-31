@@ -8,16 +8,27 @@ import android.os.VibratorManager
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.rickyhu.hushkeyboard.settings.AppSettings
+import com.rickyhu.hushkeyboard.settings.SettingsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import splitties.systemservices.inputMethodManager
+import javax.inject.Inject
 
-class KeyboardViewModel : ViewModel() {
-    private val _keyboardState = MutableStateFlow(KeyboardState())
-    val keyboardState = _keyboardState.asStateFlow()
+@HiltViewModel
+class KeyboardViewModel @Inject constructor(
+    settingsRepository: SettingsRepository
+) : ViewModel() {
+    private val settingsState = settingsRepository.settings.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        AppSettings()
+    )
 
     var shouldVibrate: Boolean = true
 
