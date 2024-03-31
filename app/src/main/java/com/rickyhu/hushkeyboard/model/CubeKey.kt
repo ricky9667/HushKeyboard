@@ -1,10 +1,10 @@
 package com.rickyhu.hushkeyboard.model
 
-import com.rickyhu.hushkeyboard.data.options.WideNotationOption
+import com.rickyhu.hushkeyboard.data.WideNotationOption
 
 data class CubeKey(
     val notation: Notation,
-    val config: Config
+    val config: Config = Config()
 ) {
     data class Config(
         val isCounterClockwise: Boolean = false,

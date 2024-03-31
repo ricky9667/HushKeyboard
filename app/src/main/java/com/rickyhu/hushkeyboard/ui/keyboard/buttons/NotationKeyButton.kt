@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rickyhu.hushkeyboard.data.options.WideNotationOption
+import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
@@ -78,7 +78,9 @@ fun NotationKeyButton(
                     orientation = Orientation.Horizontal,
                     state = rememberDraggableState { x ->
                         offsetX += x
-                        inputKey = key.copy(isCounterClockwise = offsetX < 0)
+                        inputKey = key.copy(
+                            config = key.config.copy(isCounterClockwise = offsetX < 0)
+                        )
                     },
                     onDragStarted = { offsetX = 0f },
                     onDragStopped = {
@@ -95,14 +97,19 @@ fun NotationKeyButton(
 
                         // Notate as double turn when swiping up or down, but only if the key state
                         // is originally a single turn.
-                        val turns = if (key.turns == Turns.Single) {
+                        val turns = if (key.config.turns == Turns.Single) {
                             Turns.Double
                         } else {
-                            key.turns
+                            key.config.turns
                         }
 
                         // Clockwise down, counter-clockwise up.
-                        inputKey = key.copy(isCounterClockwise = offsetY < 0, turns = turns)
+                        inputKey = key.copy(
+                            config = key.config.copy(
+                                isCounterClockwise = offsetY < 0,
+                                turns = turns
+                            )
+                        )
                     },
                     onDragStarted = { offsetY = 0f },
                     onDragStopped = {
