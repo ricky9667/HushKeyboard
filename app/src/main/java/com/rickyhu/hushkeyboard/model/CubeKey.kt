@@ -4,26 +4,30 @@ import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 
 data class CubeKey(
     val notation: Notation,
-    val isCounterClockwise: Boolean = false,
-    val turns: Turns = Turns.Single,
-    val isWideTurn: Boolean = false
+    val config: Config
 ) {
+    data class Config(
+        val isCounterClockwise: Boolean = false,
+        val turns: Turns = Turns.Single,
+        val isWideTurn: Boolean = false
+    )
+
     fun asText(
         addSpaceAfterNotation: Boolean,
         wideNotationOption: WideNotationOption
     ): String {
         var result = notation.value
 
-        if (isWideTurn) {
+        if (config.isWideTurn) {
             result = when (wideNotationOption) {
                 WideNotationOption.WideWithW -> "${result}w"
                 WideNotationOption.WideWithLowercase -> result.lowercase()
             }
         }
 
-        result += turns.toString()
+        result += config.turns.toString()
 
-        if (isCounterClockwise) result += "'"
+        if (config.isCounterClockwise) result += "'"
 
         return if (addSpaceAfterNotation) "$result " else result
     }

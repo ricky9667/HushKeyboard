@@ -9,6 +9,7 @@ import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.settings.AppSettings
@@ -139,7 +140,5 @@ class KeyboardViewModel @Inject constructor(
 }
 
 data class KeyboardState(
-    val isCounterClockwise: Boolean = false,
-    val turns: Turns = Turns.Single,
-    val isWideTurn: Boolean = false
+    val keyboardConfig: CubeKey.Config
 )
