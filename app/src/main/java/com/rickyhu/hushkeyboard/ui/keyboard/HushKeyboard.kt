@@ -20,27 +20,32 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
+import com.rickyhu.hushkeyboard.settings.options.ThemeOption
+import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardState
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 import splitties.systemservices.inputMethodManager
 
-
-@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun HushKeyboard(viewModel: KeyboardViewModel = hiltViewModel()) {
     val state by viewModel.keyboardState.collectAsState(KeyboardState())
 
-    HushKeyboardContent(state)
+    HushKeyboardContent(
+        state,
+        onTextInput = viewModel::inputText,
+        onTextDelete = viewModel::deleteText
+    )
 }
 
-@RequiresApi(Build.VERSION_CODES.S)
 @Composable
-private fun HushKeyboardContent(state: KeyboardState) {
+private fun HushKeyboardContent(
+    state: KeyboardState,
+    onTextInput: (String) -> Unit,
+    onTextDelete: () -> Unit
+) {
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
-
-    viewModel.shouldVibrate = settingsState.vibrateOnTap
 
     val isDarkTheme = state.themeOption.isDarkTheme(
         isSystemInDarkMode = isSystemInDarkTheme()
@@ -57,7 +62,7 @@ private fun HushKeyboardContent(state: KeyboardState) {
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = { text -> viewModel.inputText(context, text) }
+            onTextInput = onTextInput
         )
 
         NotationKeyButtonsRow(
@@ -65,7 +70,7 @@ private fun HushKeyboardContent(state: KeyboardState) {
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = { text -> viewModel.inputText(context, text) }
+            onTextInput = onTextInput
         )
 
         ControlKeyButtonRow(
@@ -91,8 +96,8 @@ private fun HushKeyboardContent(state: KeyboardState) {
                     isWideTurn = !keyConfigState.isWideTurn
                 )
             },
-            deleteButtonAction = { viewModel.deleteText(context) },
-            newLineButtonAction = { viewModel.inputText(context, "\n") }
+            deleteButtonAction = onTextDelete,
+            newLineButtonAction = { onTextInput("\n") }
         )
     }
 }
@@ -101,5 +106,14 @@ private fun HushKeyboardContent(state: KeyboardState) {
 @Preview(showBackground = true)
 @Composable
 fun HushKeyboardPreview() {
-    HushKeyboard(viewModel = KeyboardViewModel())
+    HushKeyboardContent(
+        state = KeyboardState(
+            themeOption = ThemeOption.System,
+            addSpaceAfterNotation = true,
+            vibrateOnTap = true,
+            wideNotationOption = WideNotationOption.WideWithW
+        ),
+        onTextInput = {},
+        onTextDelete = {}
+    )
 }
