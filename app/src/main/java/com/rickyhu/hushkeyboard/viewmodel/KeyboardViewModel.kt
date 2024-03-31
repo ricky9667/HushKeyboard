@@ -4,10 +4,10 @@ import android.text.TextUtils
 import android.view.inputmethod.InputConnection
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rickyhu.hushkeyboard.settings.AppSettings
-import com.rickyhu.hushkeyboard.settings.SettingsRepository
-import com.rickyhu.hushkeyboard.settings.options.ThemeOption
-import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
+import com.rickyhu.hushkeyboard.data.AppSettings
+import com.rickyhu.hushkeyboard.data.SettingsRepository
+import com.rickyhu.hushkeyboard.data.ThemeOption
+import com.rickyhu.hushkeyboard.data.WideNotationOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map

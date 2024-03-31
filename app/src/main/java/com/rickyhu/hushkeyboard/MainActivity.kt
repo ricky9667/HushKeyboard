@@ -10,9 +10,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.main.MainViewModel
 import com.rickyhu.hushkeyboard.navigation.AppNavHost
-import com.rickyhu.hushkeyboard.settings.options.ThemeOption
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import javax.inject.Inject
 

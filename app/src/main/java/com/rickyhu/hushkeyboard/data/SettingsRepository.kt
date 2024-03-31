@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.settings
+package com.rickyhu.hushkeyboard.data
 
 import android.content.Context
 import androidx.datastore.dataStore

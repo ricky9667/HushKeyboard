@@ -31,10 +31,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rickyhu.hushkeyboard.data.options.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.settings.options.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.DarkPrimary
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 import com.rickyhu.hushkeyboard.ui.theme.LightPrimary

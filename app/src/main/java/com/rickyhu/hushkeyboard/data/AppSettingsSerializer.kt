@@ -1,10 +1,10 @@
-package com.rickyhu.hushkeyboard.settings
+package com.rickyhu.hushkeyboard.data
 
 import androidx.datastore.core.Serializer
-import java.io.InputStream
-import java.io.OutputStream
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+import java.io.InputStream
+import java.io.OutputStream
 
 object AppSettingsSerializer : Serializer<AppSettings> {
     override val defaultValue: AppSettings

@@ -15,8 +15,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.rickyhu.hushkeyboard.settings.AppSettings
-import com.rickyhu.hushkeyboard.settings.dataStore
+import com.rickyhu.hushkeyboard.data.AppSettings
+import com.rickyhu.hushkeyboard.data.dataStore
 import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeOptionDropdownItem

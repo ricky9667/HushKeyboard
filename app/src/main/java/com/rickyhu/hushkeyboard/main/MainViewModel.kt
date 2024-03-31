@@ -2,8 +2,8 @@ package com.rickyhu.hushkeyboard.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rickyhu.hushkeyboard.settings.AppSettings
-import com.rickyhu.hushkeyboard.settings.SettingsRepository
+import com.rickyhu.hushkeyboard.data.AppSettings
+import com.rickyhu.hushkeyboard.data.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
