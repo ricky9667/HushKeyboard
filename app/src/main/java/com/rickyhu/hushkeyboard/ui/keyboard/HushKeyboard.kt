@@ -47,9 +47,11 @@ private fun HushKeyboardContent(
 ) {
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
 
-    val isDarkTheme = state.themeOption.isDarkTheme(
-        isSystemInDarkMode = isSystemInDarkTheme()
-    )
+    val isDarkTheme = when (state.themeOption) {
+        ThemeOption.System -> isSystemInDarkTheme()
+        ThemeOption.Light -> false
+        ThemeOption.Dark -> true
+    }
 
     Column(
         modifier = Modifier
