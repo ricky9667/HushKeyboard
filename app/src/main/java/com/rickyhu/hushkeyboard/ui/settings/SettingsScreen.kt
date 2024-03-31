@@ -11,28 +11,46 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.rickyhu.hushkeyboard.data.AppSettings
-import com.rickyhu.hushkeyboard.data.dataStore
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.rickyhu.hushkeyboard.data.ThemeOption
+import com.rickyhu.hushkeyboard.data.WideNotationOption
+import com.rickyhu.hushkeyboard.settings.SettingsState
+import com.rickyhu.hushkeyboard.settings.SettingsViewModel
 import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.ui.settings.composables.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+
+@Composable
+fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel()
+) {
+    val state by viewModel.settingsState.collectAsState(SettingsState())
+
+    SettingsContent(
+        state,
+        onThemeSelected = viewModel::updateThemeOption,
+        onWideNotationOptionSelected = viewModel::updateWideNotationOption,
+        onAddSpaceBetweenNotationChanged = viewModel::updateAddSpaceBetweenNotation,
+        onVibrateOnTapChanged = viewModel::updateVibrateOnTap
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
+private fun SettingsContent(
+    state: SettingsState,
+    onThemeSelected: (themeOption: ThemeOption) -> Unit,
+    onWideNotationOptionSelected: (wideNotationOption: WideNotationOption) -> Unit,
+    onAddSpaceBetweenNotationChanged: (addSpaceAfterNotation: Boolean) -> Unit,
+    onVibrateOnTapChanged: (vibrateOnTap: Boolean) -> Unit
 ) {
     val context = LocalContext.current
-    val settings by context.dataStore.data.collectAsState(initial = AppSettings())
 
     Scaffold(
         topBar = {
@@ -41,44 +59,20 @@ fun SettingsScreen(
         content = { padding ->
             Column(modifier = Modifier.padding(padding)) {
                 ThemeOptionDropdownItem(
-                    currentTheme = settings.themeOption,
-                    onThemeSelected = { themeOption ->
-                        coroutineScope.launch {
-                            context.dataStore.updateData { settings ->
-                                settings.copy(themeOption = themeOption)
-                            }
-                        }
-                    }
+                    currentTheme = state.themeOption,
+                    onThemeSelected = onThemeSelected
                 )
                 WideNotationOptionDropdownItem(
-                    currentOption = settings.wideNotationOption,
-                    onOptionSelected = { wideNotationOption ->
-                        coroutineScope.launch {
-                            context.dataStore.updateData { settings ->
-                                settings.copy(wideNotationOption = wideNotationOption)
-                            }
-                        }
-                    }
+                    currentOption = state.wideNotationOption,
+                    onOptionSelected = onWideNotationOptionSelected
                 )
                 AddSpaceBetweenNotationSwitchItem(
-                    value = settings.addSpaceAfterNotation,
-                    onValueChanged = { addSpaceAfterNotation ->
-                        coroutineScope.launch {
-                            context.dataStore.updateData { settings ->
-                                settings.copy(addSpaceAfterNotation = addSpaceAfterNotation)
-                            }
-                        }
-                    }
+                    value = state.addSpaceAfterNotation,
+                    onValueChanged = onAddSpaceBetweenNotationChanged
                 )
                 VibrateOnTapSwitchItem(
-                    value = settings.vibrateOnTap,
-                    onValueChanged = { vibrateOnTap ->
-                        coroutineScope.launch {
-                            context.dataStore.updateData { settings ->
-                                settings.copy(vibrateOnTap = vibrateOnTap)
-                            }
-                        }
-                    }
+                    value = state.vibrateOnTap,
+                    onValueChanged = onVibrateOnTapChanged
                 )
                 AppVersionItem(
                     onClick = {

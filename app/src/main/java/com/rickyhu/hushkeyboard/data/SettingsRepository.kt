@@ -10,5 +10,23 @@ private val Context.dataStore by dataStore("app-settings.json", AppSettingsSeria
 class SettingsRepository @Inject constructor(
     @ApplicationContext context: Context
 ) {
-    val settings = context.dataStore.data
+
+    private val dataStore = context.dataStore
+    val settings = dataStore.data
+
+    suspend fun updateThemeOption(themeOption: ThemeOption) {
+        dataStore.updateData { it.copy(themeOption = themeOption) }
+    }
+
+    suspend fun updateWideNotationOption(wideNotationOption: WideNotationOption) {
+        dataStore.updateData { it.copy(wideNotationOption = wideNotationOption) }
+    }
+
+    suspend fun updateAddSpaceBetweenNotation(addSpaceBetweenNotation: Boolean) {
+        dataStore.updateData { it.copy(addSpaceAfterNotation = addSpaceBetweenNotation) }
+    }
+
+    suspend fun updateVibrateOnTap(vibrateOnTap: Boolean) {
+        dataStore.updateData { it.copy(vibrateOnTap = vibrateOnTap) }
+    }
 }
