@@ -2,26 +2,24 @@ package com.rickyhu.hushkeyboard.viewmodel
 
 import android.text.TextUtils
 import android.view.inputmethod.InputConnection
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.rickyhu.hushkeyboard.data.AppSettings
 import com.rickyhu.hushkeyboard.data.SettingsRepository
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
-import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-@HiltViewModel
 class KeyboardViewModel @Inject constructor(
     settingsRepository: SettingsRepository,
-    private val inputConnection: InputConnection
-) : ViewModel() {
+    private val inputConnection: InputConnection,
+    scope: CoroutineScope
+) {
 
     val keyboardState = settingsRepository.settings.stateIn(
-        viewModelScope,
+        scope,
         SharingStarted.WhileSubscribed(5000),
         AppSettings()
     ).map { settings ->

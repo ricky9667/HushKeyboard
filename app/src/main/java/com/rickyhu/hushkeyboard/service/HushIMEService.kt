@@ -9,7 +9,9 @@ import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.rickyhu.hushkeyboard.HushKeyboardView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HushIMEService : LifecycleInputMethodService(), ViewModelStoreOwner, SavedStateRegistryOwner {
 
     private val savedStateRegistryController = SavedStateRegistryController.create(this)
