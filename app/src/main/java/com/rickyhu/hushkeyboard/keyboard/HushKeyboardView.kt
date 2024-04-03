@@ -22,12 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
+import com.rickyhu.hushkeyboard.keyboard.ui.rows.ControlKeyButtonRow
+import com.rickyhu.hushkeyboard.keyboard.ui.rows.NotationKeyButtonsRow
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
-import com.rickyhu.hushkeyboard.ui.keyboard.ControlKeyButtonRow
-import com.rickyhu.hushkeyboard.ui.keyboard.NotationKeyButtonsRow
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.utils.deleteText

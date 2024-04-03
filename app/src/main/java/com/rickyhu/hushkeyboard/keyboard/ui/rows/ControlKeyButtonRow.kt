@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.keyboard
+package com.rickyhu.hushkeyboard.keyboard.ui.rows
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.R
+import com.rickyhu.hushkeyboard.keyboard.ui.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.ui.keyboard.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @Composable

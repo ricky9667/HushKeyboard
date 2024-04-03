@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.keyboard.buttons
+package com.rickyhu.hushkeyboard.keyboard.ui.buttons
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size

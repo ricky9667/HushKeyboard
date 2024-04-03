@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.keyboard
+package com.rickyhu.hushkeyboard.keyboard.ui.rows
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.data.WideNotationOption
+import com.rickyhu.hushkeyboard.keyboard.ui.buttons.NotationKeyButton
 import com.rickyhu.hushkeyboard.model.CubeKey
-import com.rickyhu.hushkeyboard.ui.keyboard.buttons.NotationKeyButton
 
 @Composable
 fun NotationKeyButtonsRow(
