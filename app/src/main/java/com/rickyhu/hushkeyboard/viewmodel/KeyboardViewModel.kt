@@ -6,10 +6,10 @@ import com.rickyhu.hushkeyboard.data.AppSettings
 import com.rickyhu.hushkeyboard.data.SettingsRepository
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
 class KeyboardViewModel @Inject constructor(
     settingsRepository: SettingsRepository

@@ -1,6 +1,8 @@
 package com.rickyhu.hushkeyboard.ui.keyboard
 
+import android.content.Context
 import android.os.Build
+import android.os.VibratorManager
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -26,6 +28,7 @@ import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.utils.deleteText
 import com.rickyhu.hushkeyboard.utils.inputText
+import com.rickyhu.hushkeyboard.utils.maybeVibrate
 import com.rickyhu.hushkeyboard.utils.toInputConnection
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardState
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
@@ -45,6 +48,13 @@ private fun HushKeyboardContent(
     state: KeyboardState
 ) {
     val context = LocalContext.current
+
+    val vibratorManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+    } else {
+        null
+    }
+
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
 
     val isDarkTheme = when (state.themeOption) {
@@ -64,7 +74,10 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = { context.toInputConnection().inputText(it) }
+            onTextInput = {
+                context.toInputConnection().inputText(it)
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+            }
         )
 
         NotationKeyButtonsRow(
@@ -72,7 +85,10 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = { context.toInputConnection().inputText(it) }
+            onTextInput = {
+                context.toInputConnection().inputText(it)
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+            }
         )
 
         ControlKeyButtonRow(
@@ -80,11 +96,13 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             inputMethodButtonAction = {
                 inputMethodManager.showInputMethodPicker()
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             rotateDirectionButtonAction = {
                 keyConfigState = keyConfigState.copy(
                     isCounterClockwise = keyConfigState.isCounterClockwise
                 )
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             turnDegreeButtonAction = {
                 keyConfigState = when (keyConfigState.turns) {
@@ -92,14 +110,22 @@ private fun HushKeyboardContent(
                     Turns.Double -> keyConfigState.copy(turns = Turns.Triple)
                     Turns.Triple -> keyConfigState.copy(turns = Turns.Single)
                 }
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             wideTurnButtonAction = {
                 keyConfigState = keyConfigState.copy(
                     isWideTurn = !keyConfigState.isWideTurn
                 )
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
-            deleteButtonAction = { context.toInputConnection().deleteText() },
-            newLineButtonAction = { context.toInputConnection().inputText("\n") }
+            deleteButtonAction = {
+                context.toInputConnection().deleteText()
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+            },
+            newLineButtonAction = {
+                context.toInputConnection().inputText("\n")
+                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+            }
         )
     }
 }
