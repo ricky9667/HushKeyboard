@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.viewmodel
+package com.rickyhu.hushkeyboard.keyboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

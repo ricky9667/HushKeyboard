@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.keyboard
+package com.rickyhu.hushkeyboard.keyboard
 
 import android.content.Context
 import android.os.Build
@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,29 +25,31 @@ import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
+import com.rickyhu.hushkeyboard.service.HushIMEService
+import com.rickyhu.hushkeyboard.ui.keyboard.ControlKeyButtonRow
+import com.rickyhu.hushkeyboard.ui.keyboard.NotationKeyButtonsRow
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.utils.deleteText
 import com.rickyhu.hushkeyboard.utils.inputText
 import com.rickyhu.hushkeyboard.utils.maybeVibrate
 import com.rickyhu.hushkeyboard.utils.toInputConnection
-import com.rickyhu.hushkeyboard.viewmodel.KeyboardState
-import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 import splitties.systemservices.inputMethodManager
 
-@Composable
-fun HushKeyboard(
-    viewModel: KeyboardViewModel
-) {
-    val state by viewModel.keyboardState.collectAsState(KeyboardState())
+class HushKeyboardView(context: Context) : AbstractComposeView(context) {
 
-    HushKeyboardContent(state)
+    @RequiresApi(Build.VERSION_CODES.S)
+    @Composable
+    override fun Content() {
+        val viewModel = (context as HushIMEService).viewModel
+        val state by viewModel.keyboardState.collectAsState(KeyboardState())
+
+        HushKeyboardContent(state)
+    }
 }
 
 @Composable
-private fun HushKeyboardContent(
-    state: KeyboardState
-) {
+private fun HushKeyboardContent(state: KeyboardState) {
     val context = LocalContext.current
 
     val vibratorManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

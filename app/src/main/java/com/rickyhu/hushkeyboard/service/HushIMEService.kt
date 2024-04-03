@@ -5,8 +5,8 @@ import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
-import com.rickyhu.hushkeyboard.HushKeyboardView
-import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
+import com.rickyhu.hushkeyboard.keyboard.HushKeyboardView
+import com.rickyhu.hushkeyboard.keyboard.KeyboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
