@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.home
+package com.rickyhu.hushkeyboard.home
 
 import android.content.Intent
 import android.provider.Settings

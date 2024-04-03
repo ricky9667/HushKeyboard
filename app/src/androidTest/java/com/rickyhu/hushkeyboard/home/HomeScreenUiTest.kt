@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.home
+package com.rickyhu.hushkeyboard.home
 
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsEnabled
