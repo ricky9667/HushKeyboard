@@ -27,24 +27,6 @@ class KeyboardViewModel @Inject constructor(
             wideNotationOption = settings.wideNotationOption
         )
     }
-//
-//    fun inputText(text: String) {
-//        inputConnection.commitText(text, CURSOR_POSITION)
-//    }
-//
-//    fun deleteText() {
-//        val selectedText = inputConnection.getSelectedText(0)
-//
-//        if (TextUtils.isEmpty(selectedText)) {
-//            inputConnection.deleteSurroundingText(1, 0)
-//        } else {
-//            inputConnection.commitText("", CURSOR_POSITION)
-//        }
-//    }
-
-    companion object {
-        private const val CURSOR_POSITION = 1
-    }
 }
 
 data class KeyboardState(

@@ -1,7 +1,6 @@
 package com.rickyhu.hushkeyboard.ui.keyboard
 
 import android.os.Build
-import android.view.inputmethod.InputConnection
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -23,9 +22,11 @@ import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
+import com.rickyhu.hushkeyboard.utils.deleteText
+import com.rickyhu.hushkeyboard.utils.inputText
+import com.rickyhu.hushkeyboard.utils.toInputConnection
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardState
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 import splitties.systemservices.inputMethodManager
@@ -44,8 +45,6 @@ private fun HushKeyboardContent(
     state: KeyboardState
 ) {
     val context = LocalContext.current
-    val inputConnection = (context as HushIMEService).currentInputConnection
-
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
 
     val isDarkTheme = when (state.themeOption) {
@@ -65,7 +64,7 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = { inputConnection.inputText(it) }
+            onTextInput = { context.toInputConnection().inputText(it) }
         )
 
         NotationKeyButtonsRow(
@@ -73,7 +72,7 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = { inputConnection.inputText(it) }
+            onTextInput = { context.toInputConnection().inputText(it) }
         )
 
         ControlKeyButtonRow(
@@ -99,23 +98,9 @@ private fun HushKeyboardContent(
                     isWideTurn = !keyConfigState.isWideTurn
                 )
             },
-            deleteButtonAction = { inputConnection.deleteText() },
-            newLineButtonAction = { inputConnection.inputText("\n") }
+            deleteButtonAction = { context.toInputConnection().deleteText() },
+            newLineButtonAction = { context.toInputConnection().inputText("\n") }
         )
-    }
-}
-
-fun InputConnection.inputText(text: String) {
-    commitText(text, 1)
-}
-
-fun InputConnection.deleteText() {
-    val selectedText = getSelectedText(0)
-
-    if (selectedText.isNullOrEmpty()) {
-        deleteSurroundingText(1, 0)
-    } else {
-        commitText("", 1)
     }
 }
 
