@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.settings.composables
+package com.rickyhu.hushkeyboard.settings.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons

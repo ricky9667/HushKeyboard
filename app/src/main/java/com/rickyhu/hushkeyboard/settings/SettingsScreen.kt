@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.settings
+package com.rickyhu.hushkeyboard.settings
 
 import android.content.Intent
 import android.net.Uri
@@ -17,13 +17,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
-import com.rickyhu.hushkeyboard.settings.SettingsState
-import com.rickyhu.hushkeyboard.settings.SettingsViewModel
-import com.rickyhu.hushkeyboard.ui.settings.composables.AddSpaceBetweenNotationSwitchItem
-import com.rickyhu.hushkeyboard.ui.settings.composables.AppVersionItem
-import com.rickyhu.hushkeyboard.ui.settings.composables.ThemeOptionDropdownItem
-import com.rickyhu.hushkeyboard.ui.settings.composables.VibrateOnTapSwitchItem
-import com.rickyhu.hushkeyboard.ui.settings.composables.WideNotationOptionDropdownItem
+import com.rickyhu.hushkeyboard.settings.ui.AddSpaceBetweenNotationSwitchItem
+import com.rickyhu.hushkeyboard.settings.ui.AppVersionItem
+import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
+import com.rickyhu.hushkeyboard.settings.ui.VibrateOnTapSwitchItem
+import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @Composable

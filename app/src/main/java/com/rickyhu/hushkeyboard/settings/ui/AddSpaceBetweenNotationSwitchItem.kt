@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.settings.composables
+package com.rickyhu.hushkeyboard.settings.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.Icon
@@ -13,17 +13,17 @@ import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @Composable
-fun VibrateOnTapSwitchItem(
+fun AddSpaceBetweenNotationSwitchItem(
     value: Boolean,
     onValueChanged: (Boolean) -> Unit = {}
 ) {
     ListItem(
         modifier = Modifier.clickable { onValueChanged(!value) },
-        headlineContent = { Text("Vibrate on tap") },
+        headlineContent = { Text("Add space after notation") },
         leadingContent = {
             Icon(
-                painter = painterResource(R.drawable.ic_vibration),
-                contentDescription = "Vibrate"
+                painter = painterResource(R.drawable.ic_space),
+                contentDescription = "Space"
             )
         },
         trailingContent = {
@@ -34,9 +34,9 @@ fun VibrateOnTapSwitchItem(
 
 @Preview(showBackground = true)
 @Composable
-fun VibrateOnTapSwitchItemPreview() {
+fun AddSpaceBetweenNotationSwitchItemPreview() {
     HushKeyboardTheme {
-        VibrateOnTapSwitchItem(
+        AddSpaceBetweenNotationSwitchItem(
             value = true
         )
     }

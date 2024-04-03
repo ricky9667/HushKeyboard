@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.settings.composables
+package com.rickyhu.hushkeyboard.settings.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.DropdownMenu
@@ -15,37 +15,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
-import com.rickyhu.hushkeyboard.data.ThemeOption
+import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
 
 @Composable
-fun ThemeOptionDropdownItem(
-    currentTheme: ThemeOption,
-    onThemeSelected: (ThemeOption) -> Unit
+fun WideNotationOptionDropdownItem(
+    currentOption: WideNotationOption,
+    onOptionSelected: (WideNotationOption) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
     ListItem(
         modifier = Modifier.clickable { expanded = true },
-        headlineContent = { Text("App Theme") },
+        headlineContent = { Text("Wide notation") },
         leadingContent = {
             Icon(
-                painter = painterResource(R.drawable.ic_brightness),
-                contentDescription = "Brightness"
+                painter = painterResource(R.drawable.ic_keyboard),
+                contentDescription = "Keyboard"
             )
         },
         trailingContent = {
-            Text(text = currentTheme.name)
+            Text(text = currentOption.toString())
 
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                for (option in ThemeOption.values()) {
+                for (option in WideNotationOption.values()) {
                     DropdownMenuItem(
-                        text = { Text(option.name) },
+                        text = { Text(option.toString()) },
                         onClick = {
-                            onThemeSelected(option)
+                            onOptionSelected(option)
                             expanded = false
                         }
                     )
@@ -57,11 +57,11 @@ fun ThemeOptionDropdownItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun ThemeOptionDropdownItemPreview() {
+private fun WideNotationOptionDropdownItemPreview() {
     HushKeyboardTheme {
-        ThemeOptionDropdownItem(
-            currentTheme = ThemeOption.System,
-            onThemeSelected = {}
+        WideNotationOptionDropdownItem(
+            currentOption = WideNotationOption.WideWithW,
+            onOptionSelected = {}
         )
     }
 }
