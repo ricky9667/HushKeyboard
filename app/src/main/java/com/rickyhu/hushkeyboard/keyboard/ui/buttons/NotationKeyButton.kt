@@ -35,9 +35,9 @@ import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.ui.theme.DarkPrimary
-import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
-import com.rickyhu.hushkeyboard.ui.theme.LightPrimary
+import com.rickyhu.hushkeyboard.theme.DarkPrimary
+import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.theme.LightPrimary
 
 @Composable
 fun NotationKeyButton(

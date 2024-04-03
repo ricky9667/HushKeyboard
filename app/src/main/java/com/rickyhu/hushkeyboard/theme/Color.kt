@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.theme
+package com.rickyhu.hushkeyboard.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -43,7 +43,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
-import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import splitties.systemservices.inputMethodManager
 
 @Composable

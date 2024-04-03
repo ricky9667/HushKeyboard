@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.keyboard.ui.buttons.ControlKeyButton
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 
 @Composable
 fun ControlKeyButtonRow(

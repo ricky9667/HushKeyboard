@@ -1,4 +1,4 @@
-package com.rickyhu.hushkeyboard.ui.theme
+package com.rickyhu.hushkeyboard.theme
 
 import android.app.Activity
 import android.os.Build

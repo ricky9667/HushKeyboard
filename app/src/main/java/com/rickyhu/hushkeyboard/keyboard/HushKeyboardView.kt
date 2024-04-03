@@ -28,8 +28,8 @@ import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
-import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
-import com.rickyhu.hushkeyboard.ui.theme.LightBackground
+import com.rickyhu.hushkeyboard.theme.DarkBackground
+import com.rickyhu.hushkeyboard.theme.LightBackground
 import com.rickyhu.hushkeyboard.utils.deleteText
 import com.rickyhu.hushkeyboard.utils.inputText
 import com.rickyhu.hushkeyboard.utils.maybeVibrate

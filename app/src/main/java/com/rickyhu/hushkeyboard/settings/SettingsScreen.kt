@@ -22,7 +22,7 @@ import com.rickyhu.hushkeyboard.settings.ui.AppVersionItem
 import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.settings.ui.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
-import com.rickyhu.hushkeyboard.ui.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 
 @Composable
 fun SettingsScreen(
