@@ -1,6 +1,7 @@
 package com.rickyhu.hushkeyboard.ui.keyboard
 
 import android.os.Build
+import android.view.inputmethod.InputConnection
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -14,14 +15,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
+import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.ui.theme.DarkBackground
 import com.rickyhu.hushkeyboard.ui.theme.LightBackground
 import com.rickyhu.hushkeyboard.viewmodel.KeyboardState
@@ -29,22 +31,21 @@ import com.rickyhu.hushkeyboard.viewmodel.KeyboardViewModel
 import splitties.systemservices.inputMethodManager
 
 @Composable
-fun HushKeyboard(viewModel: KeyboardViewModel = hiltViewModel()) {
+fun HushKeyboard(
+    viewModel: KeyboardViewModel
+) {
     val state by viewModel.keyboardState.collectAsState(KeyboardState())
 
-    HushKeyboardContent(
-        state,
-        onTextInput = viewModel::inputText,
-        onTextDelete = viewModel::deleteText
-    )
+    HushKeyboardContent(state)
 }
 
 @Composable
 private fun HushKeyboardContent(
-    state: KeyboardState,
-    onTextInput: (String) -> Unit,
-    onTextDelete: () -> Unit
+    state: KeyboardState
 ) {
+    val context = LocalContext.current
+    val inputConnection = (context as HushIMEService).currentInputConnection
+
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
 
     val isDarkTheme = when (state.themeOption) {
@@ -64,7 +65,7 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = onTextInput
+            onTextInput = { inputConnection.inputText(it) }
         )
 
         NotationKeyButtonsRow(
@@ -72,7 +73,7 @@ private fun HushKeyboardContent(
             isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
-            onTextInput = onTextInput
+            onTextInput = { inputConnection.inputText(it) }
         )
 
         ControlKeyButtonRow(
@@ -98,9 +99,23 @@ private fun HushKeyboardContent(
                     isWideTurn = !keyConfigState.isWideTurn
                 )
             },
-            deleteButtonAction = onTextDelete,
-            newLineButtonAction = { onTextInput("\n") }
+            deleteButtonAction = { inputConnection.deleteText() },
+            newLineButtonAction = { inputConnection.inputText("\n") }
         )
+    }
+}
+
+fun InputConnection.inputText(text: String) {
+    commitText(text, 1)
+}
+
+fun InputConnection.deleteText() {
+    val selectedText = getSelectedText(0)
+
+    if (selectedText.isNullOrEmpty()) {
+        deleteSurroundingText(1, 0)
+    } else {
+        commitText("", 1)
     }
 }
 
@@ -114,8 +129,6 @@ fun HushKeyboardPreview() {
             addSpaceAfterNotation = true,
             vibrateOnTap = true,
             wideNotationOption = WideNotationOption.WideWithW
-        ),
-        onTextInput = {},
-        onTextDelete = {}
+        )
     )
 }
