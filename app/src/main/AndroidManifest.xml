@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name=".HushApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -27,10 +28,10 @@
 
         <service
             android:name=".service.HushIMEService"
-            android:label="Hush Keyboard"
+            android:exported="false"
 
-            android:permission="android.permission.BIND_INPUT_METHOD"
-            android:exported="false">
+            android:label="Hush Keyboard"
+            android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
