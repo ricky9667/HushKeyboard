@@ -1,4 +1,4 @@
-name: 🔨 Build
+name: Build
 
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
 
 jobs:
   build:
+    name: 🔨 Run Build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,52 +19,14 @@ jobs:
           distribution: "temurin"
           java-version: 17
 
-      - name: Build App
+      - name: 🔨 Build App
         run: ./gradlew assembleDebug
 
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          distribution: "temurin"
-          java-version: 17
-
-      - name: Run Ktlint
+      - name: 🎄 Run Lint
         run: ./gradlew ktlintCheck
 
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          distribution: "temurin"
-          java-version: 17
-
-      - name: Run Unit Tests
+      - name: 🧪 Run Tests
         run: ./gradlew test
 
-  analyze-apk:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-
-      - name: Analyze APK Size
+      - name: 📏 Analyze APK Size
         run: ./gradlew appSizeReport
