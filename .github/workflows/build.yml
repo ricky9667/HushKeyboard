@@ -1,0 +1,29 @@
+name: 🔨 Build
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: 🔨 Build and Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: 17
+
+      - name: Build App
+        run: ./gradlew assembleDebug
+
+      - name: Run Lint
+        run: ./gradlew ktlintCheck
+
+      - name: Run Tests
+        run: ./gradlew test
