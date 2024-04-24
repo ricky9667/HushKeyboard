@@ -1,4 +1,4 @@
-name: Build
+name: 🔨 Build
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: 🔨 Run Build
+    name: 🔨 Build and Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,14 +19,11 @@ jobs:
           distribution: "temurin"
           java-version: 17
 
-      - name: 🔨 Build App
+      - name: Build App
         run: ./gradlew assembleDebug
 
-      - name: 🎄 Run Lint
+      - name: Run Lint
         run: ./gradlew ktlintCheck
 
-      - name: 🧪 Run Tests
+      - name: Run Tests
         run: ./gradlew test
-
-      - name: 📏 Analyze APK Size
-        run: ./gradlew appSizeReport
