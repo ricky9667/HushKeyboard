@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kover)
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
