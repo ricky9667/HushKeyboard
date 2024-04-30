@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK
+      - name: Setup JDK
         uses: actions/setup-java@v2
         with:
           distribution: "temurin"
@@ -27,3 +27,13 @@ jobs:
 
       - name: Run Tests
         run: ./gradlew test
+
+      - name: Generate Coverage Report
+        run: ./gradlew koverXmlReportDebug
+
+      - name: Upload Coverage Report to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./app/build/reports/kover/reportDebug.xml
+          fail_ci_if_error: true
