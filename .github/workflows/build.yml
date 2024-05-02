@@ -1,4 +1,4 @@
-name: 🔨 Build
+name: Android CI
 
 on:
   pull_request:
@@ -7,17 +7,18 @@ on:
 
 jobs:
   build:
-    name: 🔨 Build and Check
+    name: Build and check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
-          distribution: "temurin"
+          distribution: 'temurin'
           java-version: 17
+          cache: gradle
 
       - name: Build App
         run: ./gradlew assembleDebug
@@ -26,7 +27,7 @@ jobs:
         run: ./gradlew ktlintCheck
 
       - name: Run Tests
-        run: ./gradlew test
+        run: ./gradlew testDebugUnitTest
 
       - name: Generate Coverage Report
         run: ./gradlew koverXmlReportDebug
