@@ -2,6 +2,7 @@ package com.rickyhu.hushkeyboard.settings
 
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,9 +40,10 @@ fun SettingsScreen(
     )
 }
 
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun SettingsContent(
+fun SettingsContent(
     state: SettingsState,
     onThemeSelected: (themeOption: ThemeOption) -> Unit,
     onWideNotationOptionSelected: (wideNotationOption: WideNotationOption) -> Unit,
