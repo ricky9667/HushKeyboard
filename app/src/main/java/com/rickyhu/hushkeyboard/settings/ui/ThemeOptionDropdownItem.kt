@@ -45,6 +45,7 @@ fun ThemeOptionDropdownItem(
             ) {
                 for (option in ThemeOption.values()) {
                     DropdownMenuItem(
+                        modifier = Modifier.testTag("ThemeOptionDropdownMenuItem"),
                         text = { Text(option.name) },
                         onClick = {
                             onThemeSelected(option)
