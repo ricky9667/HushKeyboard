@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.os.VibratorManager
 import androidx.annotation.RequiresApi
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -48,8 +49,9 @@ class HushKeyboardView(context: Context) : AbstractComposeView(context) {
     }
 }
 
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 @Composable
-private fun HushKeyboardContent(state: KeyboardState) {
+fun HushKeyboardContent(state: KeyboardState) {
     val context = LocalContext.current
 
     val vibratorManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

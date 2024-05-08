@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
@@ -38,11 +39,13 @@ fun ThemeOptionDropdownItem(
             Text(text = currentTheme.name)
 
             DropdownMenu(
+                modifier = Modifier.testTag("ThemeOptionDropdownMenu"),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
                 for (option in ThemeOption.values()) {
                     DropdownMenuItem(
+                        modifier = Modifier.testTag("ThemeOptionDropdownMenuItem"),
                         text = { Text(option.name) },
                         onClick = {
                             onThemeSelected(option)
