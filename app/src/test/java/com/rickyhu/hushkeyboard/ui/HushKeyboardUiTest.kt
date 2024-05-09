@@ -33,9 +33,12 @@ class HushKeyboardUiTest {
     }
 
     @Test
-    fun `First row key should change state after clicking counter clockwise button`() {
+    fun `First row key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
         keyButtonShouldBe("R' ")
+
+        clickCounterClockwiseButton()
+        keyButtonShouldBe("R ")
     }
 
     @Test
