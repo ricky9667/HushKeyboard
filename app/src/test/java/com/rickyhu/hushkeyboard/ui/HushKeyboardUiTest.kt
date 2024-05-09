@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.rickyhu.hushkeyboard.keyboard.HushKeyboardContent
 import com.rickyhu.hushkeyboard.keyboard.KeyboardState
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,12 +18,15 @@ class HushKeyboardUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Test
-    fun `First row key should exist, should be enabled, and should have click action`() {
+    @Before
+    fun setUp() {
         composeTestRule.setContent {
             HushKeyboardContent(state = KeyboardState())
         }
+    }
 
+    @Test
+    fun `First row key should exist, should be enabled, and should have click action`() {
         composeTestRule
             .onNodeWithText("R ")
             .assertExists()
@@ -32,18 +36,18 @@ class HushKeyboardUiTest {
 
     @Test
     fun `First row key should change state after clicking counter clockwise button`() {
-        composeTestRule.setContent {
-            HushKeyboardContent(state = KeyboardState())
-        }
-
-        composeTestRule
-            .onNodeWithText("'")
-            .performClick()
+        clickCounterClockwiseButton()
 
         composeTestRule
             .onNodeWithText("R' ")
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
+    }
+
+    private fun clickCounterClockwiseButton() {
+        composeTestRule
+            .onNodeWithText("'")
+            .performClick()
     }
 }
