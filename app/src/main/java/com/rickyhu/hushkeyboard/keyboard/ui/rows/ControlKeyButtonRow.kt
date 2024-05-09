@@ -56,7 +56,7 @@ fun ControlKeyButtonRow(
             }
         )
         ControlKeyButton(
-            modifier = controlKeyModifier,
+            modifier = controlKeyModifier.testTag("RotateDirectionButton"),
             onClick = rotateDirectionButtonAction,
             isDarkTheme = isDarkTheme,
             content = {
@@ -82,7 +82,7 @@ fun ControlKeyButtonRow(
             }
         )
         ControlKeyButton(
-            modifier = controlKeyModifier,
+            modifier = controlKeyModifier.testTag("WideTurnButton"),
             onClick = wideTurnButtonAction,
             isDarkTheme = isDarkTheme,
             content = {

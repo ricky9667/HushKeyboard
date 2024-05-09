@@ -82,7 +82,7 @@ class HushKeyboardUiTest {
 
     private fun clickCounterClockwiseButton() {
         composeTestRule
-            .onNodeWithText("'")
+            .onNodeWithTag("RotateDirectionButton")
             .performClick()
     }
 
@@ -94,7 +94,7 @@ class HushKeyboardUiTest {
 
     private fun clickWideNotationButton() {
         composeTestRule
-            .onNodeWithText("w")
+            .onNodeWithTag("WideTurnButton")
             .performClick()
     }
 }
