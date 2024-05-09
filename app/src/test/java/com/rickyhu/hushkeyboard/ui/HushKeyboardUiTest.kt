@@ -45,9 +45,26 @@ class HushKeyboardUiTest {
             .assertHasClickAction()
     }
 
+    @Test
+    fun `First row key should show w notation after clicking wide notation button`() {
+        clickWideNotationButton()
+
+        composeTestRule
+            .onNodeWithText("Rw ")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
     private fun clickCounterClockwiseButton() {
         composeTestRule
             .onNodeWithText("'")
+            .performClick()
+    }
+
+    private fun clickWideNotationButton() {
+        composeTestRule
+            .onNodeWithText("w")
             .performClick()
     }
 }
