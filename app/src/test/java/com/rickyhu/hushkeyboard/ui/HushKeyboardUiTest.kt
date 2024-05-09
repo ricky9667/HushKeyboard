@@ -1,6 +1,7 @@
 package com.rickyhu.hushkeyboard.ui
 
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -28,56 +29,40 @@ class HushKeyboardUiTest {
 
     @Test
     fun `First row key should exist, should be enabled, and should have click action`() {
-        composeTestRule
-            .onNodeWithText("R ")
-            .assertExists()
-            .assertIsEnabled()
-            .assertHasClickAction()
+        keyButtonShouldBe("R ")
     }
 
     @Test
     fun `First row key should change state after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
-
-        composeTestRule
-            .onNodeWithText("R' ")
-            .assertExists()
-            .assertIsEnabled()
-            .assertHasClickAction()
+        keyButtonShouldBe("R' ")
     }
 
     @Test
     fun `First row key should show w notation after clicking wide notation button`() {
         clickWideNotationButton()
-
-        composeTestRule
-            .onNodeWithText("Rw ")
-            .assertExists()
-            .assertIsEnabled()
-            .assertHasClickAction()
+        keyButtonShouldBe("Rw ")
     }
 
     @Test
     fun `First row key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
+        keyButtonShouldBe("R2 ")
 
+        clickTurnDegreeButton()
+        keyButtonShouldBe("R3 ")
+
+        clickTurnDegreeButton()
+        keyButtonShouldBe("R ")
+    }
+
+    private fun keyButtonShouldBe(text: String) {
         composeTestRule
-            .onNodeWithText("R2 ")
+            .onNodeWithText(text)
             .assertExists()
             .assertIsEnabled()
+            .assertIsDisplayed()
             .assertHasClickAction()
-
-        clickTurnDegreeButton()
-
-        composeTestRule
-            .onNodeWithText("R3 ")
-            .assertExists()
-
-        clickTurnDegreeButton()
-
-        composeTestRule
-            .onNodeWithText("R ")
-            .assertExists()
     }
 
     private fun clickCounterClockwiseButton() {
