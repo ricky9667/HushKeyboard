@@ -4,6 +4,7 @@ import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import com.rickyhu.hushkeyboard.keyboard.HushKeyboardContent
 import com.rickyhu.hushkeyboard.keyboard.KeyboardState
 import org.junit.Rule
@@ -24,6 +25,23 @@ class HushKeyboardUiTest {
 
         composeTestRule
             .onNodeWithText("R ")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `First row key should change state after clicking counter clockwise button`() {
+        composeTestRule.setContent {
+            HushKeyboardContent(state = KeyboardState())
+        }
+
+        composeTestRule
+            .onNodeWithText("'")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithText("R' ")
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
