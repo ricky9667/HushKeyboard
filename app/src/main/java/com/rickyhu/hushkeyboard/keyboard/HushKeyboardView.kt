@@ -105,7 +105,7 @@ fun HushKeyboardContent(state: KeyboardState) {
             },
             rotateDirectionButtonAction = {
                 keyConfigState = keyConfigState.copy(
-                    isCounterClockwise = keyConfigState.isCounterClockwise
+                    isCounterClockwise = !keyConfigState.isCounterClockwise
                 )
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
