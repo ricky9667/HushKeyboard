@@ -1,9 +1,11 @@
 package com.rickyhu.hushkeyboard.ui
 
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performTextInput
 import com.rickyhu.hushkeyboard.home.HomeScreen
 import org.junit.Before
 import org.junit.Rule
@@ -40,5 +42,15 @@ class HomeScreenUiTest {
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
+    }
+
+    @Test
+    fun `The textField should be displayed and should be enabled to enter text`() {
+        composeTestRule
+            .onNodeWithText("Type here")
+            .assertIsDisplayed()
+            .performTextInput("Test input")
+
+        composeTestRule.onNodeWithText("Test input").assertIsDisplayed()
     }
 }
