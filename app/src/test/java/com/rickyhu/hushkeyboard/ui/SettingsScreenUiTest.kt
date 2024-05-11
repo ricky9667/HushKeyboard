@@ -117,4 +117,13 @@ class SettingsScreenUiTest {
             .assertIsEnabled()
             .assertHasClickAction()
     }
+
+    @Test
+    fun `Vibrate on tap should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Vibrate on tap")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
 }
