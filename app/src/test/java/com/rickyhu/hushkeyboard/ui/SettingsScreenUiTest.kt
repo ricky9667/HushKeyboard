@@ -25,6 +25,7 @@ class SettingsScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
     private var addSpaceAfterNotationSwitchValue = true
+    private var vibrateOnTapSwitchValue = true
 
     @Before
     fun setUp() {
@@ -36,7 +37,9 @@ class SettingsScreenUiTest {
                 onAddSpaceBetweenNotationChanged = {
                     addSpaceAfterNotationSwitchValue = it
                 },
-                onVibrateOnTapChanged = {}
+                onVibrateOnTapChanged = {
+                    vibrateOnTapSwitchValue = it
+                }
             )
         }
     }
@@ -156,6 +159,14 @@ class SettingsScreenUiTest {
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
+    }
+
+    @Test
+    fun `Vibrate On Tap Switch value should be true in initial state`() {
+        composeTestRule
+            .onNodeWithTag("VibrateOnTapSwitch")
+
+        assertTrue(vibrateOnTapSwitchValue)
     }
 
     @Test
