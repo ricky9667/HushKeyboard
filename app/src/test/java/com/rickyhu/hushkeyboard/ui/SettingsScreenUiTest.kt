@@ -99,4 +99,13 @@ class SettingsScreenUiTest {
             .onAllNodesWithTag("WideNotationOptionDropdownMenuItem")
             .assertAll(isEnabled())
     }
+
+    @Test
+    fun `Add space after notation should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Add space after notation")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
 }
