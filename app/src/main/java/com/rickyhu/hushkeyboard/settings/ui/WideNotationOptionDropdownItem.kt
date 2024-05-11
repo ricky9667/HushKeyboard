@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
@@ -38,6 +39,7 @@ fun WideNotationOptionDropdownItem(
             Text(text = currentOption.toString())
 
             DropdownMenu(
+                modifier = Modifier.testTag("WideNotationOptionDropdownMenu"),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
