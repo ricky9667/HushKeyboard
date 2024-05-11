@@ -12,6 +12,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.rickyhu.hushkeyboard.settings.SettingsContent
 import com.rickyhu.hushkeyboard.settings.SettingsState
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -128,6 +129,15 @@ class SettingsScreenUiTest {
             .onNodeWithTag("AddSpaceAfterNotationSwitch")
 
         assertTrue(addSpaceAfterNotationSwitchValue)
+    }
+
+    @Test
+    fun `Auto space switch value should be false after it is clicked`() {
+        composeTestRule
+            .onNodeWithTag("AddSpaceAfterNotationSwitch")
+            .performClick()
+
+        assertFalse(addSpaceAfterNotationSwitchValue)
     }
 
     @Test
