@@ -45,6 +45,7 @@ fun WideNotationOptionDropdownItem(
             ) {
                 for (option in WideNotationOption.values()) {
                     DropdownMenuItem(
+                        modifier = Modifier.testTag("WideNotationOptionDropdownMenuItem"),
                         text = { Text(option.toString()) },
                         onClick = {
                             onOptionSelected(option)

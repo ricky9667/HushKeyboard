@@ -88,4 +88,15 @@ class SettingsScreenUiTest {
             .assertIsEnabled()
             .assertIsDisplayed()
     }
+
+    @Test
+    fun `All WideNotationDropdownMenuItems should display after WideNotationDropdown is clicked`() {
+        composeTestRule
+            .onNodeWithText("Wide notation")
+            .performClick()
+
+        composeTestRule
+            .onAllNodesWithTag("WideNotationOptionDropdownMenuItem")
+            .assertAll(isEnabled())
+    }
 }
