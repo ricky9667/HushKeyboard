@@ -108,4 +108,13 @@ class SettingsScreenUiTest {
             .assertIsEnabled()
             .assertHasClickAction()
     }
+
+    @Test
+    fun `Auto space switch should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithTag("AddSpaceAfterNotationSwitch")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
 }
