@@ -32,4 +32,13 @@ class HomeScreenUiTest {
             .assertIsEnabled()
             .assertHasClickAction()
     }
+
+    @Test
+    fun `Select input button should exist, should be enable, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Select input method")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
 }
