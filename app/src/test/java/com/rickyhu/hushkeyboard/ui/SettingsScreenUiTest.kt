@@ -67,4 +67,13 @@ class SettingsScreenUiTest {
             .onAllNodesWithTag("ThemeOptionDropdownMenuItem")
             .assertAll(isEnabled())
     }
+
+    @Test
+    fun `Wide notation item should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Wide notation")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
 }
