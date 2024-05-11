@@ -3,8 +3,11 @@ package com.rickyhu.hushkeyboard.ui
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import com.rickyhu.hushkeyboard.home.HomeScreen
 import org.junit.Before
@@ -19,10 +22,12 @@ class HomeScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    var clicked = false
+
     @Before
     fun setUp() {
         composeTestRule.setContent {
-            HomeScreen()
+            HomeScreen(onSettingsClick = { clicked = true })
         }
     }
 
@@ -52,5 +57,28 @@ class HomeScreenUiTest {
             .performTextInput("Test input")
 
         composeTestRule.onNodeWithText("Test input").assertIsDisplayed()
+    }
+
+    @Test
+    fun `Settings button should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithContentDescription("Settings")
+            .assertExists()
+            .assertIsEnabled()
+            .assertIsDisplayed()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `Settings button should disappear and action should be invoked upon click`() {
+        composeTestRule
+            .onNodeWithContentDescription("Settings")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithText("Settings")
+            .assertIsNotDisplayed()
+
+        assert(clicked)
     }
 }
