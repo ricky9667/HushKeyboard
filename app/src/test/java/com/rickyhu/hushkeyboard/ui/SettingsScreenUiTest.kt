@@ -12,6 +12,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.rickyhu.hushkeyboard.settings.SettingsContent
 import com.rickyhu.hushkeyboard.settings.SettingsState
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,6 +23,7 @@ import org.robolectric.RobolectricTestRunner
 class SettingsScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
+    private var addSpaceAfterNotationSwitchValue = true
 
     @Before
     fun setUp() {
@@ -30,7 +32,9 @@ class SettingsScreenUiTest {
                 state = SettingsState(),
                 onThemeSelected = {},
                 onWideNotationOptionSelected = {},
-                onAddSpaceBetweenNotationChanged = {},
+                onAddSpaceBetweenNotationChanged = {
+                    addSpaceAfterNotationSwitchValue = it
+                },
                 onVibrateOnTapChanged = {}
             )
         }
@@ -116,6 +120,14 @@ class SettingsScreenUiTest {
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
+    }
+
+    @Test
+    fun `Auto space switch value should be true in initial state`() {
+        composeTestRule
+            .onNodeWithTag("AddSpaceAfterNotationSwitch")
+
+        assertTrue(addSpaceAfterNotationSwitchValue)
     }
 
     @Test
