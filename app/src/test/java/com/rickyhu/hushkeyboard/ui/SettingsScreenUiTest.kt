@@ -170,6 +170,15 @@ class SettingsScreenUiTest {
     }
 
     @Test
+    fun `Vibrate On Tap Switch value should be false after it is clicked`() {
+        composeTestRule
+            .onNodeWithTag("VibrateOnTapSwitch")
+            .performClick()
+
+        assertFalse(vibrateOnTapSwitchValue)
+    }
+
+    @Test
     fun `Version should exist, should be enabled, and should have click action`() {
         composeTestRule
             .onNodeWithText("Version")
