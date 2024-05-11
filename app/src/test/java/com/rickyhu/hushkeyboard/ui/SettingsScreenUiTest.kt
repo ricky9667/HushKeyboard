@@ -135,4 +135,13 @@ class SettingsScreenUiTest {
             .assertIsEnabled()
             .assertHasClickAction()
     }
+
+    @Test
+    fun `Version should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Version")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
 }
