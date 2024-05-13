@@ -23,12 +23,12 @@ class HomeScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    var clicked = false
+    private var isSettingsButtonClicked = false
 
     @Before
     fun setUp() {
         composeTestRule.setContent {
-            HomeScreen(onSettingsClick = { clicked = true })
+            HomeScreen(onSettingsClick = { isSettingsButtonClicked = true })
         }
     }
 
@@ -83,6 +83,6 @@ class HomeScreenUiTest {
             .onNodeWithText("Settings")
             .assertIsNotDisplayed()
 
-        assertTrue(clicked)
+        assertTrue(isSettingsButtonClicked)
     }
 }
