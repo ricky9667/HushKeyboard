@@ -12,6 +12,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.rickyhu.hushkeyboard.settings.SettingsContent
 import com.rickyhu.hushkeyboard.settings.SettingsState
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,6 +25,9 @@ class SettingsScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    private var addSpaceAfterNotationSwitchValue = true
+    private var vibrateOnTapSwitchValue = true
+
     @Before
     fun setUp() {
         composeTestRule.setContent {
@@ -30,8 +35,12 @@ class SettingsScreenUiTest {
                 state = SettingsState(),
                 onThemeSelected = {},
                 onWideNotationOptionSelected = {},
-                onAddSpaceBetweenNotationChanged = {},
-                onVibrateOnTapChanged = {}
+                onAddSpaceBetweenNotationChanged = { value ->
+                    addSpaceAfterNotationSwitchValue = value
+                },
+                onVibrateOnTapChanged = { value ->
+                    vibrateOnTapSwitchValue = value
+                }
             )
         }
     }
@@ -66,5 +75,116 @@ class SettingsScreenUiTest {
         composeTestRule
             .onAllNodesWithTag("ThemeOptionDropdownMenuItem")
             .assertAll(isEnabled())
+    }
+
+    @Test
+    fun `Wide notation item should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Wide notation")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `WideNotationDropdownMenu should display after WideNotationDropdownItem is clicked`() {
+        composeTestRule
+            .onNodeWithText("Wide notation")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithTag("WideNotationOptionDropdownMenu")
+            .assertIsEnabled()
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun `All WideNotationDropdownMenuItems should display after WideNotationDropdown is clicked`() {
+        composeTestRule
+            .onNodeWithText("Wide notation")
+            .performClick()
+
+        composeTestRule
+            .onAllNodesWithTag("WideNotationOptionDropdownMenuItem")
+            .assertAll(isEnabled())
+    }
+
+    @Test
+    fun `Add space after notation should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Add space after notation")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `Auto space switch should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithTag("AddSpaceAfterNotationSwitch")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `Auto space switch value should be true in initial state`() {
+        composeTestRule
+            .onNodeWithTag("AddSpaceAfterNotationSwitch")
+
+        assertTrue(addSpaceAfterNotationSwitchValue)
+    }
+
+    @Test
+    fun `Auto space switch value should be false after it is clicked`() {
+        composeTestRule
+            .onNodeWithTag("AddSpaceAfterNotationSwitch")
+            .performClick()
+
+        assertFalse(addSpaceAfterNotationSwitchValue)
+    }
+
+    @Test
+    fun `Vibrate on tap should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Vibrate on tap")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `Vibrate on tap switch should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithTag("VibrateOnTapSwitch")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `Vibrate On Tap Switch value should be true in initial state`() {
+        composeTestRule
+            .onNodeWithTag("VibrateOnTapSwitch")
+
+        assertTrue(vibrateOnTapSwitchValue)
+    }
+
+    @Test
+    fun `Vibrate On Tap Switch value should be false after it is clicked`() {
+        composeTestRule
+            .onNodeWithTag("VibrateOnTapSwitch")
+            .performClick()
+
+        assertFalse(vibrateOnTapSwitchValue)
+    }
+
+    @Test
+    fun `Version should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Version")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
     }
 }
