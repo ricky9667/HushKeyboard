@@ -35,11 +35,11 @@ class SettingsScreenUiTest {
                 state = SettingsState(),
                 onThemeSelected = {},
                 onWideNotationOptionSelected = {},
-                onAddSpaceBetweenNotationChanged = {
-                    addSpaceAfterNotationSwitchValue = it
+                onAddSpaceBetweenNotationChanged = { value ->
+                    addSpaceAfterNotationSwitchValue = value
                 },
-                onVibrateOnTapChanged = {
-                    vibrateOnTapSwitchValue = it
+                onVibrateOnTapChanged = { value ->
+                    vibrateOnTapSwitchValue = value
                 }
             )
         }
