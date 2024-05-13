@@ -24,6 +24,7 @@ import org.robolectric.RobolectricTestRunner
 class SettingsScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
+
     private var addSpaceAfterNotationSwitchValue = true
     private var vibrateOnTapSwitchValue = true
 
