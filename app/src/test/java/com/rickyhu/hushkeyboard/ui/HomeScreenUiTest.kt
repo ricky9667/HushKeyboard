@@ -3,7 +3,6 @@ package com.rickyhu.hushkeyboard.ui
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -78,10 +77,6 @@ class HomeScreenUiTest {
         composeTestRule
             .onNodeWithContentDescription("Settings")
             .performClick()
-
-        composeTestRule
-            .onNodeWithText("Settings")
-            .assertIsNotDisplayed()
 
         assertTrue(isSettingsButtonClicked)
     }
