@@ -57,7 +57,9 @@ class HomeScreenUiTest {
             .assertIsEnabled()
             .performTextInput("Test input")
 
-        composeTestRule.onNodeWithText("Test input").assertIsDisplayed()
+        composeTestRule
+            .onNodeWithText("Test input")
+            .assertIsDisplayed()
     }
 
     @Test
