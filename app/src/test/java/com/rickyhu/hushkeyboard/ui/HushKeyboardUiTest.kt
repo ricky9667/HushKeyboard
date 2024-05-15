@@ -59,6 +59,32 @@ class HushKeyboardUiTest {
         keyButtonShouldBe("R ")
     }
 
+    @Test
+    fun `Second row key should exist, should be enabled, and should have click action`() {
+        keyButtonShouldBe("M ")
+    }
+
+    @Test
+    fun `Second row key should show ' notation after clicking counter clockwise button`() {
+        clickCounterClockwiseButton()
+        keyButtonShouldBe("M' ")
+
+        clickCounterClockwiseButton()
+        keyButtonShouldBe("M ")
+    }
+
+    @Test
+    fun `Second row key should show correct turn degree after clicking turn degree button`() {
+        clickTurnDegreeButton()
+        keyButtonShouldBe("M2 ")
+
+        clickTurnDegreeButton()
+        keyButtonShouldBe("M3 ")
+
+        clickTurnDegreeButton()
+        keyButtonShouldBe("M ")
+    }
+
     private fun keyButtonShouldBe(text: String) {
         composeTestRule
             .onNodeWithText(text)
