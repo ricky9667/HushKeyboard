@@ -61,12 +61,12 @@ class HushKeyboardUiTest {
     }
 
     @Test
-    fun `Second row key should exist, should be enabled, and should have click action`() {
+    fun `Middle turn key should exist, should be enabled, and should have click action`() {
         assertNotationKeyButton("M ")
     }
 
     @Test
-    fun `Second row key should show ' notation after clicking counter clockwise button`() {
+    fun `Middle turn key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
         assertNotationKeyButton("M' ")
 
@@ -75,7 +75,7 @@ class HushKeyboardUiTest {
     }
 
     @Test
-    fun `Second row key should show correct turn degree after clicking turn degree button`() {
+    fun `Middle turn key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
         assertNotationKeyButton("M2 ")
 
@@ -84,6 +84,32 @@ class HushKeyboardUiTest {
 
         clickTurnDegreeButton()
         assertNotationKeyButton("M ")
+    }
+
+    @Test
+    fun `Cube rotation key should exist, should be enabled, and should have click action`() {
+        assertNotationKeyButton("x ")
+    }
+
+    @Test
+    fun `Cube rotation key should show ' notation after clicking counter clockwise button`() {
+        clickCounterClockwiseButton()
+        assertNotationKeyButton("x' ")
+
+        clickCounterClockwiseButton()
+        assertNotationKeyButton("x ")
+    }
+
+    @Test
+    fun `Cube rotation key should show correct turn degree after clicking turn degree button`() {
+        clickTurnDegreeButton()
+        assertNotationKeyButton("x2 ")
+
+        clickTurnDegreeButton()
+        assertNotationKeyButton("x3 ")
+
+        clickTurnDegreeButton()
+        assertNotationKeyButton("x ")
     }
 
     @Test
