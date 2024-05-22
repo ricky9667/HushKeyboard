@@ -44,7 +44,7 @@ fun ControlKeyButtonRow(
 
         // TODO: unify button colors
         ControlKeyButton(
-            modifier = controlKeyModifier,
+            modifier = controlKeyModifier.testTag("InputMethodButton"),
             onClick = inputMethodButtonAction,
             isDarkTheme = isDarkTheme,
             content = {

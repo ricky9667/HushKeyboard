@@ -85,6 +85,16 @@ class HushKeyboardUiTest {
         keyButtonShouldBe("M ")
     }
 
+    @Test
+    fun `Input method button should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithTag("InputMethodButton")
+            .assertExists()
+            .assertIsEnabled()
+            .assertIsDisplayed()
+            .assertHasClickAction()
+    }
+
     private fun keyButtonShouldBe(text: String) {
         composeTestRule
             .onNodeWithText(text)
