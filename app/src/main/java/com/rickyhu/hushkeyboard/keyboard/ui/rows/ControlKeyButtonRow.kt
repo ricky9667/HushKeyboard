@@ -95,7 +95,7 @@ fun ControlKeyButtonRow(
             }
         )
         ControlKeyButton(
-            modifier = controlKeyModifier,
+            modifier = controlKeyModifier.testTag("DeleteButton"),
             onClick = deleteButtonAction,
             isDarkTheme = isDarkTheme,
             content = {
@@ -108,7 +108,7 @@ fun ControlKeyButtonRow(
             }
         )
         ControlKeyButton(
-            modifier = controlKeyModifier,
+            modifier = controlKeyModifier.testTag("NewLineButton"),
             onClick = newLineButtonAction,
             isDarkTheme = isDarkTheme,
             content = {

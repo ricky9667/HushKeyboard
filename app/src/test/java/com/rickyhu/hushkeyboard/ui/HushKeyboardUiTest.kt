@@ -131,6 +131,16 @@ class HushKeyboardUiTest {
         assertControlKeyButton("WideTurnButton")
     }
 
+    @Test
+    fun `Delete button should exist, should be enabled, and have click action`() {
+        assertControlKeyButton("DeleteButton")
+    }
+
+    @Test
+    fun `New line button should exist, should be enabled, and have click action`() {
+        assertControlKeyButton("NewLineButton")
+    }
+
     private fun assertNotationKeyButton(text: String) {
         composeTestRule
             .onNodeWithText(text)
