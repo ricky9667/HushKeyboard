@@ -87,6 +87,12 @@ class HushKeyboardUiTest {
     }
 
     @Test
+    fun `Middle turn key should not change after clicking wide turn button`() {
+        clickWideNotationButton()
+        assertNotationKeyButton("M ")
+    }
+
+    @Test
     fun `Cube rotation key should exist, should be enabled, and should have click action`() {
         assertNotationKeyButton("x ")
     }
@@ -109,6 +115,12 @@ class HushKeyboardUiTest {
         assertNotationKeyButton("x3 ")
 
         clickTurnDegreeButton()
+        assertNotationKeyButton("x ")
+    }
+
+    @Test
+    fun `Cube rotation key should not change after clicking wide turn button`() {
+        clickWideNotationButton()
         assertNotationKeyButton("x ")
     }
 
