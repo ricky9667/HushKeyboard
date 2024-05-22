@@ -141,6 +141,16 @@ class HushKeyboardUiTest {
             .assertTextEquals("1")
     }
 
+    @Test
+    fun `Wide notation button should exist, should be enabled, and have click action`() {
+        composeTestRule
+            .onNodeWithTag("WideTurnButton")
+            .assertExists()
+            .assertIsEnabled()
+            .assertIsDisplayed()
+            .assertHasClickAction()
+    }
+
     private fun keyButtonShouldBe(text: String) {
         composeTestRule
             .onNodeWithText(text)
