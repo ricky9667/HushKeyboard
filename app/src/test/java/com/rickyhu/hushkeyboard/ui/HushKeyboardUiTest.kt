@@ -95,6 +95,16 @@ class HushKeyboardUiTest {
             .assertHasClickAction()
     }
 
+    @Test
+    fun `Rotation direction button should exist, should be enabled, and have click action`() {
+        composeTestRule
+            .onNodeWithTag("RotateDirectionButton")
+            .assertExists()
+            .assertIsEnabled()
+            .assertIsDisplayed()
+            .assertHasClickAction()
+    }
+
     private fun keyButtonShouldBe(text: String) {
         composeTestRule
             .onNodeWithText(text)
