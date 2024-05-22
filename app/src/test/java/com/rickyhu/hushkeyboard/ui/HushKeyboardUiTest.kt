@@ -30,90 +30,75 @@ class HushKeyboardUiTest {
 
     @Test
     fun `First row key should exist, should be enabled, and should have click action`() {
-        keyButtonShouldBe("R ")
+        assertNotationKeyButton("R ")
     }
 
     @Test
     fun `First row key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
-        keyButtonShouldBe("R' ")
+        assertNotationKeyButton("R' ")
 
         clickCounterClockwiseButton()
-        keyButtonShouldBe("R ")
+        assertNotationKeyButton("R ")
     }
 
     @Test
     fun `First row key should show w notation after clicking wide notation button`() {
         clickWideNotationButton()
-        keyButtonShouldBe("Rw ")
+        assertNotationKeyButton("Rw ")
     }
 
     @Test
     fun `First row key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
-        keyButtonShouldBe("R2 ")
+        assertNotationKeyButton("R2 ")
 
         clickTurnDegreeButton()
-        keyButtonShouldBe("R3 ")
+        assertNotationKeyButton("R3 ")
 
         clickTurnDegreeButton()
-        keyButtonShouldBe("R ")
+        assertNotationKeyButton("R ")
     }
 
     @Test
     fun `Second row key should exist, should be enabled, and should have click action`() {
-        keyButtonShouldBe("M ")
+        assertNotationKeyButton("M ")
     }
 
     @Test
     fun `Second row key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
-        keyButtonShouldBe("M' ")
+        assertNotationKeyButton("M' ")
 
         clickCounterClockwiseButton()
-        keyButtonShouldBe("M ")
+        assertNotationKeyButton("M ")
     }
 
     @Test
     fun `Second row key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
-        keyButtonShouldBe("M2 ")
+        assertNotationKeyButton("M2 ")
 
         clickTurnDegreeButton()
-        keyButtonShouldBe("M3 ")
+        assertNotationKeyButton("M3 ")
 
         clickTurnDegreeButton()
-        keyButtonShouldBe("M ")
+        assertNotationKeyButton("M ")
     }
 
     @Test
     fun `Input method button should exist, should be enabled, and should have click action`() {
-        composeTestRule
-            .onNodeWithTag("InputMethodButton")
-            .assertExists()
-            .assertIsEnabled()
-            .assertIsDisplayed()
-            .assertHasClickAction()
+        assertControlKeyButton("InputMethodButton")
     }
 
     @Test
     fun `Rotation direction button should exist, should be enabled, and have click action`() {
-        composeTestRule
-            .onNodeWithTag("RotateDirectionButton")
-            .assertExists()
-            .assertIsEnabled()
-            .assertIsDisplayed()
-            .assertHasClickAction()
+        assertControlKeyButton("RotateDirectionButton")
     }
 
     @Test
     fun `Turn degree button should exist, should be enabled, and have click action`() {
-        composeTestRule
-            .onNodeWithTag("TurnDegreeButton")
-            .assertExists()
-            .assertIsEnabled()
-            .assertIsDisplayed()
-            .assertHasClickAction()
+        assertControlKeyButton("TurnDegreeButton")
     }
 
     @Test
@@ -143,17 +128,21 @@ class HushKeyboardUiTest {
 
     @Test
     fun `Wide notation button should exist, should be enabled, and have click action`() {
+        assertControlKeyButton("WideTurnButton")
+    }
+
+    private fun assertNotationKeyButton(text: String) {
         composeTestRule
-            .onNodeWithTag("WideTurnButton")
+            .onNodeWithText(text)
             .assertExists()
             .assertIsEnabled()
             .assertIsDisplayed()
             .assertHasClickAction()
     }
 
-    private fun keyButtonShouldBe(text: String) {
+    private fun assertControlKeyButton(tag: String) {
         composeTestRule
-            .onNodeWithText(text)
+            .onNodeWithTag(tag)
             .assertExists()
             .assertIsEnabled()
             .assertIsDisplayed()
