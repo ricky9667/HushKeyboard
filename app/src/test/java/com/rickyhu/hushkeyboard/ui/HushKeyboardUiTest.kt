@@ -3,6 +3,7 @@ package com.rickyhu.hushkeyboard.ui
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -103,6 +104,41 @@ class HushKeyboardUiTest {
             .assertIsEnabled()
             .assertIsDisplayed()
             .assertHasClickAction()
+    }
+
+    @Test
+    fun `Turn degree button should exist, should be enabled, and have click action`() {
+        composeTestRule
+            .onNodeWithTag("TurnDegreeButton")
+            .assertExists()
+            .assertIsEnabled()
+            .assertIsDisplayed()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `Turn degree button should change to correct number after click`() {
+        composeTestRule
+            .onNodeWithTag("TurnDegreeButton")
+            .assertTextEquals("1")
+
+        clickTurnDegreeButton()
+
+        composeTestRule
+            .onNodeWithTag("TurnDegreeButton")
+            .assertTextEquals("2")
+
+        clickTurnDegreeButton()
+
+        composeTestRule
+            .onNodeWithTag("TurnDegreeButton")
+            .assertTextEquals("3")
+
+        clickTurnDegreeButton()
+
+        composeTestRule
+            .onNodeWithTag("TurnDegreeButton")
+            .assertTextEquals("1")
     }
 
     private fun keyButtonShouldBe(text: String) {
