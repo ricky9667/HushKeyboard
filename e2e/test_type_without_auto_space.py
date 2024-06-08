@@ -72,7 +72,6 @@ class TestAppium(unittest.TestCase):
         el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@content-desc="Settings"]')
         el.click()
 
-
         # check Add space after notation is off
         el = self.driver.find_element(by=AppiumBy.XPATH,
                                       value='//*[@text="Add space after notation"]/preceding-sibling::*['
