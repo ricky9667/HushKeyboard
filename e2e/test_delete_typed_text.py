@@ -12,7 +12,7 @@ options.app = 'C:/Users/Fakiis/Desktop/APP/app_debug.apk'
 appium_server_url = 'http://127.0.0.1:4723/wd/hub'
 
 
-class TestDeleteTypedText (unittest.TestCase):
+class TestDeleteTypedText(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Remote(appium_server_url, options=options)
         self.driver.implicitly_wait(15)
