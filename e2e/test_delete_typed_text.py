@@ -96,22 +96,8 @@ class TestDeleteTypedText (unittest.TestCase):
         self.driver.tap([(900, 1630)])
         
         # delete text 
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
-        self.driver.tap([(750, 1930)])
+        for _ in range(16):
+            self.driver.tap([(750, 1930)])
 
         self.assertEqual(el.get_attribute('text'), '')
         self.driver.back()
