@@ -11,7 +11,7 @@ options.device_name = 'Pixel_3a_API_34_extension_level_7_x86_64'
 options.app = 'D:/STV/HushKeyboard/app/build/outputs/apk/debug/app-debug.apk'
 appium_server_url = 'http://127.0.0.1:4723/wd/hub'
 
-class TestAppium(unittest.TestCase):
+class TestWideNotationInputWithWideNotation(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Remote(appium_server_url, options=options)
         self.driver.implicitly_wait(15)
@@ -27,7 +27,7 @@ class TestAppium(unittest.TestCase):
 
         self.switch_hush_keyboard_to_input_keyboard()
 
-        self.using_w_rw()
+        self.toggle_wide_notation_setting()
 
         self.enter_R_U_F_L_D_B_in_sequence()
 
@@ -45,19 +45,19 @@ class TestAppium(unittest.TestCase):
         enable = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@content-desc="Hush Keyboard"]')
         self.assertEqual(enable.get_attribute('checked'), 'true')
         self.driver.find_element(by=AppiumBy.XPATH, value='//*[@content-desc="Navigate up"]').click()
-    
+
     def switch_hush_keyboard_to_input_keyboard(self):
         self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Select input method"]').click()
         self.driver.find_element(by=AppiumBy.XPATH, value='//*[@resource-id="android:id/text1" and @text="Hush '
                                                                'Keyboard"]/parent::*').click()
-    
-    def using_w_rw(self):
+
+    def toggle_wide_notation_setting(self):
         self.driver.find_element(by=AppiumBy.XPATH, value='//*[@content-desc="Settings"]').click()
         # check if wide notation is using Rw
-        wideNotation = self.driver.find_element(by=AppiumBy.XPATH,
+        wide_notation  = self.driver.find_element(by=AppiumBy.XPATH,
                                       value='//*[@text="Wide notation"]/preceding-sibling::*['
                                             '@text="Use w (Rw)"]')
-        self.assertEqual(wideNotation.get_attribute('text'), 'Use w (Rw)')
+        self.assertEqual(wide_notation .get_attribute('text'), 'Use w (Rw)')
         self.driver.back()
 
     def enter_R_U_F_L_D_B_in_sequence(self):
