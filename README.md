@@ -17,6 +17,14 @@
 Typing Rubik's Cube notations on a mobile keyboard kind of a frustration, switching between notations, numbers, and symbols makes it extremely annoying.
 HUSH Keyboard provides a specialized Rubik's Cube keyboard that is functional, minimal, and customizable.
 
+By the way,
+
+**HUSH Keyboard is live on Google Play!**
+
+<a href="https://play.google.com/store/apps/details?id=com.rickyhu.hushkeyboard">
+    <img width=200 src="./assets/google_play_store_button.webp" alt="Google Play">
+</a>
+
 ## Features
 
 | Feature       | Description                                           | Demo                                                          |
