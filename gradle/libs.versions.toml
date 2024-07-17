@@ -4,8 +4,7 @@ android-gradle-plugin = "8.1.4"
 compose-bom = "2024.06.00"
 core-ktx = "1.13.1"
 datastore = "1.1.1"
-hilt = "2.44"
-hilt-android-compiler = "2.44"
+hilt = "2.49"
 hilt-navigation-compose = "1.2.0"
 junit = "4.13.2"
 junit-ext = "1.2.1"
@@ -37,7 +36,7 @@ androidx-datastore = { group = "androidx.datastore", name = "datastore", version
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-android-compiler" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-serialization" }
