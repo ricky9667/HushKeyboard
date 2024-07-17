@@ -12,10 +12,16 @@
     </a>
 </p>
 
+<p align="center">
+    <img src="./assets/logo.png" width=300>  
+</p>
+
 ## Introduction
 
-Typing Rubik's Cube notations on a mobile keyboard kind of a frustration, switching between notations, numbers, and symbols makes it extremely annoying.
-HUSH Keyboard provides a specialized Rubik's Cube keyboard that is functional, minimal, and customizable.
+Typing Rubik's Cube notations on a mobile keyboard kind of a frustration, switching between
+notations, numbers, and symbols makes it extremely annoying.
+HUSH Keyboard provides a specialized Rubik's Cube keyboard that is functional, minimal, and
+customizable.
 
 By the way,
 
@@ -35,4 +41,6 @@ By the way,
 
 ## License
 
-This project is licensed under the GPL license (version 3 or later). This means that this library is free to use, although you must publish any code that uses it (e.g. also put it on GitHub). See the [full license](https://github.com/ricky9667/HushKeyboard/blob/master/LICENSE) for exact details.
+This project is licensed under the GPL license (version 3 or later). This means that this library is
+free to use, although you must publish any code that uses it (e.g. also put it on GitHub). See
+the [full license](https://github.com/ricky9667/HushKeyboard/blob/master/LICENSE) for exact details.
