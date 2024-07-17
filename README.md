@@ -1,4 +1,16 @@
-# HUSH Keyboard
+<h1 align="center">HUSH Keyboard</h1>
+
+<p align="center">
+    <a href="https://github.com/ricky9667/HushKeyboard/releases">
+        <img alt="Release" src="https://img.shields.io/github/v/release/ricky9667/HushKeyboard?display_name=tag&style=flat-square">
+    </a>
+    <a href="https://app.codecov.io/gh/ricky9667/HushKeyboard">
+        <img alt="Codecov" src="https://img.shields.io/codecov/c/github/ricky9667/HushKeyboard?style=flat-square">
+    </a>
+    <a href="https://github.com/ricky9667/HushKeyboard/blob/update-readme/LICENSE">
+        <img alt="GitHub License" src="https://img.shields.io/github/license/ricky9667/HushKeyboard?style=flat-square">
+    </a>
+</p>
 
 ## Introduction
 
