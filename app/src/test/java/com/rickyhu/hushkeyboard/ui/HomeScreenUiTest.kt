@@ -27,7 +27,7 @@ class HomeScreenUiTest {
     @Before
     fun setUp() {
         composeTestRule.setContent {
-            HomeScreen(onSettingsClick = { isSettingsButtonClicked = true })
+            HomeScreen(navigateToSettings = { isSettingsButtonClicked = true })
         }
     }
 

@@ -29,7 +29,7 @@ fun MainNavHost() {
         composable<HomeRoute> {
             HomeScreen(
                 navigateToIntroduction = { navController.navigate(IntroductionRoute) },
-                onSettingsClick = { navController.navigate(route = SettingsRoute) }
+                navigateToSettings = { navController.navigate(route = SettingsRoute) }
             )
         }
         composable<SettingsRoute> {

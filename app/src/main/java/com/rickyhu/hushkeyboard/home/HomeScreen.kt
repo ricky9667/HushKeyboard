@@ -45,13 +45,13 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun HomeScreen(
     navigateToIntroduction: () -> Unit = {},
-    onSettingsClick: () -> Unit = {}
+    navigateToSettings: () -> Unit = {}
 ) {
     var text by remember { mutableStateOf("") }
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = onSettingsClick) {
+            FloatingActionButton(onClick = navigateToSettings) {
                 Icon(Icons.Default.Settings, contentDescription = "Settings")
             }
         },
