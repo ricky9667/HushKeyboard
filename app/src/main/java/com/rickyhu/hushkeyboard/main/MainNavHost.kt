@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rickyhu.hushkeyboard.home.HomeScreen
+import com.rickyhu.hushkeyboard.introduction.IntroductionScreen
 import com.rickyhu.hushkeyboard.settings.SettingsScreen
 import kotlinx.serialization.Serializable
 
@@ -13,6 +14,9 @@ object HomeRoute
 
 @Serializable
 object SettingsRoute
+
+@Serializable
+object IntroductionRoute
 
 @Composable
 fun MainNavHost() {
@@ -24,11 +28,15 @@ fun MainNavHost() {
     ) {
         composable<HomeRoute> {
             HomeScreen(
+                navigateToIntroduction = { navController.navigate(IntroductionRoute) },
                 onSettingsClick = { navController.navigate(route = SettingsRoute) }
             )
         }
         composable<SettingsRoute> {
             SettingsScreen()
+        }
+        composable<IntroductionRoute> {
+            IntroductionScreen()
         }
     }
 }

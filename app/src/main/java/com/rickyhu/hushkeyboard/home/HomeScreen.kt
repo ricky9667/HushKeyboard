@@ -1,7 +1,5 @@
 package com.rickyhu.hushkeyboard.home
 
-import android.content.Intent
-import android.provider.Settings
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -36,7 +34,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -44,13 +41,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import splitties.systemservices.inputMethodManager
 
 @Composable
 fun HomeScreen(
+    navigateToIntroduction: () -> Unit = {},
     onSettingsClick: () -> Unit = {}
 ) {
-    val context = LocalContext.current
     var text by remember { mutableStateOf("") }
 
     Scaffold(
@@ -87,24 +83,12 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 Button(
-                    onClick = {
-                        val intent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
-                        context.startActivity(intent)
-                    },
+                    onClick = navigateToIntroduction,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
                 ) {
-                    Text(text = "Enable keyboard")
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-                Button(
-                    onClick = { inputMethodManager.showInputMethodPicker() },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                ) {
-                    Text(text = "Select input method")
+                    Text(text = stringResource(R.string.home_setup_keyboard_button))
                 }
                 Spacer(modifier = Modifier.height(32.dp))
                 OutlinedTextField(

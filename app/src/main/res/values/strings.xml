@@ -2,6 +2,9 @@
     <string name="app_name">Hush Keyboard</string>
     <string name="package_name">com.rickyhu.hushkeyboard</string>
 
+    <!-- Home Screen -->
+    <string name="home_setup_keyboard_button">Setup Keyboard</string>
+
     <!-- Introduction Screen -->
     <string name="intro_screen_title">Setup your keyboard</string>
     <string name="intro_step_1_title">Step 1: Enable keyboard</string>
