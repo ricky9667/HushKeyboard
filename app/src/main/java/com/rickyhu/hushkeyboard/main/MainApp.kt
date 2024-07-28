@@ -9,14 +9,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.rickyhu.hushkeyboard.data.ThemeOption
-import com.rickyhu.hushkeyboard.home.HomeScreen
-import com.rickyhu.hushkeyboard.settings.SettingsScreen
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import kotlinx.serialization.Serializable
 
 @Composable
 fun MainApp(
@@ -35,27 +29,7 @@ fun MainApp(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            val navController = rememberNavController()
-
-            NavHost(
-                navController = navController,
-                startDestination = HomeRoute
-            ) {
-                composable<HomeRoute> {
-                    HomeScreen(
-                        onSettingsClick = { navController.navigate(route = SettingsRoute) }
-                    )
-                }
-                composable<SettingsRoute> {
-                    SettingsScreen()
-                }
-            }
+            MainNavHost()
         }
     }
 }
-
-@Serializable
-object HomeRoute
-
-@Serializable
-object SettingsRoute
