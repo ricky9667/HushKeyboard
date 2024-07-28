@@ -7,4 +7,7 @@
     <string name="intro_step_1_title">Step 1: Enable keyboard</string>
     <string name="intro_step_1_description">Tap the button to go to system settings, and turn on \"Hush Keyboard\" toggle item.</string>
     <string name="intro_enable_keyboard_button">Enable HUSH Keyboard</string>
+    <string name="intro_step_2_title">Step 2: Change input method to HUSH Keyboard</string>
+    <string name="intro_step_2_description">Tap the button below and select \"Hush Keyboard\".</string>
+    <string name="intro_select_input_method">Select Input Method</string>
 </resources>
