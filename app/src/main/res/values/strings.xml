@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Hush Keyboard</string>
     <string name="package_name">com.rickyhu.hushkeyboard</string>
+
+    <!-- Introduction Screen -->
+    <string name="intro_screen_title">Setup your keyboard</string>
+    <string name="intro_step_1_title">Step 1: Enable keyboard</string>
+    <string name="intro_step_1_description">Tap the button to go to system settings, and turn on \"Hush Keyboard\" toggle item.</string>
+    <string name="intro_enable_keyboard_button">Enable HUSH Keyboard</string>
 </resources>
