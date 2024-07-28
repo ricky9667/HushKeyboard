@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rickyhu.hushkeyboard.data.ThemeOption
-import com.rickyhu.hushkeyboard.navigation.AppNavHost
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 
 @Composable
@@ -30,7 +29,7 @@ fun MainApp(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            AppNavHost()
+            MainNavHost()
         }
     }
 }
