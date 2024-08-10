@@ -4,6 +4,7 @@
 
     <!-- Home Screen -->
     <string name="home_setup_keyboard_button">Setup Keyboard</string>
+    <string name="home_settings_button">Settings</string>
 
     <!-- Introduction Screen -->
     <string name="intro_screen_title">Setup your keyboard</string>

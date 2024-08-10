@@ -14,13 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -50,11 +46,6 @@ fun HomeScreen(
     var text by remember { mutableStateOf("") }
 
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(onClick = navigateToSettings) {
-                Icon(Icons.Default.Settings, contentDescription = "Settings")
-            }
-        },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -79,18 +70,25 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.app_name),
-                    style = MaterialTheme.typography.displayMedium
+                    style = MaterialTheme.typography.displayMedium,
+                    modifier = Modifier.padding(32.dp)
                 )
-                Spacer(modifier = Modifier.height(32.dp))
                 Button(
                     onClick = navigateToIntroduction,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
                     Text(text = stringResource(R.string.home_setup_keyboard_button))
                 }
-                Spacer(modifier = Modifier.height(32.dp))
+                Button(
+                    onClick = navigateToSettings,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                ) {
+                    Text(text = stringResource(R.string.home_settings_button))
+                }
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
@@ -100,7 +98,7 @@ fun HomeScreen(
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
+                        .padding(16.dp)
                 )
             }
         }

@@ -22,8 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import splitties.systemservices.inputMethodManager
 import java.lang.Thread.sleep
+import splitties.systemservices.inputMethodManager
 
 @Composable
 fun IntroductionScreen(
