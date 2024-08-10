@@ -22,11 +22,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import java.lang.Thread.sleep
 import splitties.systemservices.inputMethodManager
+import java.lang.Thread.sleep
 
 @Composable
-fun IntroductionScreen() {
+fun IntroductionScreen(
+    navigateToHome: () -> Unit = {}
+) {
     val context = LocalContext.current
     var isSection1Finished by remember { mutableStateOf(false) }
     var isSection2Finished by remember { mutableStateOf(false) }
@@ -68,7 +70,9 @@ fun IntroductionScreen() {
                 }
 
                 if (isSection1Finished && isSection2Finished) {
-                    Step3Section()
+                    Step3Section(
+                        navigateToHome = navigateToHome
+                    )
                 }
             }
         }

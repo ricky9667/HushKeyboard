@@ -14,5 +14,7 @@
     <string name="intro_step_2_description">Tap the button below and select \"Hush Keyboard\".\nYou can change to original keyboard by tapping the 🌐 button in HUSH keyboard.</string>
     <string name="intro_select_input_method">Select Input Method</string>
     <string name="intro_step_3_title">Step 3: Start Typing!</string>
-    <string name="intro_step_3_description">Try to type a sexy move (R U R\' U\') in the input section, you can input by swiping the button in 4 directions to type faster.</string>
+    <string name="intro_step_3_description">Try to type a sexy move (R U R\' U\' ) in the input section, you can input by swiping the button in 4 directions to type faster.</string>
+    <string name="intro_done_dialog_title">You\'re all set!</string>
+    <string name="intro_done_dialog_text">You can start typing with HUSH Keyboard.</string>
 </resources>
