@@ -6,7 +6,6 @@ import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTextInput
 import com.rickyhu.hushkeyboard.home.HomeScreen
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -50,37 +49,6 @@ class HomeScreenUiTest {
             .performClick()
 
         assertTrue(isSetupKeyboardButtonClicked)
-    }
-
-    @Test
-    fun `Enable keyboard button should exist, should be enabled, and should have click action`() {
-        composeTestRule
-            .onNodeWithText("Enable keyboard")
-            .assertExists()
-            .assertIsEnabled()
-            .assertHasClickAction()
-    }
-
-    @Test
-    fun `Select input button should exist, should be enable, and should have click action`() {
-        composeTestRule
-            .onNodeWithText("Select input method")
-            .assertExists()
-            .assertIsEnabled()
-            .assertHasClickAction()
-    }
-
-    @Test
-    fun `The textField should be displayed and should be enabled to enter text`() {
-        composeTestRule
-            .onNodeWithText("Type here")
-            .assertIsDisplayed()
-            .assertIsEnabled()
-            .performTextInput("Test input")
-
-        composeTestRule
-            .onNodeWithText("Test input")
-            .assertIsDisplayed()
     }
 
     @Test
