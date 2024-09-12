@@ -32,6 +32,15 @@ class HomeScreenUiTest {
     }
 
     @Test
+    fun `Setup keyboard button should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Setup Keyboard")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
     fun `Enable keyboard button should exist, should be enabled, and should have click action`() {
         composeTestRule
             .onNodeWithText("Enable keyboard")
