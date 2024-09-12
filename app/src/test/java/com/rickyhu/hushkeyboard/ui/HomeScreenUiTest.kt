@@ -21,12 +21,16 @@ class HomeScreenUiTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    private var isSetupKeyboardButtonClicked = false
     private var isSettingsButtonClicked = false
 
     @Before
     fun setUp() {
         composeTestRule.setContent {
-            HomeScreen(navigateToSettings = { isSettingsButtonClicked = true })
+            HomeScreen(
+                navigateToIntroduction = { isSetupKeyboardButtonClicked = true },
+                navigateToSettings = { isSettingsButtonClicked = true }
+            )
         }
     }
 
@@ -37,6 +41,15 @@ class HomeScreenUiTest {
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
+    }
+
+    @Test
+    fun `Setup keyboard button action should be invoked upon click`() {
+        composeTestRule
+            .onNodeWithText("Setup Keyboard")
+            .performClick()
+
+        assertTrue(isSetupKeyboardButtonClicked)
     }
 
     @Test
