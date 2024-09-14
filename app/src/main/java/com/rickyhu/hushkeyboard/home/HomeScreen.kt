@@ -1,7 +1,5 @@
 package com.rickyhu.hushkeyboard.home
 
-import android.content.Intent
-import android.provider.Settings
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -16,13 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -36,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -44,21 +37,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import splitties.systemservices.inputMethodManager
 
 @Composable
 fun HomeScreen(
-    onSettingsClick: () -> Unit = {}
+    navigateToIntroduction: () -> Unit = {},
+    navigateToSettings: () -> Unit = {}
 ) {
-    val context = LocalContext.current
     var text by remember { mutableStateOf("") }
 
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(onClick = onSettingsClick) {
-                Icon(Icons.Default.Settings, contentDescription = "Settings")
-            }
-        },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -83,30 +70,25 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.app_name),
-                    style = MaterialTheme.typography.displayMedium
+                    style = MaterialTheme.typography.displayMedium,
+                    modifier = Modifier.padding(32.dp)
                 )
-                Spacer(modifier = Modifier.height(32.dp))
                 Button(
-                    onClick = {
-                        val intent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
-                        context.startActivity(intent)
-                    },
+                    onClick = navigateToIntroduction,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
-                    Text(text = "Enable keyboard")
+                    Text(text = stringResource(R.string.home_setup_keyboard_button))
                 }
-                Spacer(modifier = Modifier.height(8.dp))
                 Button(
-                    onClick = { inputMethodManager.showInputMethodPicker() },
+                    onClick = navigateToSettings,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
-                    Text(text = "Select input method")
+                    Text(text = stringResource(R.string.home_settings_button))
                 }
-                Spacer(modifier = Modifier.height(32.dp))
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
@@ -116,7 +98,7 @@ fun HomeScreen(
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
+                        .padding(16.dp)
                 )
             }
         }

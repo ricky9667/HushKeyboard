@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Hush Keyboard</string>
     <string name="package_name">com.rickyhu.hushkeyboard</string>
+
+    <!-- Home Screen -->
+    <string name="home_setup_keyboard_button">Setup Keyboard</string>
+    <string name="home_settings_button">Settings</string>
+
+    <!-- Introduction Screen -->
+    <string name="intro_screen_title">Setup your keyboard</string>
+    <string name="intro_step_1_title">Step 1: Enable keyboard</string>
+    <string name="intro_step_1_description">Tap the button to go to system settings, and turn on \"Hush Keyboard\" toggle item.</string>
+    <string name="intro_enable_keyboard_button">Enable HUSH Keyboard</string>
+    <string name="intro_step_2_title">Step 2: Change input method to HUSH Keyboard</string>
+    <string name="intro_step_2_description">Tap the button below and select \"Hush Keyboard\".\nYou can change to original keyboard by tapping the 🌐 button in HUSH keyboard.</string>
+    <string name="intro_select_input_method">Select Input Method</string>
+    <string name="intro_step_3_title">Step 3: Start Typing!</string>
+    <string name="intro_step_3_description">Try to type a sexy move (R U R\' U\' ) in the input section, you can input by swiping the button in 4 directions to type faster.</string>
+    <string name="intro_done_dialog_title">You\'re all set!</string>
+    <string name="intro_done_dialog_text">You can start typing with HUSH Keyboard.</string>
 </resources>
