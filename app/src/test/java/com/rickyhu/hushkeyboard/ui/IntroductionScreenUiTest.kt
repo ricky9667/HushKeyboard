@@ -1,12 +1,16 @@
 package com.rickyhu.hushkeyboard.ui
 
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import com.rickyhu.hushkeyboard.introduction.Step1Section
 import com.rickyhu.hushkeyboard.introduction.Step2Section
+import com.rickyhu.hushkeyboard.introduction.Step3Section
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -120,5 +124,24 @@ class IntroductionScreenUiTest {
             .performClick()
 
         assertTrue(isSetupInputMethodButtonClicked)
+    }
+
+    @Test
+    fun `Section 3 TextField should be displayed and should be enabled to enter text`() {
+        composeTestRule.setContent {
+            Step3Section(
+                navigateToHome = {}
+            )
+        }
+
+        composeTestRule
+            .onNodeWithText("Type here")
+            .assertIsDisplayed()
+            .assertIsEnabled()
+            .performTextInput("Test input")
+
+        composeTestRule
+            .onNodeWithText("Test input")
+            .assertIsDisplayed()
     }
 }
