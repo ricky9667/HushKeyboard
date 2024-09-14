@@ -70,7 +70,7 @@ class IntroductionScreenUiTest {
         }
 
         composeTestRule
-            .onNodeWithTag("SetupKeyboardButtonFilled")
+            .onNodeWithTag("EnableKeyboardButtonFilled")
             .performClick()
 
         assertTrue(isEnableKeyboardButtonClicked)
