@@ -10,6 +10,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,14 +42,18 @@ fun Step1Section(
         if (isSectionFinished) {
             OutlinedButton(
                 onClick = onSectionButtonClicked,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("SetupKeyboardButtonOutlined")
             ) {
                 Text(text = stringResource(R.string.intro_enable_keyboard_button))
             }
         } else {
             Button(
                 onClick = onSectionButtonClicked,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("SetupKeyboardButtonFilled")
             ) {
                 Text(text = stringResource(R.string.intro_enable_keyboard_button))
             }
