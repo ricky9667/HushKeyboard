@@ -10,6 +10,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,14 +42,18 @@ fun Step2Section(
         if (isSectionFinished) {
             OutlinedButton(
                 onClick = onSectionButtonClicked,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("SelectInputMethodButtonOutlined")
             ) {
                 Text(text = stringResource(R.string.intro_select_input_method))
             }
         } else {
             Button(
                 onClick = onSectionButtonClicked,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("SelectInputMethodButtonFilled")
             ) {
                 Text(text = stringResource(R.string.intro_select_input_method))
             }
