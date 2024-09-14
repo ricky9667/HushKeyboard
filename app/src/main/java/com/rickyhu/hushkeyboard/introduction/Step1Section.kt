@@ -44,7 +44,7 @@ fun Step1Section(
                 onClick = onSectionButtonClicked,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .testTag("SetupKeyboardButtonOutlined")
+                    .testTag("EnableKeyboardButtonOutlined")
             ) {
                 Text(text = stringResource(R.string.intro_enable_keyboard_button))
             }
@@ -53,7 +53,7 @@ fun Step1Section(
                 onClick = onSectionButtonClicked,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .testTag("SetupKeyboardButtonFilled")
+                    .testTag("EnableKeyboardButtonFilled")
             ) {
                 Text(text = stringResource(R.string.intro_enable_keyboard_button))
             }

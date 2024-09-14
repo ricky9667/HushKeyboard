@@ -6,6 +6,7 @@ import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import com.rickyhu.hushkeyboard.home.HomeScreen
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -68,5 +69,18 @@ class HomeScreenUiTest {
             .performClick()
 
         assertTrue(isSettingsButtonClicked)
+    }
+
+    @Test
+    fun `The textField should be displayed and should be enabled to enter text`() {
+        composeTestRule
+            .onNodeWithText("Type here")
+            .assertExists()
+            .assertIsEnabled()
+            .performTextInput("Test input")
+
+        composeTestRule
+            .onNodeWithText("Test input")
+            .assertExists()
     }
 }
