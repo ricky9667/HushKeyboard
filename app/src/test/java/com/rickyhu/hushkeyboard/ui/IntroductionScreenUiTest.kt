@@ -36,7 +36,7 @@ class IntroductionScreenUiTest {
         }
 
         composeTestRule
-            .onNodeWithTag("SetupKeyboardButtonFilled")
+            .onNodeWithTag("EnableKeyboardButtonFilled")
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
@@ -52,7 +52,7 @@ class IntroductionScreenUiTest {
         }
 
         composeTestRule
-            .onNodeWithTag("SetupKeyboardButtonOutlined")
+            .onNodeWithTag("EnableKeyboardButtonOutlined")
             .assertExists()
             .assertIsEnabled()
             .assertHasClickAction()
