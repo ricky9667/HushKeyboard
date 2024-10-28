@@ -16,6 +16,10 @@
     <img src="./assets/icon.png" width=300 alt="Logo">  
 </p>
 
+| <img src="./assets/1.png" width=200 alt="Screenshot 1"> | <img src="./assets/2.png" width=200 alt="Screenshot 2"> | <img src="./assets/3.png" width=200 alt="Screenshot 3"> |
+| --- | --- | --- |
+| <img src="./assets/4.png" width=200 alt="Screenshot 4"> | <img src="./assets/5.png" width=200 alt="Screenshot 5"> | <img src="./assets/6.png" width=200 alt="Screenshot 6"> |
+
 ## Introduction
 
 Typing Rubik's Cube notations on a mobile keyboard kind of a frustration, switching between
