@@ -1,23 +1,9 @@
-<h1 align="center">HUSH Keyboard</h1>
+# HushKeyboard
 
-<p align="center">
-    <a href="https://github.com/ricky9667/HushKeyboard/releases">
-        <img alt="Release" src="https://img.shields.io/github/v/release/ricky9667/HushKeyboard?display_name=tag&style=flat-square">
-    </a>
-    <a href="https://app.codecov.io/gh/ricky9667/HushKeyboard">
-        <img alt="Codecov" src="https://img.shields.io/codecov/c/github/ricky9667/HushKeyboard?style=flat-square">
-    </a>
-    <a href="https://github.com/ricky9667/HushKeyboard/blob/update-readme/LICENSE">
-        <img alt="GitHub License" src="https://img.shields.io/github/license/ricky9667/HushKeyboard?style=flat-square">
-    </a>
-</p>
-
-<p align="center">
-    <img src="./assets/icon.png" width=300 alt="Logo">  
-</p>
+[![Release](https://img.shields.io/github/v/release/ricky9667/HushKeyboard?display_name=tag&style=flat-square)](https://github.com/ricky9667/HushKeyboard/releases) [![Codecov](https://img.shields.io/codecov/c/github/ricky9667/HushKeyboard?style=flat-square)](https://app.codecov.io/gh/ricky9667/HushKeyboard) [![GitHub License](https://img.shields.io/github/license/ricky9667/HushKeyboard?style=flat-square)](https://github.com/ricky9667/HushKeyboard/blob/update-readme/LICENSE)
 
 | <img src="./assets/1.png" width=200 alt="Screenshot 1"> | <img src="./assets/2.png" width=200 alt="Screenshot 2"> | <img src="./assets/3.png" width=200 alt="Screenshot 3"> |
-| --- | --- | --- |
+|---------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
 | <img src="./assets/4.png" width=200 alt="Screenshot 4"> | <img src="./assets/5.png" width=200 alt="Screenshot 5"> | <img src="./assets/6.png" width=200 alt="Screenshot 6"> |
 
 ## Introduction
