@@ -18,7 +18,8 @@ fun AppVersionItem(
     onClick: () -> Unit = {}
 ) {
     val context = LocalContext.current
-    val versionName = context.packageManager.getPackageInfo(context.packageName, 0).versionName
+    val packageName = context.packageManager.getPackageInfo(context.packageName, 0)
+    val versionName = packageName.versionName ?: "Unknown Version"
 
     ListItem(
         headlineContent = { Text("Version") },
