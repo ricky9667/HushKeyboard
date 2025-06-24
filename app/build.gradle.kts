@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "com.rickyhu.hushkeyboard"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rickyhu.hushkeyboard"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 3
         versionName = "0.4.0"
 
