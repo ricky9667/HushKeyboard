@@ -1,6 +1,7 @@
 plugins {
     kotlin("kapt")
     alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.hilt)
@@ -10,12 +11,12 @@ plugins {
 
 android {
     namespace = "com.rickyhu.hushkeyboard"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rickyhu.hushkeyboard"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 3
         versionName = "0.4.0"
 
