@@ -99,6 +99,7 @@ fun HushKeyboardContent(state: KeyboardState) {
         ControlKeyButtonRow(
             turns = keyConfigState.turns,
             isDarkTheme = isDarkTheme,
+            smartDelete = state.smartDelete,
             inputMethodButtonAction = {
                 inputMethodManager.showInputMethodPicker()
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
@@ -143,6 +144,7 @@ fun HushKeyboardPreview() {
         state = KeyboardState(
             themeOption = ThemeOption.System,
             addSpaceAfterNotation = true,
+            smartDelete = false,
             vibrateOnTap = true,
             wideNotationOption = WideNotationOption.WideWithW
         )

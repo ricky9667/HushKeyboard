@@ -22,6 +22,10 @@ class SettingsRepository @Inject constructor(
         dataStore.updateData { it.copy(wideNotationOption = wideNotationOption) }
     }
 
+    suspend fun updateSmartDelete(smartDelete: Boolean) {
+        dataStore.updateData { it.copy(smartDelete = smartDelete) }
+    }
+
     suspend fun updateAddSpaceBetweenNotation(addSpaceBetweenNotation: Boolean) {
         dataStore.updateData { it.copy(addSpaceAfterNotation = addSpaceBetweenNotation) }
     }

@@ -26,6 +26,7 @@ class SettingsViewModel @Inject constructor(
         SettingsState(
             themeOption = settings.themeOption,
             addSpaceAfterNotation = settings.addSpaceAfterNotation,
+            smartDelete = settings.smartDelete,
             vibrateOnTap = settings.vibrateOnTap,
             wideNotationOption = settings.wideNotationOption
         )
@@ -40,6 +41,12 @@ class SettingsViewModel @Inject constructor(
     fun updateWideNotationOption(wideNotationOption: WideNotationOption) {
         viewModelScope.launch {
             settingsRepository.updateWideNotationOption(wideNotationOption)
+        }
+    }
+
+    fun updateSmartDelete(smartDelete: Boolean) {
+        viewModelScope.launch {
+            settingsRepository.updateSmartDelete(smartDelete)
         }
     }
 
@@ -58,7 +65,8 @@ class SettingsViewModel @Inject constructor(
 
 data class SettingsState(
     val themeOption: ThemeOption = ThemeOption.System,
+    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW,
+    val smartDelete: Boolean = false,
     val addSpaceAfterNotation: Boolean = true,
-    val vibrateOnTap: Boolean = true,
-    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW
+    val vibrateOnTap: Boolean = true
 )

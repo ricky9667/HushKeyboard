@@ -8,10 +8,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
@@ -30,6 +26,7 @@ fun ControlKeyButtonRow(
     modifier: Modifier = Modifier,
     turns: Turns,
     isDarkTheme: Boolean,
+    smartDelete: Boolean,
     inputMethodButtonAction: () -> Unit,
     rotateDirectionButtonAction: () -> Unit,
     turnDegreeButtonAction: () -> Unit,
@@ -99,20 +96,17 @@ fun ControlKeyButtonRow(
             }
         )
 
-        var isSmartDelete by remember { mutableStateOf(false) }
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("DeleteButton"),
             onClick = deleteButtonAction,
-            onLongClick = { isSmartDelete = !isSmartDelete },
+//            onLongClick = { isSmartDelete = !isSmartDelete },
             isDarkTheme = isDarkTheme,
             content = {
                 Icon(
-                    painter = if (isSmartDelete) {
+                    painter = if (smartDelete) {
                         painterResource(R.drawable.ic_backspace_filled)
                     } else {
-                        painterResource(
-                            R.drawable.ic_backspace_outlined
-                        )
+                        painterResource(R.drawable.ic_backspace_outlined)
                     },
                     tint = keyColor,
                     contentDescription = "Delete"
@@ -141,6 +135,7 @@ private fun ControlKeyButtonRowPreview() {
         ControlKeyButtonRow(
             turns = Turns.Single,
             isDarkTheme = false,
+            smartDelete = false,
             inputMethodButtonAction = {},
             rotateDirectionButtonAction = {},
             turnDegreeButtonAction = {},
