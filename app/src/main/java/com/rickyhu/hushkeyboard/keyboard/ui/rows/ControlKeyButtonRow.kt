@@ -99,11 +99,10 @@ fun ControlKeyButtonRow(
             onClick = deleteButtonAction,
             isDarkTheme = isDarkTheme,
             content = {
-                Text(
-                    "⌫",
-                    color = keyColor,
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                Icon(
+                    painter = painterResource(R.drawable.ic_backspace_outlined),
+                    tint = keyColor,
+                    contentDescription = "Delete"
                 )
             }
         )
