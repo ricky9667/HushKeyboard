@@ -99,7 +99,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("DeleteButton"),
             onClick = deleteButtonAction,
-//            onLongClick = { isSmartDelete = !isSmartDelete },
             isDarkTheme = isDarkTheme,
             content = {
                 Icon(
