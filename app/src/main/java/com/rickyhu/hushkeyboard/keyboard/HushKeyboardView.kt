@@ -34,6 +34,7 @@ import com.rickyhu.hushkeyboard.theme.LightBackground
 import com.rickyhu.hushkeyboard.utils.deleteText
 import com.rickyhu.hushkeyboard.utils.inputText
 import com.rickyhu.hushkeyboard.utils.maybeVibrate
+import com.rickyhu.hushkeyboard.utils.smartDelete
 import com.rickyhu.hushkeyboard.utils.toInputConnection
 import splitties.systemservices.inputMethodManager
 
@@ -99,6 +100,7 @@ fun HushKeyboardContent(state: KeyboardState) {
         ControlKeyButtonRow(
             turns = keyConfigState.turns,
             isDarkTheme = isDarkTheme,
+            smartDelete = state.smartDelete,
             inputMethodButtonAction = {
                 inputMethodManager.showInputMethodPicker()
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
@@ -124,7 +126,11 @@ fun HushKeyboardContent(state: KeyboardState) {
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             deleteButtonAction = {
-                context.toInputConnection().deleteText()
+                if (state.smartDelete) {
+                    context.toInputConnection().smartDelete()
+                } else {
+                    context.toInputConnection().deleteText()
+                }
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             newLineButtonAction = {
@@ -143,6 +149,7 @@ fun HushKeyboardPreview() {
         state = KeyboardState(
             themeOption = ThemeOption.System,
             addSpaceAfterNotation = true,
+            smartDelete = false,
             vibrateOnTap = true,
             wideNotationOption = WideNotationOption.WideWithW
         )

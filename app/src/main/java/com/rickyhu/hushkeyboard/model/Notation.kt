@@ -12,5 +12,9 @@ enum class Notation(val value: String) {
     S("S"),
     X("x"),
     Y("y"),
-    Z("z")
+    Z("z");
+
+    companion object {
+        fun getCharList(): List<Char> = Notation.entries.map { it.value.single() }
+    }
 }
