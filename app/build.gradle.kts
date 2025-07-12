@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
 plugins {
     kotlin("kapt")
     alias(libs.plugins.android.application)
@@ -11,12 +14,12 @@ plugins {
 
 android {
     namespace = "com.rickyhu.hushkeyboard"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rickyhu.hushkeyboard"
-        minSdk = 26
-        targetSdk = 35
+        minSdk = 29
+        targetSdk = 36
         versionCode = 3
         versionName = "0.4.0"
 
@@ -31,7 +34,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -39,14 +42,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -61,6 +61,12 @@ android {
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+tasks.withType<KotlinJvmCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
+        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    }
+}
 
 ktlint {
     android.set(true)
