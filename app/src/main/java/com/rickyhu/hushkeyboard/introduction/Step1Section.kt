@@ -22,19 +22,19 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 fun Step1Section(
     modifier: Modifier = Modifier,
     isSectionFinished: Boolean,
-    onSectionButtonClicked: () -> Unit = {}
+    onSectionButtonClicked: () -> Unit = {},
 ) {
     Column(modifier = modifier.padding(16.dp)) {
         Text(
             text = stringResource(R.string.intro_step_1_title),
-            fontSize = 20.sp
+            fontSize = 20.sp,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = stringResource(R.string.intro_step_1_description),
-            fontSize = 14.sp
+            fontSize = 14.sp,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -42,18 +42,20 @@ fun Step1Section(
         if (isSectionFinished) {
             OutlinedButton(
                 onClick = onSectionButtonClicked,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("EnableKeyboardButtonOutlined")
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .testTag("EnableKeyboardButtonOutlined"),
             ) {
                 Text(text = stringResource(R.string.intro_enable_keyboard_button))
             }
         } else {
             Button(
                 onClick = onSectionButtonClicked,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("EnableKeyboardButtonFilled")
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .testTag("EnableKeyboardButtonFilled"),
             ) {
                 Text(text = stringResource(R.string.intro_enable_keyboard_button))
             }
@@ -66,7 +68,7 @@ fun Step1Section(
 fun Step1SectionPreview() {
     HushKeyboardTheme {
         Step1Section(
-            isSectionFinished = false
+            isSectionFinished = false,
         )
     }
 }

@@ -27,9 +27,7 @@ import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 
 @Composable
-fun SettingsScreen(
-    viewModel: SettingsViewModel = hiltViewModel()
-) {
+fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
     val state by viewModel.settingsState.collectAsState(SettingsState())
 
     SettingsContent(
@@ -38,7 +36,7 @@ fun SettingsScreen(
         onWideNotationOptionSelected = viewModel::updateWideNotationOption,
         onSmartDeleteChanged = viewModel::updateSmartDelete,
         onAddSpaceBetweenNotationChanged = viewModel::updateAddSpaceBetweenNotation,
-        onVibrateOnTapChanged = viewModel::updateVibrateOnTap
+        onVibrateOnTapChanged = viewModel::updateVibrateOnTap,
     )
 }
 
@@ -51,7 +49,7 @@ fun SettingsContent(
     onWideNotationOptionSelected: (wideNotationOption: WideNotationOption) -> Unit,
     onSmartDeleteChanged: (smartDelete: Boolean) -> Unit,
     onAddSpaceBetweenNotationChanged: (addSpaceAfterNotation: Boolean) -> Unit,
-    onVibrateOnTapChanged: (vibrateOnTap: Boolean) -> Unit
+    onVibrateOnTapChanged: (vibrateOnTap: Boolean) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -63,11 +61,11 @@ fun SettingsContent(
             Column(modifier = Modifier.padding(padding)) {
                 ThemeOptionDropdownItem(
                     currentTheme = state.themeOption,
-                    onThemeSelected = onThemeSelected
+                    onThemeSelected = onThemeSelected,
                 )
                 WideNotationOptionDropdownItem(
                     currentOption = state.wideNotationOption,
-                    onOptionSelected = onWideNotationOptionSelected
+                    onOptionSelected = onWideNotationOptionSelected,
                 )
                 SmartDeleteSwitchItem(
                     value = state.smartDelete,
@@ -75,21 +73,21 @@ fun SettingsContent(
                 )
                 AddSpaceBetweenNotationSwitchItem(
                     value = state.addSpaceAfterNotation,
-                    onValueChanged = onAddSpaceBetweenNotationChanged
+                    onValueChanged = onAddSpaceBetweenNotationChanged,
                 )
                 VibrateOnTapSwitchItem(
                     value = state.vibrateOnTap,
-                    onValueChanged = onVibrateOnTapChanged
+                    onValueChanged = onVibrateOnTapChanged,
                 )
                 AppVersionItem(
                     onClick = {
                         val url = "https://github.com/ricky9667/HushKeyboard"
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         context.startActivity(intent)
-                    }
+                    },
                 )
             }
-        }
+        },
     )
 }
 

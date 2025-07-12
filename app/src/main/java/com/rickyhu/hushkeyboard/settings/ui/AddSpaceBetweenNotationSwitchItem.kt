@@ -16,7 +16,7 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun AddSpaceBetweenNotationSwitchItem(
     value: Boolean,
-    onValueChanged: (Boolean) -> Unit = {}
+    onValueChanged: (Boolean) -> Unit = {},
 ) {
     ListItem(
         modifier = Modifier.clickable { onValueChanged(!value) },
@@ -24,16 +24,16 @@ fun AddSpaceBetweenNotationSwitchItem(
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_space),
-                contentDescription = "Space"
+                contentDescription = "Space",
             )
         },
         trailingContent = {
             Switch(
                 checked = value,
                 onCheckedChange = onValueChanged,
-                modifier = Modifier.testTag("AddSpaceAfterNotationSwitch")
+                modifier = Modifier.testTag("AddSpaceAfterNotationSwitch"),
             )
-        }
+        },
     )
 }
 
@@ -42,7 +42,7 @@ fun AddSpaceBetweenNotationSwitchItem(
 fun AddSpaceBetweenNotationSwitchItemPreview() {
     HushKeyboardTheme {
         AddSpaceBetweenNotationSwitchItem(
-            value = true
+            value = true,
         )
     }
 }

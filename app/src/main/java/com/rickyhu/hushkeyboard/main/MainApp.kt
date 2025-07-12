@@ -13,21 +13,20 @@ import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 
 @Composable
-fun MainApp(
-    viewModel: MainViewModel = hiltViewModel()
-) {
+fun MainApp(viewModel: MainViewModel = hiltViewModel()) {
     val state by viewModel.settingsState.collectAsState()
 
-    val isDarkTheme = when (state.themeOption) {
-        ThemeOption.System -> isSystemInDarkTheme()
-        ThemeOption.Light -> false
-        ThemeOption.Dark -> true
-    }
+    val isDarkTheme =
+        when (state.themeOption) {
+            ThemeOption.System -> isSystemInDarkTheme()
+            ThemeOption.Light -> false
+            ThemeOption.Dark -> true
+        }
 
     HushKeyboardTheme(darkTheme = isDarkTheme) {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = MaterialTheme.colorScheme.background,
         ) {
             MainNavHost()
         }

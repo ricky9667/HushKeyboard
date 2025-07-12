@@ -19,7 +19,6 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class IntroductionScreenUiTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -31,7 +30,7 @@ class IntroductionScreenUiTest {
         composeTestRule.setContent {
             Step1Section(
                 isSectionFinished = false,
-                onSectionButtonClicked = {}
+                onSectionButtonClicked = {},
             )
         }
 
@@ -47,7 +46,7 @@ class IntroductionScreenUiTest {
         composeTestRule.setContent {
             Step1Section(
                 isSectionFinished = true,
-                onSectionButtonClicked = {}
+                onSectionButtonClicked = {},
             )
         }
 
@@ -65,7 +64,7 @@ class IntroductionScreenUiTest {
                 isSectionFinished = isEnableKeyboardButtonClicked,
                 onSectionButtonClicked = {
                     isEnableKeyboardButtonClicked = true
-                }
+                },
             )
         }
 
@@ -81,7 +80,7 @@ class IntroductionScreenUiTest {
         composeTestRule.setContent {
             Step2Section(
                 isSectionFinished = false,
-                onSectionButtonClicked = {}
+                onSectionButtonClicked = {},
             )
         }
 
@@ -97,7 +96,7 @@ class IntroductionScreenUiTest {
         composeTestRule.setContent {
             Step2Section(
                 isSectionFinished = true,
-                onSectionButtonClicked = {}
+                onSectionButtonClicked = {},
             )
         }
 
@@ -115,7 +114,7 @@ class IntroductionScreenUiTest {
                 isSectionFinished = isSetupInputMethodButtonClicked,
                 onSectionButtonClicked = {
                     isSetupInputMethodButtonClicked = true
-                }
+                },
             )
         }
 
@@ -130,7 +129,7 @@ class IntroductionScreenUiTest {
     fun `Section 3 TextField should be displayed and should be enabled to enter text`() {
         composeTestRule.setContent {
             Step3Section(
-                navigateToHome = {}
+                navigateToHome = {},
             )
         }
 

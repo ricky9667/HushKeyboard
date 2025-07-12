@@ -17,7 +17,6 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class HomeScreenUiTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -29,7 +28,7 @@ class HomeScreenUiTest {
         composeTestRule.setContent {
             HomeScreen(
                 navigateToIntroduction = { isSetupKeyboardButtonClicked = true },
-                navigateToSettings = { isSettingsButtonClicked = true }
+                navigateToSettings = { isSettingsButtonClicked = true },
             )
         }
     }

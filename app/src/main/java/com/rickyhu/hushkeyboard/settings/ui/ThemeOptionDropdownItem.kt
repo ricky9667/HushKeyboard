@@ -22,7 +22,7 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun ThemeOptionDropdownItem(
     currentTheme: ThemeOption,
-    onThemeSelected: (ThemeOption) -> Unit
+    onThemeSelected: (ThemeOption) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -32,7 +32,7 @@ fun ThemeOptionDropdownItem(
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_brightness),
-                contentDescription = "Brightness"
+                contentDescription = "Brightness",
             )
         },
         trailingContent = {
@@ -41,7 +41,7 @@ fun ThemeOptionDropdownItem(
             DropdownMenu(
                 modifier = Modifier.testTag("ThemeOptionDropdownMenu"),
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
             ) {
                 for (option in ThemeOption.values()) {
                     DropdownMenuItem(
@@ -50,11 +50,11 @@ fun ThemeOptionDropdownItem(
                         onClick = {
                             onThemeSelected(option)
                             expanded = false
-                        }
+                        },
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -64,7 +64,7 @@ private fun ThemeOptionDropdownItemPreview() {
     HushKeyboardTheme {
         ThemeOptionDropdownItem(
             currentTheme = ThemeOption.System,
-            onThemeSelected = {}
+            onThemeSelected = {},
         )
     }
 }

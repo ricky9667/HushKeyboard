@@ -44,7 +44,7 @@ class SettingsScreenUiTest {
                 },
                 onVibrateOnTapChanged = { value ->
                     vibrateOnTapSwitchValue = value
-                }
+                },
             )
         }
     }
