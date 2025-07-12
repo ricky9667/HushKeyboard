@@ -1,9 +1,8 @@
-  <<<<<<< HEAD
-  coverage:
-    status:
-      project:
-        default:
-          informational: true
-      patch:
-        default:
-          informational: true
+coverage:
+  status:
+    project:
+      default:
+        informational: true
+    patch:
+      default:
+        informational: true
