@@ -7,7 +7,6 @@ import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.service.HushIMEService
 
 private const val END_CURSOR_POSITION = 1
-private const val MAX_NOTATION_LENGTH = 5
 
 val notationCharList = Notation.getCharList() + listOf('\n')
 
@@ -32,30 +31,34 @@ fun InputConnection.deleteText() {
 
 fun InputConnection.smartDelete() {
     Log.d("InputConnection", "smartDelete")
-
-    beginBatchEdit()
     if (!getSelectedText(0).isNullOrEmpty()) {
-        deleteSurroundingText(1, 0)
-        endBatchEdit()
+        commitText("", END_CURSOR_POSITION)
         return
     }
 
-    while (true) {
-        val endTextChunk = getTextBeforeCursor(MAX_NOTATION_LENGTH, 0)
-        if (endTextChunk.isNullOrEmpty()) break
+    beginBatchEdit()
+    try {
+        val scanWindow = 50
+        val textBeforeCursor = getTextBeforeCursor(scanWindow, 0)
 
-        for (i in endTextChunk.indices.reversed()) {
-            val char = endTextChunk[i]
-            if (char in notationCharList) {
-                deleteSurroundingText(MAX_NOTATION_LENGTH, 0)
-                commitText(endTextChunk.substring(0, i), END_CURSOR_POSITION)
-                endBatchEdit()
-                return
+        if (textBeforeCursor.isNullOrEmpty()) {
+            deleteSurroundingText(1, 0)
+            return
+        }
+
+        var charsToDelete = 0
+        for (i in textBeforeCursor.indices.reversed()) {
+            val char = textBeforeCursor[i]
+            charsToDelete++
+            if (char.uppercaseChar() in notationCharList) {
+                break
             }
         }
 
-        deleteSurroundingText(MAX_NOTATION_LENGTH, 0)
+        if (charsToDelete > 0) {
+            deleteSurroundingText(charsToDelete, 0)
+        }
+    } finally {
+        endBatchEdit()
     }
-
-    endBatchEdit()
 }
