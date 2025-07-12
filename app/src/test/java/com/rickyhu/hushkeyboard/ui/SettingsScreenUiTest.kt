@@ -27,6 +27,7 @@ class SettingsScreenUiTest {
 
     private var addSpaceAfterNotationSwitchValue = true
     private var vibrateOnTapSwitchValue = true
+    private var smartDeleteValue = true
 
     @Before
     fun setUp() {
@@ -35,6 +36,9 @@ class SettingsScreenUiTest {
                 state = SettingsState(),
                 onThemeSelected = {},
                 onWideNotationOptionSelected = {},
+                onSmartDeleteChanged = { value ->
+                    smartDeleteValue = value
+                },
                 onAddSpaceBetweenNotationChanged = { value ->
                     addSpaceAfterNotationSwitchValue = value
                 },
