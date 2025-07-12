@@ -16,7 +16,7 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun VibrateOnTapSwitchItem(
     value: Boolean,
-    onValueChanged: (Boolean) -> Unit = {}
+    onValueChanged: (Boolean) -> Unit = {},
 ) {
     ListItem(
         modifier = Modifier.clickable { onValueChanged(!value) },
@@ -24,16 +24,16 @@ fun VibrateOnTapSwitchItem(
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_vibration),
-                contentDescription = "Vibrate"
+                contentDescription = "Vibrate",
             )
         },
         trailingContent = {
             Switch(
                 checked = value,
                 onCheckedChange = onValueChanged,
-                modifier = Modifier.testTag("VibrateOnTapSwitch")
+                modifier = Modifier.testTag("VibrateOnTapSwitch"),
             )
-        }
+        },
     )
 }
 
@@ -42,7 +42,7 @@ fun VibrateOnTapSwitchItem(
 fun VibrateOnTapSwitchItemPreview() {
     HushKeyboardTheme {
         VibrateOnTapSwitchItem(
-            value = true
+            value = true,
         )
     }
 }

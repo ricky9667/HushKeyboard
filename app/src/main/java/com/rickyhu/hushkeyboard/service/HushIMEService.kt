@@ -11,8 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HushIMEService : LifecycleInputMethodService(), SavedStateRegistryOwner {
-
+class HushIMEService :
+    LifecycleInputMethodService(),
+    SavedStateRegistryOwner {
     @Inject
     lateinit var viewModel: KeyboardViewModel
 

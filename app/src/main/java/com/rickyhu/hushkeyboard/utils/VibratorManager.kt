@@ -12,9 +12,10 @@ fun VibratorManager.maybeVibrate() {
 
     this.vibrate(
         CombinedVibration.createParallel(
-            VibrationEffect.startComposition()
+            VibrationEffect
+                .startComposition()
                 .addPrimitive(effectId)
-                .compose()
-        )
+                .compose(),
+        ),
     )
 }

@@ -15,7 +15,7 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun AppVersionItem(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val packageName = context.packageManager.getPackageInfo(context.packageName, 0)
@@ -25,7 +25,7 @@ fun AppVersionItem(
         headlineContent = { Text("Version") },
         leadingContent = { Icon(imageVector = Icons.Default.Info, contentDescription = "Info") },
         trailingContent = { Text(versionName) },
-        modifier = modifier.clickable(onClick = onClick)
+        modifier = modifier.clickable(onClick = onClick),
     )
 }
 

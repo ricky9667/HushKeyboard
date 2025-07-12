@@ -47,7 +47,7 @@ fun NotationKeyButton(
     isDarkTheme: Boolean,
     addSpaceAfterNotation: Boolean,
     wideNotationOption: WideNotationOption,
-    onTextInput: (String) -> Unit = {}
+    onTextInput: (String) -> Unit = {},
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -63,83 +63,90 @@ fun NotationKeyButton(
     }
 
     Box(
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         KeyButton(
-            modifier = modifier
-                .clickable(
-                    interactionSource = interactionSource,
-                    indication = null,
-                    onClick = {
-                        onTextInput(key.asText(addSpaceAfterNotation, wideNotationOption))
-                    }
-                )
-                .draggable(
-                    interactionSource = interactionSource,
-                    orientation = Orientation.Horizontal,
-                    state = rememberDraggableState { x ->
-                        offsetX += x
-                        inputKey = key.copy(
-                            config = key.config.copy(isCounterClockwise = offsetX < 0)
-                        )
-                    },
-                    onDragStarted = { offsetX = 0f },
-                    onDragStopped = {
-                        onTextInput(
-                            inputKey.asText(addSpaceAfterNotation, wideNotationOption)
-                        )
-                    }
-                )
-                .draggable(
-                    interactionSource = interactionSource,
-                    orientation = Orientation.Vertical,
-                    state = rememberDraggableState { y ->
-                        offsetY += y
-
-                        // Notate as double turn when swiping up or down, but only if the key state
-                        // is originally a single turn.
-                        val turns = if (key.config.turns == Turns.Single) {
-                            Turns.Double
-                        } else {
-                            key.config.turns
-                        }
-
-                        // Clockwise down, counter-clockwise up.
-                        inputKey = key.copy(
-                            config = key.config.copy(
-                                isCounterClockwise = offsetY < 0,
-                                turns = turns
+            modifier =
+                modifier
+                    .clickable(
+                        interactionSource = interactionSource,
+                        indication = null,
+                        onClick = {
+                            onTextInput(key.asText(addSpaceAfterNotation, wideNotationOption))
+                        },
+                    ).draggable(
+                        interactionSource = interactionSource,
+                        orientation = Orientation.Horizontal,
+                        state =
+                            rememberDraggableState { x ->
+                                offsetX += x
+                                inputKey =
+                                    key.copy(
+                                        config = key.config.copy(isCounterClockwise = offsetX < 0),
+                                    )
+                            },
+                        onDragStarted = { offsetX = 0f },
+                        onDragStopped = {
+                            onTextInput(
+                                inputKey.asText(addSpaceAfterNotation, wideNotationOption),
                             )
-                        )
-                    },
-                    onDragStarted = { offsetY = 0f },
-                    onDragStopped = {
-                        onTextInput(inputKey.asText(addSpaceAfterNotation, wideNotationOption))
-                    }
-                ),
+                        },
+                    ).draggable(
+                        interactionSource = interactionSource,
+                        orientation = Orientation.Vertical,
+                        state =
+                            rememberDraggableState { y ->
+                                offsetY += y
+
+                                // Notate as double turn when swiping up or down, but only if the key state
+                                // is originally a single turn.
+                                val turns =
+                                    if (key.config.turns == Turns.Single) {
+                                        Turns.Double
+                                    } else {
+                                        key.config.turns
+                                    }
+
+                                // Clockwise down, counter-clockwise up.
+                                inputKey =
+                                    key.copy(
+                                        config =
+                                            key.config.copy(
+                                                isCounterClockwise = offsetY < 0,
+                                                turns = turns,
+                                            ),
+                                    )
+                            },
+                        onDragStarted = { offsetY = 0f },
+                        onDragStopped = {
+                            onTextInput(inputKey.asText(addSpaceAfterNotation, wideNotationOption))
+                        },
+                    ),
             buttonColor = if (isDarkTheme) DarkPrimary else LightPrimary,
             content = {
                 Text(
                     text = key.asText(addSpaceAfterNotation, wideNotationOption),
                     color = if (isDarkTheme) Color.White else Color.Black,
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
 
         when {
-            isPressed -> KeyTooltip(
-                text = key.asText(addSpaceAfterNotation, wideNotationOption),
-                isDarkTheme = isDarkTheme,
-                modifier = modifier
-            )
+            isPressed ->
+                KeyTooltip(
+                    text = key.asText(addSpaceAfterNotation, wideNotationOption),
+                    isDarkTheme = isDarkTheme,
+                    modifier = modifier,
+                )
 
-            isDragged -> KeyTooltip(
-                text = inputKey.asText(addSpaceAfterNotation, wideNotationOption),
-                isDarkTheme = isDarkTheme,
-                modifier = modifier
-            )
+            isDragged ->
+                KeyTooltip(
+                    text = inputKey.asText(addSpaceAfterNotation, wideNotationOption),
+                    isDarkTheme = isDarkTheme,
+                    modifier = modifier,
+                )
         }
     }
 }
@@ -148,25 +155,26 @@ fun NotationKeyButton(
 private fun KeyTooltip(
     text: String,
     isDarkTheme: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        modifier = modifier.offset(y = (-32).dp)
+        modifier = modifier.offset(y = (-32).dp),
     ) {
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = if (isDarkTheme) DarkPrimary else LightPrimary)
-                .padding(4.dp)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(color = if (isDarkTheme) DarkPrimary else LightPrimary)
+                    .padding(4.dp),
         ) {
             Text(
                 text = text,
                 color = if (isDarkTheme) Color.White else Color.Black,
                 fontSize = 18.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
@@ -177,13 +185,14 @@ private fun KeyTooltip(
 fun NotationKeyButtonPreview() {
     HushKeyboardTheme {
         NotationKeyButton(
-            modifier = Modifier
-                .padding(4.dp)
-                .size(48.dp),
+            modifier =
+                Modifier
+                    .padding(4.dp)
+                    .size(48.dp),
             cubeKey = CubeKey(notation = Notation.R),
             isDarkTheme = false,
             addSpaceAfterNotation = true,
-            wideNotationOption = WideNotationOption.WideWithW
+            wideNotationOption = WideNotationOption.WideWithW,
         )
     }
 }

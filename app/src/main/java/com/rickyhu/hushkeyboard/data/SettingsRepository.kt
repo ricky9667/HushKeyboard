@@ -7,26 +7,27 @@ import javax.inject.Inject
 
 private val Context.dataStore by dataStore("app-settings.json", AppSettingsSerializer)
 
-class SettingsRepository @Inject constructor(
-    @ApplicationContext context: Context
-) {
+class SettingsRepository
+    @Inject
+    constructor(
+        @ApplicationContext context: Context,
+    ) {
+        private val dataStore = context.dataStore
+        val settings = dataStore.data
 
-    private val dataStore = context.dataStore
-    val settings = dataStore.data
+        suspend fun updateThemeOption(themeOption: ThemeOption) {
+            dataStore.updateData { it.copy(themeOption = themeOption) }
+        }
 
-    suspend fun updateThemeOption(themeOption: ThemeOption) {
-        dataStore.updateData { it.copy(themeOption = themeOption) }
+        suspend fun updateWideNotationOption(wideNotationOption: WideNotationOption) {
+            dataStore.updateData { it.copy(wideNotationOption = wideNotationOption) }
+        }
+
+        suspend fun updateAddSpaceBetweenNotation(addSpaceBetweenNotation: Boolean) {
+            dataStore.updateData { it.copy(addSpaceAfterNotation = addSpaceBetweenNotation) }
+        }
+
+        suspend fun updateVibrateOnTap(vibrateOnTap: Boolean) {
+            dataStore.updateData { it.copy(vibrateOnTap = vibrateOnTap) }
+        }
     }
-
-    suspend fun updateWideNotationOption(wideNotationOption: WideNotationOption) {
-        dataStore.updateData { it.copy(wideNotationOption = wideNotationOption) }
-    }
-
-    suspend fun updateAddSpaceBetweenNotation(addSpaceBetweenNotation: Boolean) {
-        dataStore.updateData { it.copy(addSpaceAfterNotation = addSpaceBetweenNotation) }
-    }
-
-    suspend fun updateVibrateOnTap(vibrateOnTap: Boolean) {
-        dataStore.updateData { it.copy(vibrateOnTap = vibrateOnTap) }
-    }
-}

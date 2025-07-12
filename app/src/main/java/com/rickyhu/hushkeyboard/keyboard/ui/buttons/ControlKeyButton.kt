@@ -18,12 +18,12 @@ fun ControlKeyButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     isDarkTheme: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     KeyButton(
         modifier = modifier.clickable(onClick = onClick),
         buttonColor = if (isDarkTheme) DarkSecondary else LightSecondary,
-        content = content
+        content = content,
     )
 }
 
@@ -39,9 +39,9 @@ fun ControlKeyButtonPreview() {
                 Text(
                     text = "R",
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
     }
 }

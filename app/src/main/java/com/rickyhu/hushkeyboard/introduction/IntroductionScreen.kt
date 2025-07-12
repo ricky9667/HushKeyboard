@@ -22,13 +22,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import java.lang.Thread.sleep
 import splitties.systemservices.inputMethodManager
+import java.lang.Thread.sleep
 
 @Composable
-fun IntroductionScreen(
-    navigateToHome: () -> Unit = {}
-) {
+fun IntroductionScreen(navigateToHome: () -> Unit = {}) {
     val context = LocalContext.current
     var isSection1Finished by remember { mutableStateOf(false) }
     var isSection2Finished by remember { mutableStateOf(false) }
@@ -36,16 +34,17 @@ fun IntroductionScreen(
     Scaffold(
         content = { paddingValues ->
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
+                verticalArrangement = Arrangement.Top,
             ) {
                 Text(
                     text = stringResource(R.string.intro_screen_title),
                     style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier.padding(vertical = 32.dp)
+                    modifier = Modifier.padding(vertical = 32.dp),
                 )
 
                 Step1Section(
@@ -55,7 +54,7 @@ fun IntroductionScreen(
                         context.startActivity(intent)
                         sleep(1000)
                         isSection1Finished = true
-                    }
+                    },
                 )
 
                 if (isSection1Finished) {
@@ -65,17 +64,17 @@ fun IntroductionScreen(
                             inputMethodManager.showInputMethodPicker()
                             sleep(500)
                             isSection2Finished = true
-                        }
+                        },
                     )
                 }
 
                 if (isSection1Finished && isSection2Finished) {
                     Step3Section(
-                        navigateToHome = navigateToHome
+                        navigateToHome = navigateToHome,
                     )
                 }
             }
-        }
+        },
     )
 }
 
