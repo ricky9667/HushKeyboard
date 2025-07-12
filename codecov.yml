@@ -1,5 +1,4 @@
-ignore:
-  - "app/src/main/java/com/rickyhu/hushkeyboard/*.kt"
-  - "app/src/main/java/com/rickyhu/hushkeyboard/data/*.kt"
-  - "app/src/main/java/com/rickyhu/hushkeyboard/service/*.kt"
-  - "app/src/main/java/com/rickyhu/hushkeyboard/utils/*.kt"
+codecov:
+  require_ci_to_pass: false
+  notify:
+    require_ci_to_pass: false
