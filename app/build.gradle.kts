@@ -16,6 +16,11 @@ android {
     namespace = "com.rickyhu.hushkeyboard"
     compileSdk = 36
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
     defaultConfig {
         applicationId = "com.rickyhu.hushkeyboard"
         minSdk = 29
@@ -38,10 +43,6 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
     buildFeatures {
         compose = true
     }
@@ -60,11 +61,13 @@ android {
     }
 }
 
-tasks.getByPath("preBuild").dependsOn("ktlintFormat")
-tasks.withType<KotlinJvmCompile>().configureEach {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_21)
-        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+tasks {
+    getByPath("preBuild").dependsOn("ktlintFormat")
+    withType<KotlinJvmCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+            freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+        }
     }
 }
 
