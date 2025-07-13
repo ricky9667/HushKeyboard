@@ -22,7 +22,7 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun WideNotationOptionDropdownItem(
     currentOption: WideNotationOption,
-    onOptionSelected: (WideNotationOption) -> Unit
+    onOptionSelected: (WideNotationOption) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -32,7 +32,7 @@ fun WideNotationOptionDropdownItem(
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_keyboard),
-                contentDescription = "Keyboard"
+                contentDescription = "Keyboard",
             )
         },
         trailingContent = {
@@ -41,7 +41,7 @@ fun WideNotationOptionDropdownItem(
             DropdownMenu(
                 modifier = Modifier.testTag("WideNotationOptionDropdownMenu"),
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
             ) {
                 for (option in WideNotationOption.values()) {
                     DropdownMenuItem(
@@ -50,11 +50,11 @@ fun WideNotationOptionDropdownItem(
                         onClick = {
                             onOptionSelected(option)
                             expanded = false
-                        }
+                        },
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -64,7 +64,7 @@ private fun WideNotationOptionDropdownItemPreview() {
     HushKeyboardTheme {
         WideNotationOptionDropdownItem(
             currentOption = WideNotationOption.WideWithW,
-            onOptionSelected = {}
+            onOptionSelected = {},
         )
     }
 }

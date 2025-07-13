@@ -21,15 +21,16 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 fun KeyButton(
     modifier: Modifier = Modifier,
     buttonColor: Color,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Card(modifier = modifier) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(buttonColor)
-                .padding(4.dp),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(buttonColor)
+                    .padding(4.dp),
+            contentAlignment = Alignment.Center,
         ) {
             content()
         }
@@ -47,9 +48,9 @@ fun KeyButtonPreview() {
                 Text(
                     text = "R",
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
     }
 }

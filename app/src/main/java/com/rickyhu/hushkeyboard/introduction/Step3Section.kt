@@ -32,7 +32,7 @@ private const val SEXY_MOVE_NOTATION = "R U R' U' "
 @Composable
 fun Step3Section(
     modifier: Modifier = Modifier,
-    navigateToHome: () -> Unit
+    navigateToHome: () -> Unit,
 ) {
     var text by remember { mutableStateOf("") }
     var openDoneDialog by remember { mutableStateOf(false) }
@@ -40,14 +40,14 @@ fun Step3Section(
     Column(modifier = modifier.padding(16.dp)) {
         Text(
             text = stringResource(R.string.intro_step_3_title),
-            fontSize = 20.sp
+            fontSize = 20.sp,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = stringResource(R.string.intro_step_3_description),
-            fontSize = 14.sp
+            fontSize = 14.sp,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -61,10 +61,11 @@ fun Step3Section(
                 }
             },
             label = { Text(text = "Type here") },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text
-            ),
-            modifier = Modifier.fillMaxWidth()
+            keyboardOptions =
+                KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                ),
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 
@@ -73,20 +74,18 @@ fun Step3Section(
             onDone = {
                 openDoneDialog = false
                 navigateToHome()
-            }
+            },
         )
     }
 }
 
 @Composable
-private fun SetupDoneDialog(
-    onDone: () -> Unit
-) {
+private fun SetupDoneDialog(onDone: () -> Unit) {
     AlertDialog(
         icon = {
             Icon(
                 imageVector = Icons.Default.Done,
-                contentDescription = "Done"
+                contentDescription = "Done",
             )
         },
         title = { Text(text = stringResource(R.string.intro_done_dialog_title)) },
@@ -96,7 +95,7 @@ private fun SetupDoneDialog(
             TextButton(onClick = onDone) {
                 Text("OK")
             }
-        }
+        },
     )
 }
 
@@ -105,7 +104,7 @@ private fun SetupDoneDialog(
 fun Step3SectionPreview() {
     HushKeyboardTheme {
         Step3Section(
-            navigateToHome = {}
+            navigateToHome = {},
         )
     }
 }
