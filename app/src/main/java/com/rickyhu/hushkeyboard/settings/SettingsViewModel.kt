@@ -7,11 +7,11 @@ import com.rickyhu.hushkeyboard.data.SettingsRepository
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
@@ -66,7 +66,7 @@ class SettingsViewModel @Inject constructor(
 data class SettingsState(
     val themeOption: ThemeOption = ThemeOption.System,
     val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW,
-    val smartDelete: Boolean = false,
+    val smartDelete: Boolean = true,
     val addSpaceAfterNotation: Boolean = true,
     val vibrateOnTap: Boolean = true
 )

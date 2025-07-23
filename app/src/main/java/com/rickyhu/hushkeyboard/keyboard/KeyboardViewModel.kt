@@ -22,18 +22,18 @@ class KeyboardViewModel @Inject constructor(
     ).map { settings ->
         KeyboardState(
             themeOption = settings.themeOption,
-            addSpaceAfterNotation = settings.addSpaceAfterNotation,
+            wideNotationOption = settings.wideNotationOption,
             smartDelete = settings.smartDelete,
-            vibrateOnTap = settings.vibrateOnTap,
-            wideNotationOption = settings.wideNotationOption
+            addSpaceAfterNotation = settings.addSpaceAfterNotation,
+            vibrateOnTap = settings.vibrateOnTap
         )
     }
 }
 
 data class KeyboardState(
     val themeOption: ThemeOption = ThemeOption.System,
-    val addSpaceAfterNotation: Boolean = true,
+    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW,
     val smartDelete: Boolean = true,
-    val vibrateOnTap: Boolean = true,
-    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW
+    val addSpaceAfterNotation: Boolean = true,
+    val vibrateOnTap: Boolean = true
 )

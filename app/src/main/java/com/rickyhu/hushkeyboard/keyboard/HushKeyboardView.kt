@@ -151,10 +151,10 @@ fun HushKeyboardPreview() {
     HushKeyboardContent(
         state = KeyboardState(
             themeOption = ThemeOption.System,
+            wideNotationOption = WideNotationOption.WideWithW,
+            smartDelete = true,
             addSpaceAfterNotation = true,
-            smartDelete = false,
-            vibrateOnTap = true,
-            wideNotationOption = WideNotationOption.WideWithW
+            vibrateOnTap = true
         )
     )
 }

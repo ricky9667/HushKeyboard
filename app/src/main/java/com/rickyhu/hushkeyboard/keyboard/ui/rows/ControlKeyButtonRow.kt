@@ -134,7 +134,7 @@ private fun ControlKeyButtonRowPreview() {
         ControlKeyButtonRow(
             turns = Turns.Single,
             isDarkTheme = false,
-            smartDelete = false,
+            smartDelete = true,
             inputMethodButtonAction = {},
             rotateDirectionButtonAction = {},
             turnDegreeButtonAction = {},
