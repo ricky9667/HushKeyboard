@@ -125,13 +125,16 @@ fun HushKeyboardContent(state: KeyboardState) {
                 )
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
-            deleteButtonAction = {
-                if (state.smartDelete) {
+            deleteButtonAction = if (state.smartDelete) {
+                {
                     context.toInputConnection().smartDelete()
-                } else {
-                    context.toInputConnection().deleteText()
+                    if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
                 }
-                if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+            } else {
+                {
+                    context.toInputConnection().deleteText()
+                    if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+                }
             },
             newLineButtonAction = {
                 context.toInputConnection().inputText("\n")
