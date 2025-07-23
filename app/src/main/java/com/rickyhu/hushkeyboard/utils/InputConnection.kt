@@ -6,6 +6,7 @@ import android.view.inputmethod.InputConnection
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.service.HushIMEService
 
+private const val TAG = "InputConnection"
 private const val END_CURSOR_POSITION = 1
 
 val notationCharList = Notation.getCharList() + listOf('\n')
@@ -14,7 +15,7 @@ fun Context.toInputConnection(): InputConnection = (this as HushIMEService).curr
 
 fun InputConnection.inputText(text: String) {
     commitText(text, END_CURSOR_POSITION)
-    Log.d("InputConnection", "inputText $text")
+    Log.d(TAG, "inputText $text")
 }
 
 fun InputConnection.deleteText() {
@@ -22,17 +23,20 @@ fun InputConnection.deleteText() {
 
     if (selectedText.isNullOrEmpty()) {
         deleteSurroundingText(1, 0)
-        Log.d("InputConnection", "deleteText")
+        Log.d(TAG, "deleteText")
     } else {
-        commitText("", END_CURSOR_POSITION) // delete selected text
-        Log.d("InputConnection", "deleteText $selectedText")
+        commitText("", END_CURSOR_POSITION)
+        Log.d(TAG, "delete selected text: $selectedText")
     }
 }
 
 fun InputConnection.smartDelete() {
-    Log.d("InputConnection", "smartDelete")
-    if (!getSelectedText(0).isNullOrEmpty()) {
+    Log.d(TAG, "smartDelete")
+
+    val selectedText = getSelectedText(0)
+    if (!selectedText.isNullOrEmpty()) {
         commitText("", END_CURSOR_POSITION)
+        Log.d(TAG, "delete selected text: $selectedText")
         return
     }
 
