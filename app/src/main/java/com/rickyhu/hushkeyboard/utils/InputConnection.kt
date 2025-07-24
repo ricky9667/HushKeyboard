@@ -7,15 +7,21 @@ import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.service.HushIMEService
 
 private const val TAG = "InputConnection"
+private const val NEWLINE = '\n'
 private const val END_CURSOR_POSITION = 1
+private const val SCAN_WINDOW_SIZE = 50
 
-val notationCharList = Notation.getCharList() + listOf('\n')
+val notationCharList = Notation.getCharList() + listOf(NEWLINE)
 
 fun Context.toInputConnection(): InputConnection = (this as HushIMEService).currentInputConnection
 
 fun InputConnection.inputText(text: String) {
     commitText(text, END_CURSOR_POSITION)
     Log.d(TAG, "inputText $text")
+}
+
+fun InputConnection.inputNewline() {
+    inputText(NEWLINE.toString())
 }
 
 fun InputConnection.deleteText() {
@@ -42,8 +48,7 @@ fun InputConnection.smartDelete() {
 
     beginBatchEdit()
     try {
-        val scanWindow = 50
-        val textBeforeCursor = getTextBeforeCursor(scanWindow, 0)
+        val textBeforeCursor = getTextBeforeCursor(SCAN_WINDOW_SIZE, 0)
 
         if (textBeforeCursor.isNullOrEmpty()) {
             deleteSurroundingText(1, 0)

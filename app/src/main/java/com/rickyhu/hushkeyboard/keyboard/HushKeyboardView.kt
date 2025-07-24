@@ -33,6 +33,7 @@ import com.rickyhu.hushkeyboard.service.HushIMEService
 import com.rickyhu.hushkeyboard.theme.DarkBackground
 import com.rickyhu.hushkeyboard.theme.LightBackground
 import com.rickyhu.hushkeyboard.utils.deleteText
+import com.rickyhu.hushkeyboard.utils.inputNewline
 import com.rickyhu.hushkeyboard.utils.inputText
 import com.rickyhu.hushkeyboard.utils.maybeVibrate
 import com.rickyhu.hushkeyboard.utils.smartDelete
@@ -148,7 +149,7 @@ fun HushKeyboardContent(state: KeyboardState) {
             },
             newLineButtonAction = {
                 Log.d(TAG, "New line button tapped")
-                context.toInputConnection().inputText("\n")
+                context.toInputConnection().inputNewline()
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             }
         )
