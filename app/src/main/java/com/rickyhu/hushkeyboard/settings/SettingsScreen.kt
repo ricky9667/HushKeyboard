@@ -20,6 +20,7 @@ import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.settings.ui.AddSpaceBetweenNotationSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.AppVersionItem
+import com.rickyhu.hushkeyboard.settings.ui.SmartDeleteSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.settings.ui.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
@@ -35,6 +36,7 @@ fun SettingsScreen(
         state,
         onThemeSelected = viewModel::updateThemeOption,
         onWideNotationOptionSelected = viewModel::updateWideNotationOption,
+        onSmartDeleteChanged = viewModel::updateSmartDelete,
         onAddSpaceBetweenNotationChanged = viewModel::updateAddSpaceBetweenNotation,
         onVibrateOnTapChanged = viewModel::updateVibrateOnTap
     )
@@ -47,6 +49,7 @@ fun SettingsContent(
     state: SettingsState,
     onThemeSelected: (themeOption: ThemeOption) -> Unit,
     onWideNotationOptionSelected: (wideNotationOption: WideNotationOption) -> Unit,
+    onSmartDeleteChanged: (smartDelete: Boolean) -> Unit,
     onAddSpaceBetweenNotationChanged: (addSpaceAfterNotation: Boolean) -> Unit,
     onVibrateOnTapChanged: (vibrateOnTap: Boolean) -> Unit
 ) {
@@ -65,6 +68,10 @@ fun SettingsContent(
                 WideNotationOptionDropdownItem(
                     currentOption = state.wideNotationOption,
                     onOptionSelected = onWideNotationOptionSelected
+                )
+                SmartDeleteSwitchItem(
+                    value = state.smartDelete,
+                    onValueChanged = onSmartDeleteChanged
                 )
                 AddSpaceBetweenNotationSwitchItem(
                     value = state.addSpaceAfterNotation,

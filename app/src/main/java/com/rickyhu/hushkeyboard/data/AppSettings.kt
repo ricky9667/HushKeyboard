@@ -5,9 +5,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AppSettings(
     val themeOption: ThemeOption = ThemeOption.System,
+    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW,
+    val smartDelete: Boolean = true,
     val addSpaceAfterNotation: Boolean = true,
-    val vibrateOnTap: Boolean = true,
-    val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW
+    val vibrateOnTap: Boolean = true
 )
 
 enum class ThemeOption { System, Light, Dark }

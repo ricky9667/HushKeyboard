@@ -26,6 +26,7 @@ fun ControlKeyButtonRow(
     modifier: Modifier = Modifier,
     turns: Turns,
     isDarkTheme: Boolean,
+    smartDelete: Boolean,
     inputMethodButtonAction: () -> Unit,
     rotateDirectionButtonAction: () -> Unit,
     turnDegreeButtonAction: () -> Unit,
@@ -94,16 +95,20 @@ fun ControlKeyButtonRow(
                 )
             }
         )
+
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("DeleteButton"),
             onClick = deleteButtonAction,
             isDarkTheme = isDarkTheme,
             content = {
-                Text(
-                    "⌫",
-                    color = keyColor,
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                Icon(
+                    painter = if (smartDelete) {
+                        painterResource(R.drawable.ic_backspace_filled)
+                    } else {
+                        painterResource(R.drawable.ic_backspace_outlined)
+                    },
+                    tint = keyColor,
+                    contentDescription = "Delete"
                 )
             }
         )
@@ -129,6 +134,7 @@ private fun ControlKeyButtonRowPreview() {
         ControlKeyButtonRow(
             turns = Turns.Single,
             isDarkTheme = false,
+            smartDelete = true,
             inputMethodButtonAction = {},
             rotateDirectionButtonAction = {},
             turnDegreeButtonAction = {},
