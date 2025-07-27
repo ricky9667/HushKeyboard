@@ -69,7 +69,7 @@ fun SettingsContent(
                 )
                 SmartDeleteSwitchItem(
                     value = state.smartDelete,
-                    onValueChanged = onSmartDeleteChanged
+                    onValueChanged = onSmartDeleteChanged,
                 )
                 AddSpaceBetweenNotationSwitchItem(
                     value = state.addSpaceAfterNotation,
