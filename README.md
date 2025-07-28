@@ -18,7 +18,7 @@ By the way,
 **HUSH Keyboard is live on Google Play!**
 
 <a href="https://play.google.com/store/apps/details?id=com.rickyhu.hushkeyboard">
-    <img width=200 src="./assets/google_play_store_button.webp" alt="Google Play">
+    <img width=200 src="./assets/google_play_store_button.png" alt="Google Play">
 </a>
 
 ## Features
