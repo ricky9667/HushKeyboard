@@ -24,12 +24,12 @@ fun MainNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = HomeRoute
+        startDestination = HomeRoute,
     ) {
         composable<HomeRoute> {
             HomeScreen(
                 navigateToIntroduction = { navController.navigate(route = IntroductionRoute) },
-                navigateToSettings = { navController.navigate(route = SettingsRoute) }
+                navigateToSettings = { navController.navigate(route = SettingsRoute) },
             )
         }
         composable<SettingsRoute> {
@@ -37,7 +37,7 @@ fun MainNavHost() {
         }
         composable<IntroductionRoute> {
             IntroductionScreen(
-                navigateToHome = { navController.popBackStack() }
+                navigateToHome = { navController.popBackStack() },
             )
         }
     }

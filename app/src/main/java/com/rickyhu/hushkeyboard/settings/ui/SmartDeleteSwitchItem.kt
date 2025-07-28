@@ -16,7 +16,7 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun SmartDeleteSwitchItem(
     value: Boolean,
-    onValueChanged: (Boolean) -> Unit = {}
+    onValueChanged: (Boolean) -> Unit = {},
 ) {
     ListItem(
         modifier = Modifier.clickable { onValueChanged(!value) },
@@ -24,16 +24,16 @@ fun SmartDeleteSwitchItem(
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_backspace_filled),
-                contentDescription = "Delete"
+                contentDescription = "Delete",
             )
         },
         trailingContent = {
             Switch(
                 checked = value,
                 onCheckedChange = onValueChanged,
-                modifier = Modifier.testTag("SmartDeleteSwitchItem")
+                modifier = Modifier.testTag("SmartDeleteSwitchItem"),
             )
-        }
+        },
     )
 }
 
@@ -42,7 +42,7 @@ fun SmartDeleteSwitchItem(
 fun SmartDeleteSwitchItemPreview() {
     HushKeyboardTheme {
         AddSpaceBetweenNotationSwitchItem(
-            value = true
+            value = true,
         )
     }
 }

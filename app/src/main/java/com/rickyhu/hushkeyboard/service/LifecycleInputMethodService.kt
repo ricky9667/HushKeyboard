@@ -6,8 +6,9 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
 
-abstract class LifecycleInputMethodService : InputMethodService(), LifecycleOwner {
-
+abstract class LifecycleInputMethodService :
+    InputMethodService(),
+    LifecycleOwner {
     protected val dispatcher = ServiceLifecycleDispatcher(this)
 
     override fun onBindInput() {
@@ -26,9 +27,11 @@ abstract class LifecycleInputMethodService : InputMethodService(), LifecycleOwne
     // it results in mDispatcher.onServicePreSuperOnStart() call, because
     // super.onStartCommand calls onStart().
     @CallSuper
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return super.onStartCommand(intent, flags, startId)
-    }
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int,
+    ): Int = super.onStartCommand(intent, flags, startId)
 
     @CallSuper
     override fun onDestroy() {

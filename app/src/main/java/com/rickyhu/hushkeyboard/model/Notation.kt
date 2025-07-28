@@ -1,6 +1,8 @@
 package com.rickyhu.hushkeyboard.model
 
-enum class Notation(val value: String) {
+enum class Notation(
+    val value: String,
+) {
     R("R"),
     U("U"),
     F("F"),
@@ -12,7 +14,8 @@ enum class Notation(val value: String) {
     S("S"),
     X("x"),
     Y("y"),
-    Z("z");
+    Z("z"),
+    ;
 
     companion object {
         fun getCharList(): List<Char> = Notation.entries.map { it.value.single() }

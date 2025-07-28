@@ -41,51 +41,55 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 @Composable
 fun HomeScreen(
     navigateToIntroduction: () -> Unit = {},
-    navigateToSettings: () -> Unit = {}
+    navigateToSettings: () -> Unit = {},
 ) {
     var text by remember { mutableStateOf("") }
 
     Scaffold(
         content = { paddingValues ->
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 Card(
                     shape = RoundedCornerShape(8.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .size(200.dp)
-                        .border(BorderStroke(1.dp, Color.Gray), CircleShape)
+                    modifier =
+                        Modifier
+                            .clip(CircleShape)
+                            .size(200.dp)
+                            .border(BorderStroke(1.dp, Color.Gray), CircleShape),
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.app_icon),
-                        contentDescription = "App Icon"
+                        contentDescription = "App Icon",
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.app_name),
                     style = MaterialTheme.typography.displayMedium,
-                    modifier = Modifier.padding(32.dp)
+                    modifier = Modifier.padding(32.dp),
                 )
                 Button(
                     onClick = navigateToIntroduction,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 8.dp),
                 ) {
                     Text(text = stringResource(R.string.home_setup_keyboard_button))
                 }
                 Button(
                     onClick = navigateToSettings,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 8.dp),
                 ) {
                     Text(text = stringResource(R.string.home_settings_button))
                 }
@@ -93,15 +97,17 @@ fun HomeScreen(
                     value = text,
                     onValueChange = { text = it },
                     label = { Text(text = "Type here") },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
+                    keyboardOptions =
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                        ),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
                 )
             }
-        }
+        },
     )
 }
 

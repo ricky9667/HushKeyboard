@@ -18,22 +18,23 @@ fun NotationKeyButtonsRow(
     isDarkTheme: Boolean = false,
     addSpaceAfterNotation: Boolean,
     wideNotationOption: WideNotationOption,
-    onTextInput: (String) -> Unit
+    onTextInput: (String) -> Unit,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         keys.forEach { key ->
             NotationKeyButton(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .size(48.dp),
+                modifier =
+                    Modifier
+                        .padding(4.dp)
+                        .size(48.dp),
                 cubeKey = key,
                 isDarkTheme = isDarkTheme,
                 addSpaceAfterNotation = addSpaceAfterNotation,
                 wideNotationOption = wideNotationOption,
-                onTextInput = onTextInput
+                onTextInput = onTextInput,
             )
         }
     }

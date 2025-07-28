@@ -42,8 +42,9 @@ import splitties.systemservices.inputMethodManager
 
 private const val TAG = "HushKeyboardView"
 
-class HushKeyboardView(context: Context) : AbstractComposeView(context) {
-
+class HushKeyboardView(
+    context: Context,
+) : AbstractComposeView(context) {
     @RequiresApi(Build.VERSION_CODES.S)
     @Composable
     override fun Content() {
@@ -59,25 +60,28 @@ class HushKeyboardView(context: Context) : AbstractComposeView(context) {
 fun HushKeyboardContent(state: KeyboardState) {
     val context = LocalContext.current
 
-    val vibratorManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-    } else {
-        null
-    }
+    val vibratorManager =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+        } else {
+            null
+        }
 
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
 
-    val isDarkTheme = when (state.themeOption) {
-        ThemeOption.System -> isSystemInDarkTheme()
-        ThemeOption.Light -> false
-        ThemeOption.Dark -> true
-    }
+    val isDarkTheme =
+        when (state.themeOption) {
+            ThemeOption.System -> isSystemInDarkTheme()
+            ThemeOption.Light -> false
+            ThemeOption.Dark -> true
+        }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = if (isDarkTheme) DarkBackground else LightBackground)
-            .padding(vertical = 32.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(color = if (isDarkTheme) DarkBackground else LightBackground)
+                .padding(vertical = 32.dp),
     ) {
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getFirstRowKeys(keyConfigState),
@@ -88,7 +92,7 @@ fun HushKeyboardContent(state: KeyboardState) {
                 Log.d(TAG, "Notation key tapped")
                 context.toInputConnection().inputText(it)
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
-            }
+            },
         )
 
         NotationKeyButtonsRow(
@@ -99,7 +103,7 @@ fun HushKeyboardContent(state: KeyboardState) {
             onTextInput = {
                 context.toInputConnection().inputText(it)
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
-            }
+            },
         )
 
         ControlKeyButtonRow(
@@ -113,45 +117,49 @@ fun HushKeyboardContent(state: KeyboardState) {
             },
             rotateDirectionButtonAction = {
                 Log.d(TAG, "Rotate direction button tapped")
-                keyConfigState = keyConfigState.copy(
-                    isCounterClockwise = !keyConfigState.isCounterClockwise
-                )
+                keyConfigState =
+                    keyConfigState.copy(
+                        isCounterClockwise = !keyConfigState.isCounterClockwise,
+                    )
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             turnDegreeButtonAction = {
                 Log.d(TAG, "Turn degree button tapped")
-                keyConfigState = when (keyConfigState.turns) {
-                    Turns.Single -> keyConfigState.copy(turns = Turns.Double)
-                    Turns.Double -> keyConfigState.copy(turns = Turns.Triple)
-                    Turns.Triple -> keyConfigState.copy(turns = Turns.Single)
-                }
+                keyConfigState =
+                    when (keyConfigState.turns) {
+                        Turns.Single -> keyConfigState.copy(turns = Turns.Double)
+                        Turns.Double -> keyConfigState.copy(turns = Turns.Triple)
+                        Turns.Triple -> keyConfigState.copy(turns = Turns.Single)
+                    }
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
             wideTurnButtonAction = {
                 Log.d(TAG, "Wide turn button tapped")
-                keyConfigState = keyConfigState.copy(
-                    isWideTurn = !keyConfigState.isWideTurn
-                )
+                keyConfigState =
+                    keyConfigState.copy(
+                        isWideTurn = !keyConfigState.isWideTurn,
+                    )
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
             },
-            deleteButtonAction = if (state.smartDelete) {
-                {
-                    Log.d(TAG, "Delete button tapped")
-                    context.toInputConnection().smartDelete()
-                    if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
-                }
-            } else {
-                {
-                    Log.d(TAG, "Smart delete button tapped")
-                    context.toInputConnection().deleteText()
-                    if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
-                }
-            },
+            deleteButtonAction =
+                if (state.smartDelete) {
+                    {
+                        Log.d(TAG, "Delete button tapped")
+                        context.toInputConnection().smartDelete()
+                        if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+                    }
+                } else {
+                    {
+                        Log.d(TAG, "Smart delete button tapped")
+                        context.toInputConnection().deleteText()
+                        if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
+                    }
+                },
             newLineButtonAction = {
                 Log.d(TAG, "New line button tapped")
                 context.toInputConnection().inputNewline()
                 if (state.vibrateOnTap) vibratorManager?.maybeVibrate()
-            }
+            },
         )
     }
 }
@@ -161,12 +169,13 @@ fun HushKeyboardContent(state: KeyboardState) {
 @Composable
 fun HushKeyboardPreview() {
     HushKeyboardContent(
-        state = KeyboardState(
-            themeOption = ThemeOption.System,
-            wideNotationOption = WideNotationOption.WideWithW,
-            smartDelete = true,
-            addSpaceAfterNotation = true,
-            vibrateOnTap = true
-        )
+        state =
+            KeyboardState(
+                themeOption = ThemeOption.System,
+                wideNotationOption = WideNotationOption.WideWithW,
+                smartDelete = true,
+                addSpaceAfterNotation = true,
+                vibrateOnTap = true,
+            ),
     )
 }

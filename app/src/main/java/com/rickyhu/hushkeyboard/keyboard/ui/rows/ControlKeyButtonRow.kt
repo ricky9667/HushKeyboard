@@ -32,16 +32,17 @@ fun ControlKeyButtonRow(
     turnDegreeButtonAction: () -> Unit,
     wideTurnButtonAction: () -> Unit,
     deleteButtonAction: () -> Unit,
-    newLineButtonAction: () -> Unit
+    newLineButtonAction: () -> Unit,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         val keyColor = if (isDarkTheme) Color.White else Color.Black
-        val controlKeyModifier = Modifier
-            .padding(4.dp)
-            .size(48.dp)
+        val controlKeyModifier =
+            Modifier
+                .padding(4.dp)
+                .size(48.dp)
 
         // TODO: unify button colors
         ControlKeyButton(
@@ -52,9 +53,9 @@ fun ControlKeyButtonRow(
                 Icon(
                     painter = painterResource(R.drawable.ic_language),
                     tint = keyColor,
-                    contentDescription = "Language"
+                    contentDescription = "Language",
                 )
-            }
+            },
         )
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("RotateDirectionButton"),
@@ -65,9 +66,9 @@ fun ControlKeyButtonRow(
                     "'",
                     color = keyColor,
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("TurnDegreeButton"),
@@ -78,9 +79,9 @@ fun ControlKeyButtonRow(
                     turns.value.toString(),
                     color = keyColor,
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("WideTurnButton"),
@@ -91,9 +92,9 @@ fun ControlKeyButtonRow(
                     "w",
                     color = keyColor,
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
-            }
+            },
         )
 
         ControlKeyButton(
@@ -102,15 +103,16 @@ fun ControlKeyButtonRow(
             isDarkTheme = isDarkTheme,
             content = {
                 Icon(
-                    painter = if (smartDelete) {
-                        painterResource(R.drawable.ic_backspace_filled)
-                    } else {
-                        painterResource(R.drawable.ic_backspace_outlined)
-                    },
+                    painter =
+                        if (smartDelete) {
+                            painterResource(R.drawable.ic_backspace_filled)
+                        } else {
+                            painterResource(R.drawable.ic_backspace_outlined)
+                        },
                     tint = keyColor,
-                    contentDescription = "Delete"
+                    contentDescription = "Delete",
                 )
-            }
+            },
         )
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("NewLineButton"),
@@ -120,9 +122,9 @@ fun ControlKeyButtonRow(
                 Icon(
                     painter = painterResource(R.drawable.ic_return),
                     tint = keyColor,
-                    contentDescription = "Return"
+                    contentDescription = "Return",
                 )
-            }
+            },
         )
     }
 }
@@ -140,7 +142,7 @@ private fun ControlKeyButtonRowPreview() {
             turnDegreeButtonAction = {},
             wideTurnButtonAction = {},
             deleteButtonAction = {},
-            newLineButtonAction = {}
+            newLineButtonAction = {},
         )
     }
 }
