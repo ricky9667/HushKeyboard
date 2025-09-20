@@ -107,6 +107,8 @@ dependencies {
     implementation(libs.androidx.datastore)
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.tnoodle)
+
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)

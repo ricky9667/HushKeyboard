@@ -17,6 +17,7 @@ ktlint = "13.0.0"
 navigation-compose = "2.9.2"
 robolectric = "4.15.1"
 splitties-systemservices = "3.0.0"
+tnoodle = "0.19.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -42,6 +43,7 @@ kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serializ
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties-systemservices", version.ref = "splitties-systemservices" }
+tnoodle = { module = "org.worldcubeassociation.tnoodle:lib-scrambles", version.ref = "tnoodle" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
