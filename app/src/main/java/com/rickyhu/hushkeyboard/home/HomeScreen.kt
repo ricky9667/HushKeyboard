@@ -37,6 +37,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
+import com.rickyhu.hushkeyboard.utils.ScrambleProvider
+import org.worldcubeassociation.tnoodle.scrambles.PuzzleRegistry
 
 @Composable
 fun HomeScreen(
@@ -44,6 +46,7 @@ fun HomeScreen(
     navigateToSettings: () -> Unit = {},
 ) {
     var text by remember { mutableStateOf("") }
+    var scramble by remember { mutableStateOf("") }
 
     Scaffold(
         content = { paddingValues ->
@@ -93,6 +96,25 @@ fun HomeScreen(
                 ) {
                     Text(text = stringResource(R.string.home_settings_button))
                 }
+
+                Button(
+                    onClick = {
+                        scramble = ScrambleProvider.getScramble(PuzzleRegistry.THREE)
+                    },
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
+                ) {
+                    Text("Generate New Scramble")
+                }
+
+                Text(
+                    scramble,
+                    style = MaterialTheme.typography.displaySmall,
+                    modifier = Modifier.padding(16.dp),
+                )
+
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
