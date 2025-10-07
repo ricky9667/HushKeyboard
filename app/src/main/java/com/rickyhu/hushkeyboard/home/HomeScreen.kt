@@ -104,12 +104,16 @@ fun HomeScreen(
                     modifier =
                         Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 8.dp),
+                            .padding(horizontal = 16.dp),
                 ) {
                     Text("Generate New Scramble")
                 }
 
-                Text(scramble)
+                Text(
+                    scramble,
+                    style = MaterialTheme.typography.displaySmall,
+                    modifier = Modifier.padding(16.dp),
+                )
 
                 OutlinedTextField(
                     value = text,
