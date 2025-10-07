@@ -43,7 +43,7 @@ fun ThemeOptionDropdownItem(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
-                for (option in ThemeOption.values()) {
+                for (option in ThemeOption.entries) {
                     DropdownMenuItem(
                         modifier = Modifier.testTag("ThemeOptionDropdownMenuItem"),
                         text = { Text(option.name) },
