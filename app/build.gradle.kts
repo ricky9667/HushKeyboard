@@ -104,6 +104,9 @@ dependencies {
     implementation(libs.androidx.datastore)
     implementation(libs.kotlinx.serialization.json)
 
+    // Theming
+    implementation(libs.materialKolor)
+
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)

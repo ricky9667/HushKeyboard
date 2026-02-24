@@ -13,6 +13,7 @@ kotlin-serialization = "2.3.10"
 kotlinx-serialization-json = "1.10.0"
 kover = "0.9.7"
 ktlint = "14.0.1"
+materialKolor = "4.1.1"
 navigation-compose = "2.9.7"
 robolectric = "4.16.1"
 splitties-systemservices = "3.0.0"
@@ -33,11 +34,12 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "datastore" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-serialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+materialKolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties-systemservices", version.ref = "splitties-systemservices" }
 
