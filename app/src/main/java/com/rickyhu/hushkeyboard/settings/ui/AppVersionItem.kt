@@ -1,15 +1,15 @@
 package com.rickyhu.hushkeyboard.settings.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 
 @Composable
@@ -23,7 +23,7 @@ fun AppVersionItem(
 
     ListItem(
         headlineContent = { Text("Version") },
-        leadingContent = { Icon(imageVector = Icons.Default.Info, contentDescription = "Info") },
+        leadingContent = { Icon(painter = painterResource(R.drawable.ic_info), contentDescription = "Info") },
         trailingContent = { Text(versionName) },
         modifier = modifier.clickable(onClick = onClick),
     )
