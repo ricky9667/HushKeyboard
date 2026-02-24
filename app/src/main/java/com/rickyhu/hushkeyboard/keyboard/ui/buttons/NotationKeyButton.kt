@@ -1,6 +1,5 @@
 package com.rickyhu.hushkeyboard.keyboard.ui.buttons
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -9,13 +8,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -136,44 +130,16 @@ fun NotationKeyButton(
 
         when {
             isPressed ->
-                KeyTooltip(
+                NotationKeyTooltip(
                     text = key.asText(addSpaceAfterNotation, wideNotationOption),
                     modifier = modifier,
                 )
 
             isDragged ->
-                KeyTooltip(
+                NotationKeyTooltip(
                     text = inputKey.asText(addSpaceAfterNotation, wideNotationOption),
                     modifier = modifier,
                 )
-        }
-    }
-}
-
-@Composable
-private fun KeyTooltip(
-    text: String,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        shape = CircleShape,
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        modifier = modifier.offset(y = (-32).dp),
-    ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .background(color = MaterialTheme.colorScheme.primary)
-                    .padding(4.dp),
-        ) {
-            Text(
-                text = text,
-                color = MaterialTheme.colorScheme.onPrimary,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
-            )
         }
     }
 }
