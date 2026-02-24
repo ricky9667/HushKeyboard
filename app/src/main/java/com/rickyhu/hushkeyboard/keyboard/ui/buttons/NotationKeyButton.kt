@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +38,7 @@ import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.theme.DarkPrimary
+import com.rickyhu.hushkeyboard.theme.FontRubik
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import com.rickyhu.hushkeyboard.theme.LightPrimary
 
@@ -127,6 +129,8 @@ fun NotationKeyButton(
                 Text(
                     text = key.asText(addSpaceAfterNotation, wideNotationOption),
                     color = if (isDarkTheme) Color.White else Color.Black,
+                    fontFamily = FontRubik,
+                    fontWeight = FontWeight.SemiBold,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center,
                 )
