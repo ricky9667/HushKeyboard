@@ -7,14 +7,11 @@ import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.rickyhu.hushkeyboard.keyboard.HushKeyboardView
 import com.rickyhu.hushkeyboard.keyboard.KeyboardViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class HushIMEService :
     LifecycleInputMethodService(),
     SavedStateRegistryOwner {
-    @Inject
     lateinit var viewModel: KeyboardViewModel
 
     private val savedStateRegistryController = SavedStateRegistryController.create(this)
@@ -34,5 +31,6 @@ class HushIMEService :
     override fun onCreate() {
         super.onCreate()
         savedStateRegistryController.performRestore(null)
+        viewModel = get()
     }
 }

@@ -2,12 +2,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ktlint)
-    alias(libs.plugins.hilt)
     alias(libs.plugins.kover)
     id("org.jetbrains.kotlin.plugin.serialization")
 }
@@ -17,8 +15,8 @@ android {
     compileSdk = 36
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     defaultConfig {
@@ -65,7 +63,7 @@ tasks {
     getByPath("preBuild").dependsOn("ktlintFormat")
     withType<KotlinJvmCompile>().configureEach {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
+            jvmTarget.set(JvmTarget.JVM_17)
             freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
         }
     }
@@ -95,10 +93,9 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // Hilt
-    implementation(libs.hilt)
-    implementation(libs.hilt.navigation.compose)
-    kapt(libs.hilt.android.compiler)
+    // Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     // System Services
     implementation(libs.splitties.systemservices)
@@ -112,8 +109,4 @@ dependencies {
     testImplementation(libs.robolectric)
     testImplementation(composeBom)
     testImplementation(libs.androidx.compose.ui.test.junit4)
-}
-
-kapt {
-    correctErrorTypes = true
 }

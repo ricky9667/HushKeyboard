@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.settings.ui.AddSpaceBetweenNotationSwitchItem
@@ -25,9 +24,10 @@ import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.settings.ui.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
+fun SettingsScreen(viewModel: SettingsViewModel = koinViewModel()) {
     val state by viewModel.settingsState.collectAsState(SettingsState())
 
     SettingsContent(

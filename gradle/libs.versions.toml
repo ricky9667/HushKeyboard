@@ -1,21 +1,20 @@
 [versions]
-activity-compose = "1.10.1"
-android-gradle-plugin = "8.11.1"
-android-lifecycle = "2.9.2"
-compose-bom = "2025.07.00"
-core-ktx = "1.16.0"
-datastore = "1.1.7"
-hilt = "2.57"
-hilt-navigation-compose = "1.2.0"
+activity-compose = "1.12.4"
+android-gradle-plugin = "9.0.1"
+android-lifecycle = "2.10.0"
+compose-bom = "2026.02.00"
+core-ktx = "1.17.0"
+datastore = "1.2.0"
 junit = "4.13.2"
-junit-ext = "1.2.1"
-kotlin = "2.2.0"
-kotlin-serialization = "2.2.0"
-kotlinx-serialization-json = "1.9.0"
-kover = "0.9.1"
-ktlint = "13.0.0"
-navigation-compose = "2.9.2"
-robolectric = "4.15.1"
+junit-ext = "1.3.0"
+koin = "4.1.1"
+kotlin = "2.3.10"
+kotlin-serialization = "2.3.10"
+kotlinx-serialization-json = "1.10.0"
+kover = "0.9.7"
+ktlint = "14.0.1"
+navigation-compose = "2.9.7"
+robolectric = "4.16.1"
 splitties-systemservices = "3.0.0"
 
 [libraries]
@@ -34,9 +33,8 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "datastore" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-serialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
@@ -46,7 +44,6 @@ splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
