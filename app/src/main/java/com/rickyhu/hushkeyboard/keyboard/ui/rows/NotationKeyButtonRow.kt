@@ -15,7 +15,6 @@ import com.rickyhu.hushkeyboard.model.CubeKey
 @Composable
 fun NotationKeyButtonsRow(
     keys: List<CubeKey>,
-    isDarkTheme: Boolean = false,
     addSpaceAfterNotation: Boolean,
     wideNotationOption: WideNotationOption,
     onTextInput: (String) -> Unit,
@@ -31,7 +30,6 @@ fun NotationKeyButtonsRow(
                         .padding(4.dp)
                         .size(48.dp),
                 cubeKey = key,
-                isDarkTheme = isDarkTheme,
                 addSpaceAfterNotation = addSpaceAfterNotation,
                 wideNotationOption = wideNotationOption,
                 onTextInput = onTextInput,

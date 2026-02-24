@@ -2,7 +2,6 @@ package com.rickyhu.hushkeyboard.keyboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rickyhu.hushkeyboard.data.AppSettings
 import com.rickyhu.hushkeyboard.data.SettingsRepository
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
@@ -15,11 +14,7 @@ class KeyboardViewModel(
 ) : ViewModel() {
     val keyboardState =
         settingsRepository.settings
-            .stateIn(
-                viewModelScope,
-                SharingStarted.WhileSubscribed(5000),
-                AppSettings(),
-            ).map { settings ->
+            .map { settings ->
                 KeyboardState(
                     themeOption = settings.themeOption,
                     wideNotationOption = settings.wideNotationOption,
@@ -27,7 +22,11 @@ class KeyboardViewModel(
                     addSpaceAfterNotation = settings.addSpaceAfterNotation,
                     vibrateOnTap = settings.vibrateOnTap,
                 )
-            }
+            }.stateIn(
+                viewModelScope,
+                SharingStarted.Eagerly,
+                KeyboardState(),
+            )
 }
 
 data class KeyboardState(
