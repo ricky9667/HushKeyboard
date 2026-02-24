@@ -11,6 +11,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,8 +31,7 @@ import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
-import com.rickyhu.hushkeyboard.theme.DarkBackground
-import com.rickyhu.hushkeyboard.theme.LightBackground
+import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import com.rickyhu.hushkeyboard.utils.deleteText
 import com.rickyhu.hushkeyboard.utils.inputNewline
 import com.rickyhu.hushkeyboard.utils.inputText
@@ -51,7 +51,16 @@ class HushKeyboardView(
         val viewModel = (context as HushIMEService).viewModel
         val state by viewModel.keyboardState.collectAsState(KeyboardState())
 
-        HushKeyboardContent(state)
+        val isDarkTheme =
+            when (state.themeOption) {
+                ThemeOption.System -> isSystemInDarkTheme()
+                ThemeOption.Light -> false
+                ThemeOption.Dark -> true
+            }
+
+        HushKeyboardTheme(darkTheme = isDarkTheme) {
+            HushKeyboardContent(state)
+        }
     }
 }
 
@@ -69,23 +78,15 @@ fun HushKeyboardContent(state: KeyboardState) {
 
     var keyConfigState by remember { mutableStateOf(CubeKey.Config()) }
 
-    val isDarkTheme =
-        when (state.themeOption) {
-            ThemeOption.System -> isSystemInDarkTheme()
-            ThemeOption.Light -> false
-            ThemeOption.Dark -> true
-        }
-
     Column(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .background(color = if (isDarkTheme) DarkBackground else LightBackground)
+                .background(color = MaterialTheme.colorScheme.onPrimary)
                 .padding(vertical = 32.dp),
     ) {
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getFirstRowKeys(keyConfigState),
-            isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
             onTextInput = {
@@ -97,7 +98,6 @@ fun HushKeyboardContent(state: KeyboardState) {
 
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getSecondRowKeys(keyConfigState),
-            isDarkTheme = isDarkTheme,
             addSpaceAfterNotation = state.addSpaceAfterNotation,
             wideNotationOption = state.wideNotationOption,
             onTextInput = {
@@ -108,7 +108,6 @@ fun HushKeyboardContent(state: KeyboardState) {
 
         ControlKeyButtonRow(
             turns = keyConfigState.turns,
-            isDarkTheme = isDarkTheme,
             smartDelete = state.smartDelete,
             inputMethodButtonAction = {
                 Log.d(TAG, "Input method picker tapped")

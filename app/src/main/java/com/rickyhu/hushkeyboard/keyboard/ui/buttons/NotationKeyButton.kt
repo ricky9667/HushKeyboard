@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,7 +28,6 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,16 +37,13 @@ import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.Notation
 import com.rickyhu.hushkeyboard.model.Turns
-import com.rickyhu.hushkeyboard.theme.DarkPrimary
 import com.rickyhu.hushkeyboard.theme.FontRubik
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
-import com.rickyhu.hushkeyboard.theme.LightPrimary
 
 @Composable
 fun NotationKeyButton(
     modifier: Modifier = Modifier,
     cubeKey: CubeKey,
-    isDarkTheme: Boolean,
     addSpaceAfterNotation: Boolean,
     wideNotationOption: WideNotationOption,
     onTextInput: (String) -> Unit = {},
@@ -124,11 +121,11 @@ fun NotationKeyButton(
                             onTextInput(inputKey.asText(addSpaceAfterNotation, wideNotationOption))
                         },
                     ),
-            buttonColor = if (isDarkTheme) DarkPrimary else LightPrimary,
+            buttonColor = MaterialTheme.colorScheme.primary,
             content = {
                 Text(
-                    text = key.asText(addSpaceAfterNotation, wideNotationOption),
-                    color = if (isDarkTheme) Color.White else Color.Black,
+                    text = key.asText(addSpaceAfterNotation, wideNotationOption).trim(),
+                    color = MaterialTheme.colorScheme.onPrimary,
                     fontFamily = FontRubik,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 18.sp,
@@ -141,14 +138,12 @@ fun NotationKeyButton(
             isPressed ->
                 KeyTooltip(
                     text = key.asText(addSpaceAfterNotation, wideNotationOption),
-                    isDarkTheme = isDarkTheme,
                     modifier = modifier,
                 )
 
             isDragged ->
                 KeyTooltip(
                     text = inputKey.asText(addSpaceAfterNotation, wideNotationOption),
-                    isDarkTheme = isDarkTheme,
                     modifier = modifier,
                 )
         }
@@ -158,7 +153,6 @@ fun NotationKeyButton(
 @Composable
 private fun KeyTooltip(
     text: String,
-    isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -171,12 +165,12 @@ private fun KeyTooltip(
             modifier =
                 Modifier
                     .fillMaxSize()
-                    .background(color = if (isDarkTheme) DarkPrimary else LightPrimary)
+                    .background(color = MaterialTheme.colorScheme.primary)
                     .padding(4.dp),
         ) {
             Text(
                 text = text,
-                color = if (isDarkTheme) Color.White else Color.Black,
+                color = MaterialTheme.colorScheme.onPrimary,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
             )
@@ -194,7 +188,6 @@ fun NotationKeyButtonPreview() {
                     .padding(4.dp)
                     .size(48.dp),
             cubeKey = CubeKey(notation = Notation.R),
-            isDarkTheme = false,
             addSpaceAfterNotation = true,
             wideNotationOption = WideNotationOption.WideWithW,
         )

@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -25,7 +25,6 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 fun ControlKeyButtonRow(
     modifier: Modifier = Modifier,
     turns: Turns,
-    isDarkTheme: Boolean,
     smartDelete: Boolean,
     inputMethodButtonAction: () -> Unit,
     rotateDirectionButtonAction: () -> Unit,
@@ -38,7 +37,7 @@ fun ControlKeyButtonRow(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
     ) {
-        val keyColor = if (isDarkTheme) Color.White else Color.Black
+        val keyColor = MaterialTheme.colorScheme.onSecondary
         val controlKeyModifier =
             Modifier
                 .padding(4.dp)
@@ -48,7 +47,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("InputMethodButton"),
             onClick = inputMethodButtonAction,
-            isDarkTheme = isDarkTheme,
             content = {
                 Icon(
                     painter = painterResource(R.drawable.ic_language),
@@ -60,7 +58,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("RotateDirectionButton"),
             onClick = rotateDirectionButtonAction,
-            isDarkTheme = isDarkTheme,
             content = {
                 Text(
                     "'",
@@ -73,7 +70,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("TurnDegreeButton"),
             onClick = turnDegreeButtonAction,
-            isDarkTheme = isDarkTheme,
             content = {
                 Text(
                     turns.value.toString(),
@@ -86,7 +82,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("WideTurnButton"),
             onClick = wideTurnButtonAction,
-            isDarkTheme = isDarkTheme,
             content = {
                 Text(
                     "w",
@@ -100,7 +95,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("DeleteButton"),
             onClick = deleteButtonAction,
-            isDarkTheme = isDarkTheme,
             content = {
                 Icon(
                     painter =
@@ -117,7 +111,6 @@ fun ControlKeyButtonRow(
         ControlKeyButton(
             modifier = controlKeyModifier.testTag("NewLineButton"),
             onClick = newLineButtonAction,
-            isDarkTheme = isDarkTheme,
             content = {
                 Icon(
                     painter = painterResource(R.drawable.ic_return),
@@ -135,7 +128,6 @@ private fun ControlKeyButtonRowPreview() {
     HushKeyboardTheme {
         ControlKeyButtonRow(
             turns = Turns.Single,
-            isDarkTheme = false,
             smartDelete = true,
             inputMethodButtonAction = {},
             rotateDirectionButtonAction = {},

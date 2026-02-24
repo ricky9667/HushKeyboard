@@ -10,6 +10,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -20,6 +21,9 @@ private val DarkColorScheme =
         primary = DarkPrimary,
         secondary = DarkSecondary,
         tertiary = DarkBackground,
+        onPrimary = Color.White,
+        onSecondary = Color.White,
+        onTertiary = Color.White,
     )
 
 private val LightColorScheme =
@@ -27,15 +31,9 @@ private val LightColorScheme =
         primary = LightPrimary,
         secondary = LightSecondary,
         tertiary = LightBackground,
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-     */
+        onPrimary = Color.Black,
+        onSecondary = Color.Black,
+        onTertiary = Color.Black,
     )
 
 @Composable
@@ -58,9 +56,13 @@ fun HushKeyboardTheme(
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            // Only set status bar for Activity contexts, not IME services
+            val context = view.context
+            if (context is Activity) {
+                val window = context.window
+                window.statusBarColor = colorScheme.primary.toArgb()
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            }
         }
     }
 
