@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MainApp(viewModel: MainViewModel = hiltViewModel()) {
+fun MainApp(viewModel: MainViewModel = koinViewModel()) {
     val state by viewModel.settingsState.collectAsState()
 
     val isDarkTheme =

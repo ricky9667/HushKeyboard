@@ -1,7 +1,16 @@
 package com.rickyhu.hushkeyboard
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.rickyhu.hushkeyboard.di.appModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
-@HiltAndroidApp
-class HushApplication : Application()
+class HushApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@HushApplication)
+            modules(appModule)
+        }
+    }
+}
