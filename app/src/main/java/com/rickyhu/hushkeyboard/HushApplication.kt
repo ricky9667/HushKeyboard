@@ -10,7 +10,10 @@ import org.koin.core.context.stopKoin
 class HushApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
+        // Stop Koin in Compose UI testing context
         if (GlobalContext.getOrNull() != null) stopKoin()
+
         startKoin {
             androidContext(this@HushApplication)
             modules(appModule)
