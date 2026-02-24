@@ -21,11 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
-import com.rickyhu.hushkeyboard.settings.ui.AddSpaceBetweenNotationSwitchItem
-import com.rickyhu.hushkeyboard.settings.ui.SmartDeleteSwitchItem
+import com.rickyhu.hushkeyboard.settings.ui.SwitchListItem
 import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.settings.ui.UrlLauncherListItem
-import com.rickyhu.hushkeyboard.settings.ui.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import org.koin.androidx.compose.koinViewModel
@@ -78,17 +76,44 @@ fun SettingsContent(
                     currentOption = state.wideNotationOption,
                     onOptionSelected = onWideNotationOptionSelected,
                 )
-                SmartDeleteSwitchItem(
+
+                SwitchListItem(
+                    title = stringResource(R.string.smart_delete),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_backspace_filled),
+                            contentDescription = stringResource(R.string.smart_delete),
+                        )
+                    },
                     value = state.smartDelete,
                     onValueChanged = onSmartDeleteChanged,
+                    switchTestTag = "SmartDeleteSwitchItem",
                 )
-                AddSpaceBetweenNotationSwitchItem(
+
+                SwitchListItem(
+                    title = stringResource(R.string.add_space_after_notation),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_space),
+                            contentDescription = stringResource(R.string.add_space_after_notation),
+                        )
+                    },
                     value = state.addSpaceAfterNotation,
                     onValueChanged = onAddSpaceBetweenNotationChanged,
+                    switchTestTag = "AddSpaceAfterNotationSwitch",
                 )
-                VibrateOnTapSwitchItem(
+
+                SwitchListItem(
+                    title = stringResource(R.string.vibrate_on_tap),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_vibration),
+                            contentDescription = stringResource(R.string.vibrate_on_tap),
+                        )
+                    },
                     value = state.vibrateOnTap,
                     onValueChanged = onVibrateOnTapChanged,
+                    switchTestTag = "VibrateOnTapSwitch",
                 )
 
                 HorizontalDivider()

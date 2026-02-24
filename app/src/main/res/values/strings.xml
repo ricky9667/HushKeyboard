@@ -8,6 +8,9 @@
 
     <!-- Settings Screen -->
     <string name="settings">Settings</string>
+    <string name="smart_delete">Smart Delete</string>
+    <string name="add_space_after_notation">Add space after notation</string>
+    <string name="vibrate_on_tap">Vibrate on tap</string>
     <string name="version">Version</string>
     <string name="version_unknown">Unknown Version</string>
     <string name="hush_keyboard_github">https://github.com/ricky9667/HushKeyboard</string>

@@ -43,7 +43,7 @@ fun WideNotationOptionDropdownItem(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
-                for (option in WideNotationOption.values()) {
+                for (option in WideNotationOption.entries) {
                     DropdownMenuItem(
                         modifier = Modifier.testTag("WideNotationOptionDropdownMenuItem"),
                         text = { Text(option.toString()) },
