@@ -49,7 +49,7 @@ class HushKeyboardView(
     @Composable
     override fun Content() {
         val viewModel = (context as HushIMEService).viewModel
-        val state by viewModel.keyboardState.collectAsState(KeyboardState())
+        val state by viewModel.keyboardState.collectAsState()
 
         val isDarkTheme =
             when (state.themeOption) {
