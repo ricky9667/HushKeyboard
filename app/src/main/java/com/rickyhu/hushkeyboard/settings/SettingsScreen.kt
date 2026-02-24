@@ -1,7 +1,5 @@
 package com.rickyhu.hushkeyboard.settings
 
-import android.content.Intent
-import android.net.Uri
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -24,9 +22,9 @@ import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.settings.ui.AddSpaceBetweenNotationSwitchItem
-import com.rickyhu.hushkeyboard.settings.ui.AppVersionItem
 import com.rickyhu.hushkeyboard.settings.ui.SmartDeleteSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
+import com.rickyhu.hushkeyboard.settings.ui.UrlLauncherListItem
 import com.rickyhu.hushkeyboard.settings.ui.VibrateOnTapSwitchItem
 import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
@@ -95,12 +93,19 @@ fun SettingsContent(
 
                 HorizontalDivider()
 
-                AppVersionItem(
-                    onClick = {
-                        val url = "https://github.com/ricky9667/HushKeyboard"
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        context.startActivity(intent)
+                val packageName = context.packageManager.getPackageInfo(context.packageName, 0)
+                val versionName =
+                    packageName.versionName ?: stringResource(R.string.version_unknown)
+                UrlLauncherListItem(
+                    title = stringResource(R.string.version),
+                    url = stringResource(R.string.hush_keyboard_github),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_info),
+                            contentDescription = stringResource(R.string.version),
+                        )
                     },
+                    trailing = { Text(versionName) },
                 )
 
                 UrlLauncherListItem(
