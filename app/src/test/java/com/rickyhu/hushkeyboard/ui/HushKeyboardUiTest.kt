@@ -32,98 +32,98 @@ class HushKeyboardUiTest {
 
     @Test
     fun `First row key should exist, should be enabled, and should have click action`() {
-        assertNotationKeyButton("R ")
+        assertNotationKeyButton("R")
     }
 
     @Test
     fun `First row key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
-        assertNotationKeyButton("R' ")
+        assertNotationKeyButton("R'")
 
         clickCounterClockwiseButton()
-        assertNotationKeyButton("R ")
+        assertNotationKeyButton("R")
     }
 
     @Test
     fun `First row key should show w notation after clicking wide notation button`() {
         clickWideNotationButton()
-        assertNotationKeyButton("Rw ")
+        assertNotationKeyButton("Rw")
     }
 
     @Test
     fun `First row key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
-        assertNotationKeyButton("R2 ")
+        assertNotationKeyButton("R2")
 
         clickTurnDegreeButton()
-        assertNotationKeyButton("R3 ")
+        assertNotationKeyButton("R3")
 
         clickTurnDegreeButton()
-        assertNotationKeyButton("R ")
+        assertNotationKeyButton("R")
     }
 
     @Test
     fun `Middle turn key should exist, should be enabled, and should have click action`() {
-        assertNotationKeyButton("M ")
+        assertNotationKeyButton("M")
     }
 
     @Test
     fun `Middle turn key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
-        assertNotationKeyButton("M' ")
+        assertNotationKeyButton("M'")
 
         clickCounterClockwiseButton()
-        assertNotationKeyButton("M ")
+        assertNotationKeyButton("M")
     }
 
     @Test
     fun `Middle turn key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
-        assertNotationKeyButton("M2 ")
+        assertNotationKeyButton("M2")
 
         clickTurnDegreeButton()
-        assertNotationKeyButton("M3 ")
+        assertNotationKeyButton("M3")
 
         clickTurnDegreeButton()
-        assertNotationKeyButton("M ")
+        assertNotationKeyButton("M")
     }
 
     @Test
     fun `Middle turn key should not change after clicking wide turn button`() {
         clickWideNotationButton()
-        assertNotationKeyButton("M ")
+        assertNotationKeyButton("M")
     }
 
     @Test
     fun `Cube rotation key should exist, should be enabled, and should have click action`() {
-        assertNotationKeyButton("x ")
+        assertNotationKeyButton("x")
     }
 
     @Test
     fun `Cube rotation key should show ' notation after clicking counter clockwise button`() {
         clickCounterClockwiseButton()
-        assertNotationKeyButton("x' ")
+        assertNotationKeyButton("x'")
 
         clickCounterClockwiseButton()
-        assertNotationKeyButton("x ")
+        assertNotationKeyButton("x")
     }
 
     @Test
     fun `Cube rotation key should show correct turn degree after clicking turn degree button`() {
         clickTurnDegreeButton()
-        assertNotationKeyButton("x2 ")
+        assertNotationKeyButton("x2")
 
         clickTurnDegreeButton()
-        assertNotationKeyButton("x3 ")
+        assertNotationKeyButton("x3")
 
         clickTurnDegreeButton()
-        assertNotationKeyButton("x ")
+        assertNotationKeyButton("x")
     }
 
     @Test
     fun `Cube rotation key should not change after clicking wide turn button`() {
         clickWideNotationButton()
-        assertNotationKeyButton("x ")
+        assertNotationKeyButton("x")
     }
 
     @Test
