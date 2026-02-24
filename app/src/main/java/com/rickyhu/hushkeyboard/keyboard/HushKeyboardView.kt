@@ -82,8 +82,8 @@ fun HushKeyboardContent(state: KeyboardState) {
         modifier =
             Modifier
                 .fillMaxWidth()
-                .background(color = MaterialTheme.colorScheme.onPrimary)
-                .padding(vertical = 32.dp),
+                .background(color = MaterialTheme.colorScheme.surfaceContainerLow)
+                .padding(vertical = 28.dp),
     ) {
         NotationKeyButtonsRow(
             keys = NotationKeyProvider.getFirstRowKeys(keyConfigState),
