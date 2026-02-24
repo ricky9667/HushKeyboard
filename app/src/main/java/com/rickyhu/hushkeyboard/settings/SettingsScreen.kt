@@ -6,6 +6,8 @@ import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -15,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
@@ -89,11 +92,25 @@ fun SettingsContent(
                     value = state.vibrateOnTap,
                     onValueChanged = onVibrateOnTapChanged,
                 )
+
+                HorizontalDivider()
+
                 AppVersionItem(
                     onClick = {
                         val url = "https://github.com/ricky9667/HushKeyboard"
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         context.startActivity(intent)
+                    },
+                )
+
+                UrlLauncherListItem(
+                    title = stringResource(R.string.donate),
+                    url = stringResource(R.string.buy_me_a_coffee_url),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_favorite),
+                            contentDescription = stringResource(R.string.donate),
+                        )
                     },
                 )
             }

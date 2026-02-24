@@ -8,6 +8,8 @@
 
     <!-- Settings Screen -->
     <string name="settings">Settings</string>
+    <string name="donate">Donate</string>
+    <string name="buy_me_a_coffee_url">https://coff.ee/ricky9667</string>
 
     <!-- Introduction Screen -->
     <string name="intro_screen_title">Setup your keyboard</string>
