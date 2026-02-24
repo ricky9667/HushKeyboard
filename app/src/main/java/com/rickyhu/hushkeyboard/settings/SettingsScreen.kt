@@ -21,10 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rickyhu.hushkeyboard.R
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
+import com.rickyhu.hushkeyboard.settings.ui.DropdownListItem
 import com.rickyhu.hushkeyboard.settings.ui.SwitchListItem
-import com.rickyhu.hushkeyboard.settings.ui.ThemeOptionDropdownItem
 import com.rickyhu.hushkeyboard.settings.ui.UrlLauncherListItem
-import com.rickyhu.hushkeyboard.settings.ui.WideNotationOptionDropdownItem
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -68,13 +67,36 @@ fun SettingsContent(
         },
         content = { padding ->
             Column(modifier = Modifier.padding(padding)) {
-                ThemeOptionDropdownItem(
-                    currentTheme = state.themeOption,
-                    onThemeSelected = onThemeSelected,
+                DropdownListItem(
+                    title = stringResource(R.string.app_theme),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_brightness),
+                            contentDescription = stringResource(R.string.app_theme),
+                        )
+                    },
+                    currentValue = state.themeOption,
+                    onValueSelected = onThemeSelected,
+                    options = ThemeOption.entries.toList(),
+                    displayText = { it.name },
+                    menuTestTag = "ThemeOptionDropdownMenu",
+                    menuItemTestTag = "ThemeOptionDropdownMenuItem",
                 )
-                WideNotationOptionDropdownItem(
-                    currentOption = state.wideNotationOption,
-                    onOptionSelected = onWideNotationOptionSelected,
+
+                DropdownListItem(
+                    title = stringResource(R.string.wide_notation),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_keyboard),
+                            contentDescription = stringResource(R.string.wide_notation),
+                        )
+                    },
+                    currentValue = state.wideNotationOption,
+                    onValueSelected = onWideNotationOptionSelected,
+                    options = WideNotationOption.entries.toList(),
+                    displayText = { it.toString() },
+                    menuTestTag = "WideNotationOptionDropdownMenu",
+                    menuItemTestTag = "WideNotationOptionDropdownMenuItem",
                 )
 
                 SwitchListItem(
