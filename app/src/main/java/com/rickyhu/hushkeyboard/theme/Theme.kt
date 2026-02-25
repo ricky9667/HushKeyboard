@@ -12,9 +12,9 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import com.materialkolor.DynamicMaterialTheme
 import com.materialkolor.PaletteStyle
+import com.rickyhu.hushkeyboard.data.KeyboardColorOption
 
-// Default seed color for DynamicMaterialTheme - using a neutral blue-gray
-val DefaultSeedColor = Color(0xFF5B7C99)
+val DefaultSeedColor = KeyboardColorOption.NeutralGray.color
 
 @Composable
 fun HushKeyboardTheme(
