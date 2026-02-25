@@ -60,13 +60,15 @@ class HushKeyboardView(
                 ThemeOption.Dark -> true
             }
 
-        val seedColor =
-            when (state.keyboardColorOption) {
-                KeyboardColorOption.NeutralGray -> DefaultSeedColor
-                else -> state.keyboardColorOption.color
-            }
+        when (state.keyboardColorOption) {
+            KeyboardColorOption.NeutralGray -> DefaultSeedColor
+            else -> state.keyboardColorOption.color
+        }
 
-        HushKeyboardTheme(darkTheme = isDarkTheme, seedColor = seedColor) {
+        HushKeyboardTheme(
+            darkTheme = isDarkTheme,
+            seedColor = state.keyboardColorOption.color,
+        ) {
             HushKeyboardContent(state)
         }
     }
