@@ -15,41 +15,21 @@ data class AppSettings(
 
 enum class ThemeOption { System, Light, Dark }
 
-enum class KeyboardColorOption {
-    NeutralGray,
-    OceanBlue,
-    CoralRed,
-    ForestGreen,
-    DeepPurple,
-    AmberOrange,
-    TealBlue,
-    SlateGray,
+enum class KeyboardColorOption(
+    val color: Color,
+    val displayName: String,
+) {
+    NeutralGray(Color(0xFF6B6B6B), "Neutral Gray"),
+    OceanBlue(Color(0xFF0077BE), "Ocean Blue"),
+    CoralRed(Color(0xFFE53935), "Coral Red"),
+    ForestGreen(Color(0xFF2E7D32), "Forest Green"),
+    DeepPurple(Color(0xFF512DA8), "Deep Purple"),
+    AmberOrange(Color(0xFFFF8F00), "Amber Orange"),
+    TealBlue(Color(0xFF00695C), "Teal Blue"),
+    SlateGray(Color(0xFF455A64), "Slate Gray"),
     ;
 
-    val color: Color
-        get() =
-            when (this) {
-                NeutralGray -> Color(0xFF6B6B6B)
-                OceanBlue -> Color(0xFF0077BE)
-                CoralRed -> Color(0xFFE53935)
-                ForestGreen -> Color(0xFF2E7D32)
-                DeepPurple -> Color(0xFF512DA8)
-                AmberOrange -> Color(0xFFFF8F00)
-                TealBlue -> Color(0xFF00695C)
-                SlateGray -> Color(0xFF455A64)
-            }
-
-    override fun toString() =
-        when (this) {
-            NeutralGray -> "Neutral Gray"
-            OceanBlue -> "Ocean Blue"
-            CoralRed -> "Coral Red"
-            ForestGreen -> "Forest Green"
-            DeepPurple -> "Deep Purple"
-            AmberOrange -> "Amber Orange"
-            TealBlue -> "Teal Blue"
-            SlateGray -> "Slate Gray"
-        }
+    override fun toString() = displayName
 }
 
 enum class WideNotationOption {
