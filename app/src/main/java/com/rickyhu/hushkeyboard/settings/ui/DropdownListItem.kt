@@ -22,6 +22,7 @@ fun <T> DropdownListItem(
     onValueSelected: (T) -> Unit,
     options: List<T>,
     displayText: (T) -> String = { it.toString() },
+    optionContent: (@Composable (T) -> Unit)? = null,
     menuTestTag: String? = null,
     menuItemTestTag: String? = null,
 ) {
@@ -32,7 +33,11 @@ fun <T> DropdownListItem(
         headlineContent = { Text(title) },
         leadingContent = leading,
         trailingContent = {
-            Text(text = displayText(currentValue))
+            if (optionContent != null) {
+                optionContent(currentValue)
+            } else {
+                Text(text = displayText(currentValue))
+            }
 
             DropdownMenu(
                 modifier = Modifier.testTag(menuTestTag ?: title),
@@ -42,7 +47,13 @@ fun <T> DropdownListItem(
                 for (option in options) {
                     DropdownMenuItem(
                         modifier = Modifier.testTag(menuItemTestTag ?: title),
-                        text = { Text(displayText(option)) },
+                        text = {
+                            if (optionContent != null) {
+                                optionContent(option)
+                            } else {
+                                Text(displayText(option))
+                            }
+                        },
                         onClick = {
                             onValueSelected(option)
                             expanded = false

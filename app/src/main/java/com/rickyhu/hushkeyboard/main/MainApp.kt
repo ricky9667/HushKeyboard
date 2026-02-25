@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.rickyhu.hushkeyboard.data.KeyboardColorOption
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.home.HomeScreen
 import com.rickyhu.hushkeyboard.introduction.IntroductionScreen
 import com.rickyhu.hushkeyboard.settings.SettingsScreen
+import com.rickyhu.hushkeyboard.theme.DefaultSeedColor
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -29,7 +31,13 @@ fun MainApp(viewModel: MainViewModel = koinViewModel()) {
             ThemeOption.Dark -> true
         }
 
-    HushKeyboardTheme(darkTheme = isDarkTheme) {
+    val seedColor =
+        when (state.keyboardColorOption) {
+            KeyboardColorOption.NeutralGray -> DefaultSeedColor
+            else -> state.keyboardColorOption.color
+        }
+
+    HushKeyboardTheme(darkTheme = isDarkTheme, seedColor = seedColor) {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,

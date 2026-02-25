@@ -13,12 +13,13 @@ import androidx.core.view.WindowCompat
 import com.materialkolor.DynamicMaterialTheme
 import com.materialkolor.PaletteStyle
 
-// Seed color for DynamicMaterialTheme - using a neutral blue-gray
-private val SeedColor = Color(0xFF5B7C99)
+// Default seed color for DynamicMaterialTheme - using a neutral blue-gray
+val DefaultSeedColor = Color(0xFF5B7C99)
 
 @Composable
 fun HushKeyboardTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    seedColor: Color = DefaultSeedColor,
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
@@ -53,7 +54,7 @@ fun HushKeyboardTheme(
     }
 
     DynamicMaterialTheme(
-        seedColor = SeedColor,
+        seedColor = seedColor,
         isDark = darkTheme,
         animate = true,
         style = PaletteStyle.TonalSpot,

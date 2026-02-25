@@ -15,6 +15,10 @@ class SettingsRepository(
         dataStore.updateData { it.copy(themeOption = themeOption) }
     }
 
+    suspend fun updateKeyboardColorOption(keyboardColorOption: KeyboardColorOption) {
+        dataStore.updateData { it.copy(keyboardColorOption = keyboardColorOption) }
+    }
+
     suspend fun updateWideNotationOption(wideNotationOption: WideNotationOption) {
         dataStore.updateData { it.copy(wideNotationOption = wideNotationOption) }
     }
