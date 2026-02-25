@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
+    alias(libs.plugins.aboutlibraries)
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin)
@@ -75,6 +76,9 @@ ktlint {
 }
 
 dependencies {
+    // AboutLibraries
+    implementation(libs.aboutlibraries.compose.m3)
+
     // AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -2,6 +2,7 @@ package com.rickyhu.hushkeyboard.settings
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -38,7 +40,10 @@ import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel = koinViewModel()) {
+fun SettingsScreen(
+    viewModel: SettingsViewModel = koinViewModel(),
+    onLibrariesClick: () -> Unit = {},
+) {
     val state by viewModel.settingsState.collectAsState(SettingsState())
 
     SettingsContent(
@@ -49,6 +54,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = koinViewModel()) {
         onSmartDeleteChanged = viewModel::updateSmartDelete,
         onAddSpaceBetweenNotationChanged = viewModel::updateAddSpaceBetweenNotation,
         onVibrateOnTapChanged = viewModel::updateVibrateOnTap,
+        onLibrariesClick = onLibrariesClick,
     )
 }
 
@@ -63,6 +69,7 @@ fun SettingsContent(
     onSmartDeleteChanged: (smartDelete: Boolean) -> Unit,
     onAddSpaceBetweenNotationChanged: (addSpaceAfterNotation: Boolean) -> Unit,
     onVibrateOnTapChanged: (vibrateOnTap: Boolean) -> Unit,
+    onLibrariesClick: () -> Unit = {},
 ) {
     val context = LocalContext.current
 
@@ -195,6 +202,17 @@ fun SettingsContent(
                         )
                     },
                     trailing = { Text(versionName) },
+                )
+
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.libraries)) },
+                    leadingContent = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_library),
+                            contentDescription = stringResource(R.string.libraries),
+                        )
+                    },
+                    modifier = Modifier.clickable { onLibrariesClick() },
                 )
 
                 UrlLauncherListItem(
