@@ -29,7 +29,10 @@ fun MainApp(viewModel: MainViewModel = koinViewModel()) {
             ThemeOption.Dark -> true
         }
 
-    HushKeyboardTheme(darkTheme = isDarkTheme) {
+    HushKeyboardTheme(
+        darkTheme = isDarkTheme,
+        seedColor = state.keyboardColorOption.color,
+    ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,

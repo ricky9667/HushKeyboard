@@ -1,8 +1,14 @@
 package com.rickyhu.hushkeyboard.settings
 
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -13,12 +19,16 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.rickyhu.hushkeyboard.R
+import com.rickyhu.hushkeyboard.data.KeyboardColorOption
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.settings.ui.DropdownListItem
@@ -34,6 +44,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = koinViewModel()) {
     SettingsContent(
         state,
         onThemeSelected = viewModel::updateThemeOption,
+        onKeyboardColorOptionSelected = viewModel::updateKeyboardColorOption,
         onWideNotationOptionSelected = viewModel::updateWideNotationOption,
         onSmartDeleteChanged = viewModel::updateSmartDelete,
         onAddSpaceBetweenNotationChanged = viewModel::updateAddSpaceBetweenNotation,
@@ -47,6 +58,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = koinViewModel()) {
 fun SettingsContent(
     state: SettingsState,
     onThemeSelected: (themeOption: ThemeOption) -> Unit,
+    onKeyboardColorOptionSelected: (keyboardColorOption: KeyboardColorOption) -> Unit,
     onWideNotationOptionSelected: (wideNotationOption: WideNotationOption) -> Unit,
     onSmartDeleteChanged: (smartDelete: Boolean) -> Unit,
     onAddSpaceBetweenNotationChanged: (addSpaceAfterNotation: Boolean) -> Unit,
@@ -81,6 +93,36 @@ fun SettingsContent(
                     displayText = { it.name },
                     menuTestTag = "ThemeOptionDropdownMenu",
                     menuItemTestTag = "ThemeOptionDropdownMenuItem",
+                )
+
+                DropdownListItem(
+                    title = stringResource(R.string.keyboard_color),
+                    leading = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_palette),
+                            contentDescription = stringResource(R.string.keyboard_color),
+                        )
+                    },
+                    currentValue = state.keyboardColorOption,
+                    onValueSelected = onKeyboardColorOptionSelected,
+                    options = KeyboardColorOption.entries.toList(),
+                    optionContent = { option ->
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Box(
+                                modifier =
+                                    Modifier
+                                        .size(20.dp)
+                                        .clip(CircleShape)
+                                        .background(option.color),
+                            )
+                            Text(option.toString())
+                        }
+                    },
+                    menuTestTag = "KeyboardColorOptionDropdownMenu",
+                    menuItemTestTag = "KeyboardColorOptionDropdownMenuItem",
                 )
 
                 DropdownListItem(

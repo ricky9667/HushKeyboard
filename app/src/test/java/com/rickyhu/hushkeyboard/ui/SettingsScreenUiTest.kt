@@ -37,6 +37,7 @@ class SettingsScreenUiTest {
             SettingsContent(
                 state = SettingsState(),
                 onThemeSelected = {},
+                onKeyboardColorOptionSelected = {},
                 onWideNotationOptionSelected = {},
                 onSmartDeleteChanged = { value ->
                     smartDeleteValue = value
@@ -80,6 +81,38 @@ class SettingsScreenUiTest {
 
         composeTestRule
             .onAllNodesWithTag("ThemeOptionDropdownMenuItem")
+            .assertAll(isEnabled())
+    }
+
+    @Test
+    fun `Keyboard color dropdown item should exist, should be enabled, and should have click action`() {
+        composeTestRule
+            .onNodeWithText("Keyboard Color")
+            .assertExists()
+            .assertIsEnabled()
+            .assertHasClickAction()
+    }
+
+    @Test
+    fun `KeyboardColorDropdownMenu should display after KeyboardColorDropdownItem is clicked`() {
+        composeTestRule
+            .onNodeWithText("Keyboard Color")
+            .performClick()
+
+        composeTestRule
+            .onNodeWithTag("KeyboardColorOptionDropdownMenu")
+            .assertIsEnabled()
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun `All KeyboardColorDropdownMenuItems should display after KeyboardColorDropdownItem is clicked`() {
+        composeTestRule
+            .onNodeWithText("Keyboard Color")
+            .performClick()
+
+        composeTestRule
+            .onAllNodesWithTag("KeyboardColorOptionDropdownMenuItem")
             .assertAll(isEnabled())
     }
 

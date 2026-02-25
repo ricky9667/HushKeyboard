@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rickyhu.hushkeyboard.data.KeyboardColorOption
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
 import com.rickyhu.hushkeyboard.keyboard.ui.rows.ControlKeyButtonRow
@@ -31,6 +32,7 @@ import com.rickyhu.hushkeyboard.model.CubeKey
 import com.rickyhu.hushkeyboard.model.NotationKeyProvider
 import com.rickyhu.hushkeyboard.model.Turns
 import com.rickyhu.hushkeyboard.service.HushIMEService
+import com.rickyhu.hushkeyboard.theme.DefaultSeedColor
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import com.rickyhu.hushkeyboard.utils.deleteText
 import com.rickyhu.hushkeyboard.utils.inputNewline
@@ -58,7 +60,15 @@ class HushKeyboardView(
                 ThemeOption.Dark -> true
             }
 
-        HushKeyboardTheme(darkTheme = isDarkTheme) {
+        when (state.keyboardColorOption) {
+            KeyboardColorOption.NeutralGray -> DefaultSeedColor
+            else -> state.keyboardColorOption.color
+        }
+
+        HushKeyboardTheme(
+            darkTheme = isDarkTheme,
+            seedColor = state.keyboardColorOption.color,
+        ) {
             HushKeyboardContent(state)
         }
     }

@@ -3,6 +3,7 @@ package com.rickyhu.hushkeyboard.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rickyhu.hushkeyboard.data.AppSettings
+import com.rickyhu.hushkeyboard.data.KeyboardColorOption
 import com.rickyhu.hushkeyboard.data.SettingsRepository
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.data.WideNotationOption
@@ -23,6 +24,7 @@ class SettingsViewModel(
             ).map { settings ->
                 SettingsState(
                     themeOption = settings.themeOption,
+                    keyboardColorOption = settings.keyboardColorOption,
                     addSpaceAfterNotation = settings.addSpaceAfterNotation,
                     smartDelete = settings.smartDelete,
                     vibrateOnTap = settings.vibrateOnTap,
@@ -33,6 +35,12 @@ class SettingsViewModel(
     fun updateThemeOption(themeOption: ThemeOption) {
         viewModelScope.launch {
             settingsRepository.updateThemeOption(themeOption)
+        }
+    }
+
+    fun updateKeyboardColorOption(keyboardColorOption: KeyboardColorOption) {
+        viewModelScope.launch {
+            settingsRepository.updateKeyboardColorOption(keyboardColorOption)
         }
     }
 
@@ -63,6 +71,7 @@ class SettingsViewModel(
 
 data class SettingsState(
     val themeOption: ThemeOption = ThemeOption.System,
+    val keyboardColorOption: KeyboardColorOption = KeyboardColorOption.NeutralGray,
     val wideNotationOption: WideNotationOption = WideNotationOption.WideWithW,
     val smartDelete: Boolean = true,
     val addSpaceAfterNotation: Boolean = true,
