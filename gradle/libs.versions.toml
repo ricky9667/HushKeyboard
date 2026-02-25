@@ -1,4 +1,5 @@
 [versions]
+aboutlibraries = "11.2.3"
 activity-compose = "1.12.4"
 android-gradle-plugin = "9.0.1"
 android-lifecycle = "2.10.0"
@@ -19,6 +20,7 @@ robolectric = "4.16.1"
 splitties-systemservices = "3.0.0"
 
 [libraries]
+aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutlibraries" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "android-lifecycle" }
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "android-lifecycle" }
@@ -44,6 +46,7 @@ robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "
 splitties-systemservices = { group = "com.louiscad.splitties", name = "splitties-systemservices", version.ref = "splitties-systemservices" }
 
 [plugins]
+aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.rickyhu.hushkeyboard.data.ThemeOption
 import com.rickyhu.hushkeyboard.home.HomeScreen
 import com.rickyhu.hushkeyboard.introduction.IntroductionScreen
+import com.rickyhu.hushkeyboard.libraries.LibrariesScreen
 import com.rickyhu.hushkeyboard.settings.SettingsScreen
 import com.rickyhu.hushkeyboard.theme.HushKeyboardTheme
 import org.koin.androidx.compose.koinViewModel
@@ -50,7 +51,14 @@ fun MainApp(viewModel: MainViewModel = koinViewModel()) {
                     )
                 }
                 composable<Route.Settings> {
-                    SettingsScreen()
+                    SettingsScreen(
+                        onLibrariesClick = { navController.navigate(route = Route.Libraries) },
+                    )
+                }
+                composable<Route.Libraries> {
+                    LibrariesScreen(
+                        onBackClick = { navController.popBackStack() },
+                    )
                 }
                 composable<Route.Introduction> {
                     IntroductionScreen(

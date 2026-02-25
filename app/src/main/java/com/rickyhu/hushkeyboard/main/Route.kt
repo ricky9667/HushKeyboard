@@ -10,5 +10,8 @@ sealed interface Route {
     object Settings : Route
 
     @Serializable
+    object Libraries : Route
+
+    @Serializable
     object Introduction : Route
 }
