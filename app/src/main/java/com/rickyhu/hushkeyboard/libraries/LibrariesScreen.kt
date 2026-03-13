@@ -40,9 +40,10 @@ fun LibrariesScreen(onBackClick: () -> Unit = {}) {
         },
     ) { padding ->
         LibrariesContainer(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(padding),
         )
     }
 }
