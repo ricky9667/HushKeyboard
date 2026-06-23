@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css" />
   <style>
     :root {
       color-scheme: light;
@@ -290,6 +291,10 @@
       width: 100%;
       height: auto;
       object-fit: contain;
+    }
+
+    .asset-preview img {
+      cursor: zoom-in;
     }
 
     .pixel-frame {
@@ -681,7 +686,7 @@
           letters, numbers, and symbols.
           HUSH Keyboard puts the notation you need in one minimal, customizable keyboard.</p>
       </div>
-      <figure class="proof">
+      <figure class="proof asset-preview">
         <div class="pixel-frame">
           <img src="assets/demo.gif" alt="HUSH Keyboard typing Rubik's Cube notation" loading="lazy" />
         </div>
@@ -695,21 +700,21 @@
           Makes you type faster than Feliks Zemdegs.</p>
       </div>
       <div class="proof proof-grid">
-        <figure>
+        <figure class="asset-preview">
           <div class="pixel-frame">
             <img src="assets/tooltip_demo.gif" alt="Tooltip hint preview in HUSH Keyboard" loading="lazy" />
           </div>
           <h3>Tooltip hints</h3>
           <p>Preview notations before you release your finger.</p>
         </figure>
-        <figure>
+        <figure class="asset-preview">
           <div class="pixel-frame">
             <img src="assets/state_control_demo.gif" alt="Notation state controls in HUSH Keyboard" loading="lazy" />
           </div>
           <h3>State control</h3>
           <p>Type 180-degree, counter-clockwise, and wide moves in one tap.</p>
         </figure>
-        <figure>
+        <figure class="asset-preview">
           <div class="pixel-frame">
             <img src="assets/gesture_demo.gif" alt="Swipe gesture input in HUSH Keyboard" loading="lazy" />
           </div>
@@ -725,10 +730,10 @@
         <p>HUSH Keyboard follows your system light/dark theme. You can also set your keyboard theme in app settings.</p>
       </div>
       <div class="proof preview-grid">
-        <figure class="theme-preview theme-preview-light">
+        <figure class="theme-preview theme-preview-light asset-preview">
           <img src="assets/preview-light.png" alt="HUSH Keyboard light theme" loading="lazy" />
         </figure>
-        <figure class="theme-preview theme-preview-dark">
+        <figure class="theme-preview theme-preview-dark asset-preview">
           <img src="assets/preview-dark.png" alt="HUSH Keyboard dark theme" loading="lazy" />
         </figure>
       </div>
@@ -743,6 +748,7 @@
     </p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.js"></script>
   <script>
     (function () {
       var root = document.documentElement;
@@ -787,6 +793,31 @@
       });
 
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      if (window.Viewer) {
+        new Viewer(document.querySelector('main'), {
+          filter: function (image) {
+            return image.closest('.asset-preview') !== null;
+          },
+          navbar: true,
+          title: function (image) {
+            return image.getAttribute('alt') || '';
+          },
+          toolbar: {
+            zoomIn: 1,
+            zoomOut: 1,
+            oneToOne: 1,
+            reset: 1,
+            prev: 1,
+            play: 0,
+            next: 1,
+            rotateLeft: 1,
+            rotateRight: 1,
+            flipHorizontal: 0,
+            flipVertical: 0,
+          },
+        });
+      }
 
       requestAnimationFrame(function () {
         document.body.classList.add('is-ready');
