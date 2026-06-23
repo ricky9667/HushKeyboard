@@ -11,132 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
   <style>
-    :root {
-      color-scheme: light;
-      --bg: oklch(100% 0 89.88);
-      --surface: oklch(98.42% 0.0034 247.86);
-      --fg: oklch(20.06% 0.002 286.22);
-      --muted: oklch(55.44% 0.0407 257.42);
-      --border: oklch(92.76% 0.0058 264.53);
-      --accent: oklch(29.39% 0.0036 286.18);
-      --accent-on: oklch(100% 0 89.88);
-      --font-display: "Rubik", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-      --font-body: "Rubik", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-      --space-2: 8px;
-      --space-6: 24px;
-      --tracking-display: -0.02em;
-      --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
-      --container-max: 1180px;
-      --container-gutter-desktop: 24px;
-      --container-gutter-phone: 16px;
-    }
-
-    html[data-theme="dark"] {
-      color-scheme: dark;
-      --bg: oklch(0% 0 0);
-      --surface: oklch(20.06% 0.002 286.22);
-      --fg: oklch(98.42% 0.0034 247.86);
-      --muted: oklch(74.39% 0.0298 254.06);
-      --border: color-mix(in oklab, var(--fg), transparent 84%);
-      --accent: oklch(100% 0 89.88);
-      --accent-on: oklch(0% 0 0);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
       font: 400 16px/1.65 var(--font-body);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :focus-visible {
-      outline: none;
-      box-shadow: var(--focus-ring);
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      height: 64px;
-      border-bottom: 1px solid var(--border);
-      background: color-mix(in oklab, var(--bg), transparent 12%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .header-inner {
-      width: min(100%, var(--container-max));
-      height: 100%;
-      margin: auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .brand img {
-      width: 34px;
-      height: 34px;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .icon-button {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background: transparent;
-      color: var(--fg);
-      cursor: pointer;
-      transition: background 150ms, transform 150ms;
-    }
-
-    .icon-button:hover {
-      background: var(--surface);
-      transform: translateY(-1px);
-    }
-
-    .icon-button .icon {
-      width: 19px;
-      height: 19px;
-      line-height: 1;
     }
 
     main {
@@ -152,7 +30,7 @@
     }
 
     .policy-header h1 {
-      margin: 0;
+      margin-bottom: 24px;
       font: 800 clamp(42px, 7vw, 76px)/0.98 var(--font-display);
       letter-spacing: var(--tracking-display);
       text-wrap: balance;
@@ -214,75 +92,9 @@
       text-underline-offset: 3px;
     }
 
-    .site-footer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-2);
-      border-top: 1px solid var(--border);
-      padding: var(--space-6) var(--container-gutter-desktop);
-      color: var(--muted);
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .site-footer img {
-      width: auto;
-      height: 24px;
-      opacity: .72;
-    }
-
-    .site-footer p {
-      margin: 0;
-    }
-
-    .site-footer a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .site-footer a:hover {
-      color: var(--fg);
-    }
-
     @media (max-width: 640px) {
-      .site-header {
-        height: 58px;
-      }
-
-      .header-inner {
-        padding-inline: 16px;
-      }
-
-      .brand span {
-        display: none;
-      }
-
       main {
         padding: 48px 16px 80px;
-      }
-
-      .site-footer {
-        padding-inline: var(--container-gutter-phone);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-delay: 0ms !important;
-        transition-duration: .01ms !important;
-      }
-
-      .icon-button:hover {
-        transform: none;
       }
     }
   </style>
@@ -325,7 +137,6 @@
     <article class="policy-content">
       <header class="policy-header">
         <h1>Privacy Policy</h1>
-        <br />
         <p class="policy-updated">Last updated: July 13, 2024</p>
       </header>
 
@@ -520,7 +331,7 @@
       <ul>
         <li>By email: <a href="mailto:ricky9667@gmail.com">ricky9667@gmail.com</a></li>
         <li>By visiting this page on our website: <a href="https://github.com/ricky9667/HushKeyboard" target="_blank"
-            rel="noopener noreferrer">https://apps.ricky-hu.com/HushKeyboard/</a></li>
+            rel="noopener noreferrer">https://github.com/ricky9667/HushKeyboard</a></li>
       </ul>
     </article>
   </main>
@@ -533,45 +344,7 @@
     </p>
   </footer>
 
-  <script>
-    (function () {
-      var root = document.documentElement;
-      var toggle = document.getElementById('theme-toggle');
-      var icon = document.getElementById('theme-icon');
-      var media = window.matchMedia('(prefers-color-scheme: dark)');
-      var stored;
-      var darkModeIcon = '<path fill="currentColor" d="M12 21q-3.75 0-6.375-2.625T3 12t2.625-6.375T12 3q.35 0 .688.025t.662.075q-1.025.725-1.638 1.888T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q1.375 0 2.525-.613T20.9 10.65q.05.325.075.662T21 12q0 3.75-2.625 6.375T12 21" />';
-      var lightModeIcon = '<path fill="currentColor" d="M8.463 15.538Q7 14.075 7 12t1.463-3.537T12 7t3.538 1.463T17 12t-1.463 3.538T12 17t-3.537-1.463M5 13H1v-2h4zm18 0h-4v-2h4zM11 5V1h2v4zm0 18v-4h2v4zM6.4 7.75L3.875 5.325L5.3 3.85l2.4 2.5zm12.3 12.4l-2.425-2.525L17.6 16.25l2.525 2.425zM16.25 6.4l2.425-2.525L20.15 5.3l-2.5 2.4zM3.85 18.7l2.525-2.425L7.75 17.6l-2.425 2.525z" />';
-
-      try { stored = localStorage.getItem('hush-theme'); } catch (_) { }
-
-      function applyTheme(theme) {
-        var dark = theme === 'dark';
-        root.dataset.theme = theme;
-        toggle.setAttribute('aria-pressed', String(dark));
-        toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-        icon.innerHTML = dark ? lightModeIcon : darkModeIcon;
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#000000' : '#ffffff');
-      }
-
-      applyTheme(stored === 'light' || stored === 'dark' ? stored : media.matches ? 'dark' : 'light');
-
-      toggle.addEventListener('click', function () {
-        var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        try { localStorage.setItem('hush-theme', next); } catch (_) { }
-      });
-
-      media.addEventListener('change', function (event) {
-        try {
-          if (localStorage.getItem('hush-theme')) return;
-        } catch (_) { }
-        applyTheme(event.matches ? 'dark' : 'light');
-      });
-
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+  <script src="assets/site.js"></script>
 </body>
 
 </html>

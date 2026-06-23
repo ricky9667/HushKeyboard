@@ -1,0 +1,204 @@
+:root {
+  color-scheme: light;
+  --bg: oklch(100% 0 89.88);
+  --surface: oklch(98.42% 0.0034 247.86);
+  --fg: oklch(20.06% 0.002 286.22);
+  --muted: oklch(55.44% 0.0407 257.42);
+  --border: oklch(92.76% 0.0058 264.53);
+  --accent: oklch(29.39% 0.0036 286.18);
+  --accent-on: oklch(100% 0 89.88);
+  --accent-hover: color-mix(in oklab, var(--accent), white 14%);
+  --accent-active: color-mix(in oklab, var(--accent), black 10%);
+  --font-display: "Rubik", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-body: "Rubik", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --space-2: 8px;
+  --space-6: 24px;
+  --tracking-display: -0.02em;
+  --radius-pill: 9999px;
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --container-max: 1180px;
+  --container-gutter-desktop: 24px;
+  --container-gutter-phone: 16px;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: oklch(0% 0 0);
+  --surface: oklch(20.06% 0.002 286.22);
+  --fg: oklch(98.42% 0.0034 247.86);
+  --muted: oklch(74.39% 0.0298 254.06);
+  --border: color-mix(in oklab, var(--fg), transparent 84%);
+  --accent: oklch(100% 0 89.88);
+  --accent-on: oklch(0% 0 0);
+  --accent-hover: color-mix(in oklab, var(--accent), black 10%);
+  --accent-active: color-mix(in oklab, var(--accent), black 18%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 16px/1.55 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg), transparent 12%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.header-inner {
+  width: min(100%, var(--container-max));
+  height: 100%;
+  margin: auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand img {
+  width: 34px;
+  height: 34px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 150ms, transform 150ms;
+}
+
+.icon-button:hover {
+  background: var(--surface);
+  transform: translateY(-1px);
+}
+
+.icon-button .icon {
+  width: 19px;
+  height: 19px;
+  line-height: 1;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-top: 1px solid var(--border);
+  padding: var(--space-6) var(--container-gutter-desktop);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.site-footer img {
+  width: auto;
+  height: 24px;
+  opacity: .72;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--fg);
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    height: 58px;
+  }
+
+  .header-inner {
+    padding-inline: 16px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .site-footer {
+    padding-inline: var(--container-gutter-phone);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: .01ms !important;
+  }
+
+  .icon-button:hover {
+    transform: none;
+  }
+}
