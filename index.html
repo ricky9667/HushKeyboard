@@ -1,268 +1,801 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>
-        HUSH Keyboard
-    </title>
-    <meta name="description"
-        content="A specialized Rubik's Cube keyboard that is functional, minimal, and customizable." />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="icon" type="image/png" href="assets/icon.png" />
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-    <!--Replace with your tailwind.css once created-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet" />
-    <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
-    <style>
-        .gradient {
-            background: linear-gradient(90deg, #161617 0%, #2c2c2e 100%);
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="HUSH Keyboard is a minimal, customizable Rubik's Cube notation keyboard for Android." />
+  <meta name="theme-color" content="#ffffff" />
+  <title>HUSH Keyboard — Rubik's Cube notation keyboard for Android</title>
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: oklch(100% 0 89.88);
+      --surface: oklch(98.42% 0.0034 247.86);
+      --fg: oklch(20.06% 0.002 286.22);
+      --muted: oklch(55.44% 0.0407 257.42);
+      --border: oklch(92.76% 0.0058 264.53);
+      --accent: oklch(29.39% 0.0036 286.18);
+      --accent-on: oklch(100% 0 89.88);
+      --accent-hover: color-mix(in oklab, var(--accent), white 14%);
+      --accent-active: color-mix(in oklab, var(--accent), black 10%);
+      --font-display: "Rubik", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --font-body: "Rubik", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --space-2: 8px;
+      --space-6: 24px;
+      --tracking-display: -0.02em;
+      --radius-pill: 9999px;
+      --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --container-max: 1180px;
+      --container-gutter-desktop: 24px;
+      --container-gutter-phone: 16px;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: oklch(0% 0 0);
+      --surface: oklch(20.06% 0.002 286.22);
+      --fg: oklch(98.42% 0.0034 247.86);
+      --muted: oklch(74.39% 0.0298 254.06);
+      --border: color-mix(in oklab, var(--fg), transparent 84%);
+      --accent: oklch(100% 0 89.88);
+      --accent-on: oklch(0% 0 0);
+      --accent-hover: color-mix(in oklab, var(--accent), black 10%);
+      --accent-active: color-mix(in oklab, var(--accent), black 18%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.55 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in oklab, var(--bg), transparent 12%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      width: min(100%, var(--container-max));
+      height: 100%;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-button {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--fg);
+      cursor: pointer;
+      transition: background 150ms, transform 150ms;
+    }
+
+    .icon-button:hover {
+      background: var(--surface);
+      transform: translateY(-1px);
+    }
+
+    .icon-button .icon {
+      width: 19px;
+      height: 19px;
+      line-height: 1;
+    }
+
+    .hero {
+      min-height: min(640px, calc(100vh - 64px));
+      padding: 72px 24px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .hero-inner {
+      width: min(100%, 850px);
+    }
+
+    .hero-logo {
+      width: clamp(120px, 14vw, 168px);
+      margin: 0 auto 28px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font: 800 clamp(43px, 7.2vw, 92px)/0.98 var(--font-display);
+      letter-spacing: var(--tracking-display);
+      white-space: nowrap;
+    }
+
+    .hero-subtitle {
+      margin: 20px auto 0;
+      font-size: clamp(19px, 2.2vw, 30px);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 54px;
+      min-width: 260px;
+      padding: 14px 32px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-decoration: none;
+      transition: transform 220ms var(--ease-standard), background 150ms, border-color 150ms;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button:active {
+      transform: none;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: var(--accent-on);
+    }
+
+    .button-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .button-primary:active {
+      background: var(--accent-active);
+    }
+
+    .button-secondary {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .button svg,
+    .button .icon {
+      width: 23px;
+      height: 23px;
+      flex: none;
+    }
+
+    main {
+      width: min(100%, 1080px);
+      margin: auto;
+      padding: 80px 24px 112px;
+      display: grid;
+      gap: clamp(72px, 10vw, 128px);
+    }
+
+    .section-copy {
+      max-width: 72ch;
+    }
+
+    .side-preview-section,
+    .introduction-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+      align-items: center;
+      gap: clamp(40px, 7vw, 88px);
+    }
+
+    .side-preview-section .proof,
+    .introduction-layout .proof {
+      width: 100%;
+      margin: 0;
+    }
+
+    section h2 {
+      margin: 0;
+      font: 800 clamp(28px, 3.2vw, 40px)/1.08 var(--font-display);
+      letter-spacing: var(--tracking-display);
+      text-wrap: balance;
+    }
+
+    .section-copy>p:last-child {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 1.55vw, 21px);
+      line-height: 1.55;
+      text-wrap: pretty;
+    }
+
+    .proof {
+      margin: 36px 0 0;
+    }
+
+    .proof img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .pixel-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1440 / 3040;
+      padding: 7px;
+      overflow: hidden;
+      border: 1px solid color-mix(in oklab, white, transparent 82%);
+      border-radius: 34px;
+      background: oklch(16% 0.004 260);
+      box-shadow: 0 18px 42px color-mix(in oklab, black, transparent 82%);
+    }
+
+    .pixel-frame::after {
+      content: "";
+      position: absolute;
+      top: 17px;
+      left: 50%;
+      width: 11px;
+      height: 11px;
+      border: 2px solid oklch(27% 0.006 260);
+      border-radius: 50%;
+      background: oklch(7% 0.004 260);
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 1px oklch(5% 0 0 / .55);
+      z-index: 1;
+    }
+
+    .proof .pixel-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 27px;
+      object-fit: cover;
+    }
+
+    .proof-single {
+      width: min(100%, 520px);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(20px, 3vw, 36px);
+      align-items: start;
+    }
+
+    .proof-grid figure {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .proof-grid .pixel-frame {
+      width: auto;
+      height: clamp(330px, 44vw, 560px);
+      margin-inline: auto;
+    }
+
+    .proof-grid h3 {
+      margin: 18px 0 6px;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .proof-grid p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      width: min(100%, 560px);
+    }
+
+    .preview-grid figure {
+      margin: 0;
+    }
+
+    .preview-grid img {
+      width: 100%;
+      height: clamp(480px, 58vw, 680px);
+      aspect-ratio: 1571 / 3332;
+      object-fit: contain;
+    }
+
+    .theme-preview {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-preview-light,
+    html[data-theme="dark"] .theme-preview-dark {
+      display: block;
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      border-top: 1px solid var(--border);
+      padding: var(--space-6) var(--container-gutter-desktop);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .site-footer img {
+      width: auto;
+      height: 24px;
+      opacity: .72;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    .site-footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      color: var(--fg);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .is-ready .reveal {
+      animation: reveal 560ms var(--ease-standard) forwards;
+    }
+
+    .is-ready .delay-1 {
+      animation-delay: 70ms;
+    }
+
+    .is-ready .delay-2 {
+      animation-delay: 140ms;
+    }
+
+    .is-ready .delay-3 {
+      animation-delay: 210ms;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      main {
+        padding-top: 64px;
+        gap: 88px;
+      }
+
+      .side-preview-section,
+      .introduction-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+        gap: 36px;
+      }
+
+      .proof-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .proof-grid figure:last-child {
+        grid-column: 1 / -1;
+        width: calc(50% - 10px);
+      }
+
+      .preview-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        height: 58px;
+      }
+
+      .header-inner {
+        padding-inline: 16px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 16px 64px;
+      }
+
+      .hero-logo {
+        width: 112px;
+        margin-bottom: 24px;
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 11.3vw, 54px);
+      }
+
+      .hero-subtitle {
+        max-width: 22ch;
+        white-space: normal;
+      }
+
+      .hero-actions {
+        width: 100%;
+        margin-top: 28px;
+      }
+
+      .button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      main {
+        padding: 48px 16px 80px;
+        gap: 72px;
+      }
+
+      .proof {
+        margin-top: 28px;
+      }
+
+      .side-preview-section,
+      .introduction-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .side-preview-section .proof,
+      .introduction-layout .proof {
+        width: min(100%, 520px);
+        margin: 0;
+      }
+
+      .proof-grid,
+      .preview-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .proof-grid figure:last-child {
+        grid-column: auto;
+        width: auto;
+      }
+
+      .proof-grid img,
+      .preview-grid img {
+        height: auto;
+      }
+
+      .site-footer {
+        padding-inline: var(--container-gutter-phone);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero-logo {
+        width: 100px;
+      }
+
+      .hero h1 {
+        font-size: 35px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .button:hover,
+      .icon-button:hover {
+        transform: none;
+      }
+    }
+  </style>
 </head>
 
-<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Poppins', sans-serif;">
-    <!--Hero-->
-    <div class="pt-24">
-        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <!--Left Col-->
-            <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                <h1 class="my-4 text-5xl md:text-7xl font-bold leading-tight">
-                    HUSH Keyboard
-                </h1>
-                <p class="leading-normal text-2xl mb-8">
-                    Rubik's Cube notation keyboard for Android.
-                </p>
-                <a href="https://play.google.com/store/apps/details?id=com.rickyhu.hushkeyboard"
-                    class="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out inline-flex items-center gap-2 relative z-10">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"
-                        image-rendering="optimizeQuality" shape-rendering="geometricPrecision"
-                        text-rendering="geometricPrecision" viewBox="0 0 466 511.98">
-                        <g fill-rule="nonzero">
-                            <path fill="#EA4335"
-                                d="M199.9 237.8 1.4 470.17c7.22 24.57 30.16 41.81 55.8 41.81 11.16 0 20.93-2.79 29.3-8.37l244.16-139.46L199.9 237.8z" />
-                            <path fill="#FBBC04"
-                                d="m433.91 205.1-104.65-60-111.61 110.22 113.01 108.83 104.64-58.6c18.14-9.77 30.7-29.3 30.7-50.23-1.4-20.93-13.95-40.46-32.09-50.22z" />
-                            <path fill="#34A853"
-                                d="M199.42 273.45 329.27 145.1 87.9 8.37C79.53 2.79 68.36 0 57.2 0 30.7 0 6.98 18.14 1.4 41.86l198.02 231.59z" />
-                            <path fill="#4285F4"
-                                d="M1.39 41.86C0 46.04 0 51.63 0 57.2v397.64c0 5.57 0 9.76 1.4 15.34l216.27-214.86L1.39 41.86z" />
-                        </g>
-                    </svg>
-                    <span>Download</span>
-                </a>
-            </div>
-            <!--Right Col-->
-            <div class="w-full md:w-3/5 py-6 flex justify-center items-center">
-                <div class="w-3/4 flex justify-center items-center gap-4 md:gap-8">
-                    <img class="w-1/2 z-50 object-contain" src="assets/preview-dark.png" alt="Dark Preview" />
-                    <img class="w-1/2 z-50 object-contain" src="assets/preview-light.png" alt="Light Preview" />
-                </div>
-            </div>
-        </div>
+<body>
+  <header class="site-header" data-od-id="header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="HUSH Keyboard home">
+        <img src="assets/icon.png" alt="" />
+        <span>HUSH Keyboard</span>
+      </a>
+      <div class="header-actions">
+        <a class="icon-button" href="https://discord.com/invite/GjfMKprt7q" target="_blank" rel="noopener noreferrer"
+          aria-label="Join our Discord">
+          <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill="currentColor"
+              d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011a.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0a8 8 0 0 0-.412-.833a.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02a.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595a.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085a8 8 0 0 1-1.249.594a.05.05 0 0 0-.03.03a.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019a13.2 13.2 0 0 0 4.001-2.02a.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613c0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613c0 .888-.631 1.612-1.438 1.612" />
+          </svg>
+        </a>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to dark theme"
+          aria-pressed="false">
+          <svg class="icon" id="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor"
+              d="M12 21q-3.75 0-6.375-2.625T3 12t2.625-6.375T12 3q.35 0 .688.025t.662.075q-1.025.725-1.638 1.888T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q1.375 0 2.525-.613T20.9 10.65q.05.325.075.662T21 12q0 3.75-2.625 6.375T12 21" />
+          </svg>
+        </button>
+        <a class="icon-button" href="https://github.com/ricky9667/HushKeyboard" target="_blank"
+          rel="noopener noreferrer" aria-label="View HUSH Keyboard on GitHub">
+          <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59c.4.07.55-.17.55-.38c0-.19-.01-.82-.01-1.49c-2.01.37-2.53-.49-2.69-.94c-.09-.23-.48-.94-.82-1.13c-.28-.15-.68-.52-.01-.53c.63-.01 1.08.58 1.23.82c.72 1.21 1.87.87 2.33.66c.07-.52.28-.87.51-1.07c-1.78-.2-3.64-.89-3.64-3.95c0-.87.31-1.59.82-2.15c-.08-.2-.36-1.02.08-2.12c0 0 .67-.21 2.2.82c.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82c.44 1.1.16 1.92.08 2.12c.51.56.82 1.27.82 2.15c0 3.07-1.87 3.75-3.65 3.95c.29.25.54.73.54 1.48c0 1.07-.01 1.93-.01 2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+          </svg>
+        </a>
+      </div>
     </div>
-    <div class="relative -mt-12 lg:-mt-24">
-        <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <path
-                        d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
-                        opacity="0.100000001"></path>
-                    <path
-                        d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
-                        opacity="0.100000001"></path>
-                    <path
-                        d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z"
-                        id="Path-4" opacity="0.200000003"></path>
-                </g>
-                <g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <path
-                        d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z">
-                    </path>
-                </g>
+  </header>
+
+  <div id="top"></div>
+
+  <section class="hero" data-od-id="hero">
+    <div class="hero-inner">
+      <img class="hero-logo reveal" src="assets/icon.png" alt="HUSH Keyboard cube icon" />
+      <h1 class="reveal delay-1">HUSH Keyboard</h1>
+      <p class="hero-subtitle reveal delay-2">Rubik's Cube notation keyboard for Android.</p>
+      <div class="hero-actions reveal delay-3">
+        <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.rickyhu.hushkeyboard"
+          target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"
+            image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+            viewBox="0 0 466 511.98" aria-hidden="true">
+            <g fill-rule="nonzero">
+              <path fill="#EA4335"
+                d="M199.9 237.8 1.4 470.17c7.22 24.57 30.16 41.81 55.8 41.81 11.16 0 20.93-2.79 29.3-8.37l244.16-139.46L199.9 237.8z" />
+              <path fill="#FBBC04"
+                d="m433.91 205.1-104.65-60-111.61 110.22 113.01 108.83 104.64-58.6c18.14-9.77 30.7-29.3 30.7-50.23-1.4-20.93-13.95-40.46-32.09-50.22z" />
+              <path fill="#34A853"
+                d="M199.42 273.45 329.27 145.1 87.9 8.37C79.53 2.79 68.36 0 57.2 0 30.7 0 6.98 18.14 1.4 41.86l198.02 231.59z" />
+              <path fill="#4285F4"
+                d="M1.39 41.86C0 46.04 0 51.63 0 57.2v397.64c0 5.57 0 9.76 1.4 15.34l216.27-214.86L1.39 41.86z" />
             </g>
-        </svg>
+          </svg>
+          <span>Download</span>
+        </a>
+        <a class="button button-secondary"
+          href="https://github.com/ricky9667/HushKeyboard/blob/master/privacy-policy.md" target="_blank"
+          rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+              <path
+                d="M20 12V5.749a.6.6 0 0 0-.176-.425l-3.148-3.148A.6.6 0 0 0 16.252 2H4.6a.6.6 0 0 0-.6.6v18.8a.6.6 0 0 0 .6.6H13M8 10h8M8 6h4m-4 8h3" />
+              <path
+                d="M16 2v3.4a.6.6 0 0 0 .6.6H20m-.008 9.125l2.556.649c.266.068.453.31.445.584C22.821 22.116 19.5 23 19.5 23s-3.321-.884-3.493-6.642a.59.59 0 0 1 .445-.584l2.556-.649c.323-.082.661-.082.984 0" />
+            </g>
+          </svg>
+          <span>Privacy Policy</span>
+        </a>
+      </div>
     </div>
-    <section class="bg-white border-b py-8">
-        <div class="container max-w-5xl mx-auto m-8">
-            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                Introduction
-            </h2>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
-            <div class="flex flex-wrap items-center">
-                <div class="w-5/6 sm:w-1/2 p-6">
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Why HUSH Keyboard?</h3>
-                    <p class="text-gray-600 mb-8">
-                        Typing Rubik's Cube notations on a mobile keyboard kind of a frustration, switching between
-                        notations, numbers, and symbols makes it extremely annoying.
-                        <br />
-                        HUSH Keyboard provides a specialized Rubik's Cube keyboard that is functional, minimal, and
-                        customizable.
-                    </p>
-                </div>
-                <div class="w-full sm:w-1/2 p-6">
-                    <img class="w-4/5 sm:w-2/3 mx-auto rounded-xl shadow-lg object-contain" src="assets/demo.gif"
-                        alt="Hush Keyboard Demo" />
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="bg-white border-b py-8">
-        <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                Features
-            </h2>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
-            <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b overflow-hidden shadow p-6 flex flex-col">
-                    <div class="flex-grow">
-                        <p class="w-full text-gray-600 text-xs md:text-sm font-bold">
-                            HINTS
-                        </p>
-                        <div class="w-full font-bold text-xl text-gray-800 my-2">
-                            Tooltip hints
-                        </div>
-                        <p class="text-gray-800 text-base mb-5">
-                            Preview your notation just like Google's Gboard.
-                        </p>
-                    </div>
-                    <img class="w-4/5 sm:w-2/3 mx-auto rounded-xl shadow-lg object-contain mt-auto"
-                        src="assets/tooltip_demo.gif" alt="Tooltip hints demo" />
-                </div>
-            </div>
-            <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b overflow-hidden shadow p-6 flex flex-col">
-                    <div class="flex-grow">
-                        <p class="w-full text-gray-600 text-xs md:text-sm font-bold">
-                            CONTROLS
-                        </p>
-                        <div class="w-full font-bold text-xl text-gray-800 my-2">
-                            State control
-                        </div>
-                        <p class="text-gray-800 text-base mb-5">
-                            Just one click to type 180 degree, counter-clockwise, and even wide notations.
-                        </p>
-                    </div>
-                    <img class="w-4/5 sm:w-2/3 mx-auto rounded-xl shadow-lg object-contain mt-auto"
-                        src="assets/state_control_demo.gif" alt="State control demo" />
-                </div>
-            </div>
-            <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b overflow-hidden shadow p-6 flex flex-col">
-                    <div class="flex-grow">
-                        <p class="w-full text-gray-600 text-xs md:text-sm font-bold">
-                            SWIPE
-                        </p>
-                        <div class="w-full font-bold text-xl text-gray-800 my-2">
-                            Gesture input
-                        </div>
-                        <p class="text-gray-800 text-base mb-5">
-                            Use swipe gestures to type faster than Feliks Zemdegs.
-                        </p>
-                    </div>
-                    <img class="w-4/5 sm:w-2/3 mx-auto rounded-xl shadow-lg object-contain mt-auto"
-                        src="assets/gesture_demo.gif" alt="Gesture input demo" />
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="bg-white border-b py-8">
-        <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-            <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                Community & Support
-            </h2>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
+  </section>
 
-            <div
-                class="w-full flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 lg:gap-12 mt-8 md:mt-12 px-6">
-                <!-- HUSH Timer -->
-                <div class="flex flex-col items-center text-center flex-1 max-w-sm mb-8 md:mb-0">
-                    <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">Try our other apps</h3>
-                    <p class="text-gray-600 mb-6 flex-grow">
-                        Download the best 1v1 cubing timer, I'm sure you'll like it. 🥇
-                    </p>
-                    <a href="https://hushtimer.app/" target="_blank"
-                        class="text-gray-800 bg-white border-2 border-gray-800 font-bold rounded-full py-4 px-8 shadow-lg transform transition hover:scale-105 hover:bg-gray-800 hover:text-white duration-300 ease-in-out inline-flex items-center gap-2">
-                        <span>HUSH Timer</span>
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Discord -->
-                <div class="flex flex-col items-center text-center flex-1 max-w-sm mb-8 md:mb-0">
-                    <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">Join our Discord</h3>
-                    <p class="text-gray-600 mb-6 flex-grow">
-                        Any ideas or issues with our project? Join our Discord server to interact with us directly. 🗣️
-                    </p>
-                    <a href="https://discord.gg/GjfMKprt7q" target="_blank"
-                        class="text-white font-bold rounded-full py-4 px-8 shadow-lg transform transition hover:scale-105 hover:opacity-90 duration-300 ease-in-out inline-flex items-center gap-2"
-                        style="background-color: #5865F2;">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 127.14 96.36"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.2,46,96.12,53,91.08,65.69,84.69,65.69Z" />
-                        </svg>
-                        <span>Join our Discord</span>
-                    </a>
-                </div>
-
-                <!-- Buy Me A Coffee -->
-                <div class="flex flex-col items-center text-center flex-1 max-w-sm">
-                    <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">Support us</h3>
-                    <p class="text-gray-600 mb-6 flex-grow">
-                        If you want me to continue making these project nice and not die, support me on Buy Me A Coffee!
-                        😋
-                    </p>
-                    <a href="https://www.buymeacoffee.com/ricky9667" target="_blank"
-                        class="transform transition hover:scale-105 hover:opacity-90 duration-300 ease-in-out inline-block">
-                        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"
-                            style="height: 60px !important;width: 217px !important;">
-                    </a>
-                </div>
-            </div>
+  <main>
+    <section class="introduction-layout" data-od-id="introduction">
+      <div class="section-copy">
+        <h2>Typing notations is much easier.</h2>
+        <p>Typing Rubik's cube notations on a mobile keyboard is just a torture, it is very annoying to switch between
+          letters, numbers, and symbols.
+          HUSH Keyboard puts the notation you need in one minimal, customizable keyboard.</p>
+      </div>
+      <figure class="proof">
+        <div class="pixel-frame">
+          <img src="assets/demo.gif" alt="HUSH Keyboard typing Rubik's Cube notation" loading="lazy" />
         </div>
+      </figure>
     </section>
-    <!--Footer-->
-    <footer class="bg-white">
-        <div class="container mx-auto px-8 py-10">
-            <div class="w-full flex flex-col justify-center items-center text-center">
-                <div class="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mb-6">
-                    <a href="https://github.com/ricky9667/HushKeyboard" target="_blank" rel="noopener noreferrer"
-                        class="font-normal text-gray-600 hover:text-gray-900 hover:underline transition-all duration-300">Github</a>
-                    <a href="https://github.com/ricky9667/HushKeyboard/blob/master/privacy-policy.md" target="_blank" rel="noopener noreferrer"
-                        class="font-normal text-gray-600 hover:text-gray-900 hover:underline transition-all duration-300">Privacy
-                        Policy</a>
-                    <a href="https://github.com/ricky9667/HushKeyboard/blob/master/LICENSE" target="_blank" rel="noopener noreferrer"
-                        class="font-normal text-gray-600 hover:text-gray-900 hover:underline transition-all duration-300">License</a>
-                </div>
-                <div class="flex items-center justify-center gap-1">
-                    <img src="assets/ricky-hu-logo.png" alt="Ricky Hu Logo" class="h-6 w-auto" />
-                    <p class="text-gray-500 text-sm font-medium">
-                        <a href="https://ricky-hu.com" target="_blank" rel="noopener noreferrer">Ricky Hu</a>
-                        &copy;
-                        <span id="copyright-year"></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script>
-        document.getElementById('copyright-year').textContent = new Date().getFullYear();
-    </script>
+
+    <section data-od-id="features">
+      <div class="section-copy">
+        <h2>Fewer switches. Faster notation.</h2>
+        <p>Preview each move before it lands, change notation state with one tap, or swipe through common variations.
+          Makes you type faster than Feliks Zemdegs.</p>
+      </div>
+      <div class="proof proof-grid">
+        <figure>
+          <div class="pixel-frame">
+            <img src="assets/tooltip_demo.gif" alt="Tooltip hint preview in HUSH Keyboard" loading="lazy" />
+          </div>
+          <h3>Tooltip hints</h3>
+          <p>Preview notations before you release your finger.</p>
+        </figure>
+        <figure>
+          <div class="pixel-frame">
+            <img src="assets/state_control_demo.gif" alt="Notation state controls in HUSH Keyboard" loading="lazy" />
+          </div>
+          <h3>State control</h3>
+          <p>Type 180-degree, counter-clockwise, and wide moves in one tap.</p>
+        </figure>
+        <figure>
+          <div class="pixel-frame">
+            <img src="assets/gesture_demo.gif" alt="Swipe gesture input in HUSH Keyboard" loading="lazy" />
+          </div>
+          <h3>Gesture input</h3>
+          <p>Input commonly used notations with a single swipe. </p>
+        </figure>
+      </div>
+    </section>
+
+    <section class="side-preview-section" data-od-id="appearance">
+      <div class="section-copy">
+        <h2>Choose your own keyboard style.</h2>
+        <p>HUSH Keyboard follows your system light/dark theme. You can also set your keyboard theme in app settings.</p>
+      </div>
+      <div class="proof preview-grid">
+        <figure class="theme-preview theme-preview-light">
+          <img src="assets/preview-light.png" alt="HUSH Keyboard light theme" loading="lazy" />
+        </figure>
+        <figure class="theme-preview theme-preview-dark">
+          <img src="assets/preview-dark.png" alt="HUSH Keyboard dark theme" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-od-id="footer">
+    <img src="assets/ricky-hu-logo.png" alt="Ricky Hu logo" />
+    <p>
+      <a href="https://ricky-hu.com" target="_blank" rel="noopener noreferrer">Ricky Hu</a>
+      &copy; <span id="year"></span>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('theme-toggle');
+      var icon = document.getElementById('theme-icon');
+      var media = window.matchMedia('(prefers-color-scheme: dark)');
+      var stored;
+      var darkModeIcon = '<path fill="currentColor" d="M12 21q-3.75 0-6.375-2.625T3 12t2.625-6.375T12 3q.35 0 .688.025t.662.075q-1.025.725-1.638 1.888T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q1.375 0 2.525-.613T20.9 10.65q.05.325.075.662T21 12q0 3.75-2.625 6.375T12 21" />';
+      var lightModeIcon = '<path fill="currentColor" d="M8.463 15.538Q7 14.075 7 12t1.463-3.537T12 7t3.538 1.463T17 12t-1.463 3.538T12 17t-3.537-1.463M5 13H1v-2h4zm18 0h-4v-2h4zM11 5V1h2v4zm0 18v-4h2v4zM6.4 7.75L3.875 5.325L5.3 3.85l2.4 2.5zm12.3 12.4l-2.425-2.525L17.6 16.25l2.525 2.425zM16.25 6.4l2.425-2.525L20.15 5.3l-2.5 2.4zM3.85 18.7l2.525-2.425L7.75 17.6l-2.425 2.525z" />';
+
+      try { stored = localStorage.getItem('hush-theme'); } catch (_) { }
+
+      function applyTheme(theme) {
+        var dark = theme === 'dark';
+        root.dataset.theme = theme;
+        toggle.setAttribute('aria-pressed', String(dark));
+        toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+
+        icon.innerHTML = dark ? lightModeIcon : darkModeIcon;
+
+        document.querySelector('meta[name="theme-color"]')
+          .setAttribute('content', dark ? '#000000' : '#ffffff');
+      }
+
+      applyTheme(
+        stored === 'light' || stored === 'dark'
+          ? stored
+          : media.matches ? 'dark' : 'light'
+      );
+
+      toggle.addEventListener('click', function () {
+        var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        try { localStorage.setItem('hush-theme', next); } catch (_) { }
+      });
+
+      media.addEventListener('change', function (event) {
+        try {
+          if (localStorage.getItem('hush-theme')) return;
+        } catch (_) { }
+        applyTheme(event.matches ? 'dark' : 'light');
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      requestAnimationFrame(function () {
+        document.body.classList.add('is-ready');
+      });
+    })();
+  </script>
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    data-id="ricky9667" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FBDD02"
+    data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </body>
 
 </html>
