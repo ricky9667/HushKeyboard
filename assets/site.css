@@ -45,7 +45,9 @@ html {
 
 body {
   margin: 0;
+  background: #ffffff;
   background: var(--bg);
+  color: #202020;
   color: var(--fg);
   font: 400 16px/1.55 var(--font-body);
   -webkit-font-smoothing: antialiased;
