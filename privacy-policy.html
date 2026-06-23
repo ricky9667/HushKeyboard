@@ -12,6 +12,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
+  <script>
+    (function () {
+      var stored;
+      try { stored = localStorage.getItem('hush-theme'); } catch (_) { }
+      var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+      var theme = stored === 'light' || stored === 'dark' ? stored : (media && media.matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <style>
     body {
       font: 400 16px/1.65 var(--font-body);
