@@ -590,6 +590,48 @@
 
       requestAnimationFrame(function () {
         document.body.classList.add('is-ready');
+
+        // Typewriter effect for subtitle
+        let subtitle = document.querySelector('.hero-subtitle');
+        if (subtitle && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          let text = subtitle.textContent;
+          subtitle.textContent = '';
+          
+          if (!document.getElementById('cursor-style')) {
+            let style = document.createElement('style');
+            style.id = 'cursor-style';
+            style.textContent = '@keyframes blink { 50% { opacity: 0; } }';
+            document.head.appendChild(style);
+          }
+
+          let spans = [];
+          for (var i = 0; i < text.length; i++) {
+            let span = document.createElement('span');
+            span.textContent = text[i];
+            span.style.opacity = '0';
+            subtitle.appendChild(span);
+            spans.push(span);
+          }
+
+          let cursor = document.createElement('span');
+          cursor.textContent = '|';
+          cursor.style.display = 'inline-block';
+          cursor.style.width = '0';
+          cursor.style.overflow = 'visible';
+          cursor.style.animation = 'blink 1s step-end infinite';
+          subtitle.insertBefore(cursor, spans[0]);
+          
+          let charIndex = 0;
+          function typeWriter() {
+            if (charIndex < spans.length) {
+              spans[charIndex].style.opacity = '1';
+              subtitle.insertBefore(cursor, spans[charIndex + 1] || null);
+              charIndex++;
+              setTimeout(typeWriter, 30);
+            }
+          }
+          setTimeout(typeWriter, 400); // Start typing slightly after the reveal animation
+        }
       });
     })();
   </script>
